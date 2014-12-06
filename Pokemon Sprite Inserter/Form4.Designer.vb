@@ -23,7 +23,7 @@ Partial Class Form4
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form4))
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.SelectSpriteGroupBox = New System.Windows.Forms.GroupBox()
         Me.Button11 = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
@@ -33,32 +33,32 @@ Partial Class Form4
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.CurrentPresetLabel = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.GroupBox1.SuspendLayout()
+        Me.DoneButton = New System.Windows.Forms.Button()
+        Me.SelectSpriteGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
-        'GroupBox1
+        'SelectSpriteGroupBox
         '
-        Me.GroupBox1.Controls.Add(Me.Button11)
-        Me.GroupBox1.Controls.Add(Me.Button10)
-        Me.GroupBox1.Controls.Add(Me.Button9)
-        Me.GroupBox1.Controls.Add(Me.Button8)
-        Me.GroupBox1.Controls.Add(Me.Button7)
-        Me.GroupBox1.Controls.Add(Me.Button6)
-        Me.GroupBox1.Controls.Add(Me.Button5)
-        Me.GroupBox1.Controls.Add(Me.Button4)
-        Me.GroupBox1.Controls.Add(Me.Button3)
-        Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.Button2)
-        Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(13, 13)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(349, 392)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Select Sprite Data Preset"
+        Me.SelectSpriteGroupBox.Controls.Add(Me.Button11)
+        Me.SelectSpriteGroupBox.Controls.Add(Me.Button10)
+        Me.SelectSpriteGroupBox.Controls.Add(Me.Button9)
+        Me.SelectSpriteGroupBox.Controls.Add(Me.Button8)
+        Me.SelectSpriteGroupBox.Controls.Add(Me.Button7)
+        Me.SelectSpriteGroupBox.Controls.Add(Me.Button6)
+        Me.SelectSpriteGroupBox.Controls.Add(Me.Button5)
+        Me.SelectSpriteGroupBox.Controls.Add(Me.Button4)
+        Me.SelectSpriteGroupBox.Controls.Add(Me.Button3)
+        Me.SelectSpriteGroupBox.Controls.Add(Me.CurrentPresetLabel)
+        Me.SelectSpriteGroupBox.Controls.Add(Me.Button2)
+        Me.SelectSpriteGroupBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SelectSpriteGroupBox.Location = New System.Drawing.Point(13, 13)
+        Me.SelectSpriteGroupBox.Name = "SelectSpriteGroupBox"
+        Me.SelectSpriteGroupBox.Size = New System.Drawing.Size(349, 392)
+        Me.SelectSpriteGroupBox.TabIndex = 0
+        Me.SelectSpriteGroupBox.TabStop = False
+        Me.SelectSpriteGroupBox.Text = "Select Sprite Data Preset"
         '
         'Button11
         '
@@ -150,14 +150,14 @@ Partial Class Form4
         Me.Button3.Text = "Biker With Tomahawk Preset - 32x32 - 10 Frames"
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'Label1
+        'CurrentPresetLabel
         '
-        Me.Label1.AutoEllipsis = True
-        Me.Label1.Location = New System.Drawing.Point(7, 23)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(332, 15)
-        Me.Label1.TabIndex = 22
-        Me.Label1.Text = "Current Preset :"
+        Me.CurrentPresetLabel.AutoEllipsis = True
+        Me.CurrentPresetLabel.Location = New System.Drawing.Point(7, 23)
+        Me.CurrentPresetLabel.Name = "CurrentPresetLabel"
+        Me.CurrentPresetLabel.Size = New System.Drawing.Size(332, 15)
+        Me.CurrentPresetLabel.TabIndex = 22
+        Me.CurrentPresetLabel.Text = "Current Preset :"
         '
         'Button2
         '
@@ -169,34 +169,34 @@ Partial Class Form4
         Me.Button2.Text = "Secondary Hero Preset - 16x32 - 9 Frames"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'Button1
+        'DoneButton
         '
-        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(13, 411)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(350, 29)
-        Me.Button1.TabIndex = 20
-        Me.Button1.Text = "Done"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.DoneButton.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DoneButton.Location = New System.Drawing.Point(13, 411)
+        Me.DoneButton.Name = "DoneButton"
+        Me.DoneButton.Size = New System.Drawing.Size(350, 29)
+        Me.DoneButton.TabIndex = 20
+        Me.DoneButton.Text = "Done"
+        Me.DoneButton.UseVisualStyleBackColor = True
         '
         'Form4
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(374, 452)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.DoneButton)
+        Me.Controls.Add(Me.SelectSpriteGroupBox)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form4"
         Me.Text = "Pokemon Sprite Inserter - Presets"
-        Me.GroupBox1.ResumeLayout(False)
+        Me.SelectSpriteGroupBox.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents SelectSpriteGroupBox As System.Windows.Forms.GroupBox
+    Friend WithEvents DoneButton As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents CurrentPresetLabel As System.Windows.Forms.Label
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents Button7 As System.Windows.Forms.Button
     Friend WithEvents Button6 As System.Windows.Forms.Button

@@ -1,7 +1,20 @@
 
-	POKEMON SPRITE INSERTER
-+-----------------------------+
+										POKEMON SPRITE INSERTER
+									===============================
+	Copy Rights - Divya Mamgai, 2014													  License - GPL V3
++-------------------------------------------------------------------------------------------------------------+
  Change Log =>
-===============================
++=============================================================================================================+
 6/12/2014 : 1. Initial Release
-+-----------------------------+
+6/12/2014 : 2. Build 1.0.1
+				a. Minor Under The Hood Changes
+				b. Added Custom Sprite Data Support
+				c. Added Palette Inserter
+				d. Improved Input Validation
+6/12/2014 : 3. Build 1.0.2
+				a. Added Table Inserter
+				b. Added More Warnings To Prevent Accidental Data Overwrites
+				c. Changed Rom Lock To Rom Check And Made It More Smart
+				d. Added Ability To Restore Rom To It's Original State After The Sprite Data Has Been Written
+				e. Removed Some Inner Code Bugs
++-------------------------------------------------------------------------------------------------------------+

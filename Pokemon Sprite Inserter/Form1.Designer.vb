@@ -23,590 +23,613 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.Button9 = New System.Windows.Forms.Button()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox13 = New System.Windows.Forms.TextBox()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.TextBox11 = New System.Windows.Forms.TextBox()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.TextBox12 = New System.Windows.Forms.TextBox()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.TextBox10 = New System.Windows.Forms.TextBox()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.TextBox9 = New System.Windows.Forms.TextBox()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.TextBox8 = New System.Windows.Forms.TextBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.TextBox7 = New System.Windows.Forms.TextBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.PokemonRomGroupBox = New System.Windows.Forms.GroupBox()
+        Me.FilePathLabel = New System.Windows.Forms.Label()
+        Me.FilePathTextBox = New System.Windows.Forms.TextBox()
+        Me.OpenRomButton = New System.Windows.Forms.Button()
+        Me.SpriteTemplateSettingsGroupBox = New System.Windows.Forms.GroupBox()
+        Me.CancelSpriteInsertionButton = New System.Windows.Forms.Button()
+        Me.SelectOWSTableGroupBox = New System.Windows.Forms.GroupBox()
+        Me.BackButton = New System.Windows.Forms.Button()
+        Me.SelectOWSTablePanel = New System.Windows.Forms.Panel()
+        Me.Log = New System.Windows.Forms.RichTextBox()
+        Me.CreateOWSTableButton = New System.Windows.Forms.Button()
+        Me.PaletteInserterButton = New System.Windows.Forms.Button()
+        Me.CustomSpriteArtButton = New System.Windows.Forms.Button()
+        Me.HeightTextBox = New System.Windows.Forms.TextBox()
+        Me.HeightLabel = New System.Windows.Forms.Label()
+        Me.SkipBytesTextBox = New System.Windows.Forms.TextBox()
+        Me.SkipBytesLabel = New System.Windows.Forms.Label()
+        Me.StartOffsetTextBox = New System.Windows.Forms.TextBox()
+        Me.StartOffsetLabel = New System.Windows.Forms.Label()
+        Me.FreeSpaceOffsetsButton = New System.Windows.Forms.Button()
+        Me.UseFreeSpaceFinderCheckBox = New System.Windows.Forms.CheckBox()
+        Me.SpriteDataPresetGroupBox = New System.Windows.Forms.GroupBox()
+        Me.CustomPresetCheckBox = New System.Windows.Forms.CheckBox()
+        Me.Pointer4TextBox = New System.Windows.Forms.TextBox()
+        Me.Pointer4Label = New System.Windows.Forms.Label()
+        Me.AnimPointerTextBox = New System.Windows.Forms.TextBox()
+        Me.AnimPointerLabel = New System.Windows.Forms.Label()
+        Me.SelectDataPresetButton = New System.Windows.Forms.Button()
+        Me.Pointer2TextBox = New System.Windows.Forms.TextBox()
+        Me.Pointer2Label = New System.Windows.Forms.Label()
+        Me.Pointer1TextBox = New System.Windows.Forms.TextBox()
+        Me.Pointer1Label = New System.Windows.Forms.Label()
+        Me.PalRegistersTextBox = New System.Windows.Forms.TextBox()
+        Me.PalRegistersLabel = New System.Windows.Forms.Label()
+        Me.UnknownData1TextBox = New System.Windows.Forms.TextBox()
+        Me.UnknownData1Label = New System.Windows.Forms.Label()
+        Me.NumberOfFramesTextBox = New System.Windows.Forms.TextBox()
+        Me.NumberOfFramesLabel = New System.Windows.Forms.Label()
+        Me.PaletteNumberTextBox = New System.Windows.Forms.TextBox()
+        Me.PaletteNumberLabel = New System.Windows.Forms.Label()
+        Me.WidthTextBox = New System.Windows.Forms.TextBox()
+        Me.WidthLabel = New System.Windows.Forms.Label()
+        Me.StartSpriteInsertionButton = New System.Windows.Forms.Button()
         Me.RomFile = New System.Windows.Forms.OpenFileDialog()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        Me.Panel1.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
+        Me.RomStateLabel = New System.Windows.Forms.Label()
+        Me.AboutButton = New System.Windows.Forms.Button()
+        Me.SettingsButton = New System.Windows.Forms.Button()
+        Me.PokemonRomGroupBox.SuspendLayout()
+        Me.SpriteTemplateSettingsGroupBox.SuspendLayout()
+        Me.SpriteDataPresetGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
-        Me.GroupBox1.Controls.Add(Me.Button1)
-        Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(13, 13)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(600, 66)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Pokemon Fire Red Rom"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(7, 17)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(316, 15)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Enter or Browse the path to your Pokemon Fire Red Rom :"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(6, 36)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(507, 23)
-        Me.TextBox1.TabIndex = 1
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(519, 34)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 26)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Open Rom"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.Panel1)
-        Me.GroupBox2.Controls.Add(Me.RichTextBox1)
-        Me.GroupBox2.Controls.Add(Me.Button8)
-        Me.GroupBox2.Controls.Add(Me.Button9)
-        Me.GroupBox2.Controls.Add(Me.TextBox3)
-        Me.GroupBox2.Controls.Add(Me.Label3)
-        Me.GroupBox2.Controls.Add(Me.TextBox13)
-        Me.GroupBox2.Controls.Add(Me.Label14)
-        Me.GroupBox2.Controls.Add(Me.TextBox11)
-        Me.GroupBox2.Controls.Add(Me.Label12)
-        Me.GroupBox2.Controls.Add(Me.Button5)
-        Me.GroupBox2.Controls.Add(Me.CheckBox1)
-        Me.GroupBox2.Controls.Add(Me.GroupBox3)
-        Me.GroupBox2.Controls.Add(Me.TextBox5)
-        Me.GroupBox2.Controls.Add(Me.Label6)
-        Me.GroupBox2.Controls.Add(Me.TextBox4)
-        Me.GroupBox2.Controls.Add(Me.Label5)
-        Me.GroupBox2.Controls.Add(Me.TextBox2)
-        Me.GroupBox2.Controls.Add(Me.Label2)
-        Me.GroupBox2.Controls.Add(Me.Button6)
-        Me.GroupBox2.Controls.Add(Me.Button4)
-        Me.GroupBox2.Cursor = System.Windows.Forms.Cursors.Default
-        Me.GroupBox2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(13, 85)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(600, 278)
-        Me.GroupBox2.TabIndex = 1
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Sprite Template Settings"
-        '
-        'Panel1
-        '
-        Me.Panel1.AutoScroll = True
-        Me.Panel1.Controls.Add(Me.GroupBox4)
-        Me.Panel1.Location = New System.Drawing.Point(6, 16)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(588, 225)
-        Me.Panel1.TabIndex = 31
-        '
-        'GroupBox4
-        '
-        Me.GroupBox4.Location = New System.Drawing.Point(0, 0)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(588, 225)
-        Me.GroupBox4.TabIndex = 0
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "Select OWS Table"
-        '
-        'RichTextBox1
-        '
-        Me.RichTextBox1.Location = New System.Drawing.Point(6, 16)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(588, 225)
-        Me.RichTextBox1.TabIndex = 30
-        Me.RichTextBox1.Text = ""
-        '
-        'Button8
-        '
-        Me.Button8.Location = New System.Drawing.Point(475, 110)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(119, 25)
-        Me.Button8.TabIndex = 27
-        Me.Button8.Text = "Palette Inserter"
-        Me.Button8.UseVisualStyleBackColor = True
-        '
-        'Button9
-        '
-        Me.Button9.Location = New System.Drawing.Point(323, 16)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(271, 25)
-        Me.Button9.TabIndex = 25
-        Me.Button9.Text = "Use Custom Sprite Art Data - Off"
-        Me.Button9.UseVisualStyleBackColor = True
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(267, 17)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(50, 23)
-        Me.TextBox3.TabIndex = 4
-        Me.TextBox3.Tag = "32"
-        Me.TextBox3.Text = "32"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(164, 20)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(107, 15)
-        Me.Label3.TabIndex = 5
-        Me.Label3.Text = "Height [Decimal] : "
-        '
-        'TextBox13
-        '
-        Me.TextBox13.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox13.Location = New System.Drawing.Point(542, 78)
-        Me.TextBox13.Name = "TextBox13"
-        Me.TextBox13.Size = New System.Drawing.Size(52, 23)
-        Me.TextBox13.TabIndex = 29
-        Me.TextBox13.Tag = "16"
-        Me.TextBox13.Text = "16"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(474, 81)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(68, 15)
-        Me.Label14.TabIndex = 28
-        Me.Label14.Text = "Skip Bytes :"
-        '
-        'TextBox11
-        '
-        Me.TextBox11.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TextBox11.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox11.Location = New System.Drawing.Point(368, 78)
-        Me.TextBox11.MaxLength = 6
-        Me.TextBox11.Name = "TextBox11"
-        Me.TextBox11.Size = New System.Drawing.Size(101, 23)
-        Me.TextBox11.TabIndex = 14
-        Me.TextBox11.Text = "800000"
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(262, 81)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(109, 15)
-        Me.Label12.TabIndex = 15
-        Me.Label12.Text = "Start Offset [Hex] : "
-        '
-        'Button5
-        '
-        Me.Button5.Location = New System.Drawing.Point(390, 77)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(204, 25)
-        Me.Button5.TabIndex = 12
-        Me.Button5.Text = "Free Space Pointers"
-        Me.Button5.UseVisualStyleBackColor = True
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Checked = True
-        Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox1.Location = New System.Drawing.Point(406, 52)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(188, 19)
-        Me.CheckBox1.TabIndex = 13
-        Me.CheckBox1.Text = "Use Built-In Free Space Finder"
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.CheckBox2)
-        Me.GroupBox3.Controls.Add(Me.TextBox12)
-        Me.GroupBox3.Controls.Add(Me.Label13)
-        Me.GroupBox3.Controls.Add(Me.TextBox10)
-        Me.GroupBox3.Controls.Add(Me.Label11)
-        Me.GroupBox3.Controls.Add(Me.Button2)
-        Me.GroupBox3.Controls.Add(Me.TextBox9)
-        Me.GroupBox3.Controls.Add(Me.Label10)
-        Me.GroupBox3.Controls.Add(Me.TextBox8)
-        Me.GroupBox3.Controls.Add(Me.Label9)
-        Me.GroupBox3.Controls.Add(Me.TextBox7)
-        Me.GroupBox3.Controls.Add(Me.Label8)
-        Me.GroupBox3.Controls.Add(Me.TextBox6)
-        Me.GroupBox3.Controls.Add(Me.Label7)
-        Me.GroupBox3.Location = New System.Drawing.Point(6, 103)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(463, 138)
-        Me.GroupBox3.TabIndex = 10
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Sprite Data Preset [Current : Preset - 1]"
-        '
-        'CheckBox2
-        '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(241, 110)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(158, 19)
-        Me.CheckBox2.TabIndex = 14
-        Me.CheckBox2.Text = "Use Custom Preset Data"
-        Me.CheckBox2.UseVisualStyleBackColor = True
-        '
-        'TextBox12
-        '
-        Me.TextBox12.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox12.Location = New System.Drawing.Point(70, 103)
-        Me.TextBox12.MaxLength = 8
-        Me.TextBox12.Name = "TextBox12"
-        Me.TextBox12.Size = New System.Drawing.Size(143, 23)
-        Me.TextBox12.TabIndex = 23
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(6, 106)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(66, 15)
-        Me.Label13.TabIndex = 24
-        Me.Label13.Text = "Pointer 4 : "
-        '
-        'TextBox10
-        '
-        Me.TextBox10.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox10.Location = New System.Drawing.Point(91, 74)
-        Me.TextBox10.MaxLength = 8
-        Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(122, 23)
-        Me.TextBox10.TabIndex = 19
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(6, 77)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(87, 15)
-        Me.Label11.TabIndex = 20
-        Me.Label11.Text = "Anim Pointer : "
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(219, 79)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(202, 26)
-        Me.Button2.TabIndex = 3
-        Me.Button2.Text = "Select Data Preset"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'TextBox9
-        '
-        Me.TextBox9.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox9.Location = New System.Drawing.Point(282, 50)
-        Me.TextBox9.MaxLength = 8
-        Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(138, 23)
-        Me.TextBox9.TabIndex = 17
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(219, 53)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(66, 15)
-        Me.Label10.TabIndex = 18
-        Me.Label10.Text = "Pointer 2 : "
-        '
-        'TextBox8
-        '
-        Me.TextBox8.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox8.Location = New System.Drawing.Point(70, 45)
-        Me.TextBox8.MaxLength = 8
-        Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(143, 23)
-        Me.TextBox8.TabIndex = 15
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(6, 48)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(66, 15)
-        Me.Label9.TabIndex = 16
-        Me.Label9.Text = "Pointer 1 : "
-        '
-        'TextBox7
-        '
-        Me.TextBox7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox7.Location = New System.Drawing.Point(303, 16)
-        Me.TextBox7.MaxLength = 8
-        Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.Size = New System.Drawing.Size(117, 23)
-        Me.TextBox7.TabIndex = 13
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(219, 19)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(84, 15)
-        Me.Label8.TabIndex = 14
-        Me.Label8.Text = "Pal Registers :"
-        '
-        'TextBox6
-        '
-        Me.TextBox6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox6.Location = New System.Drawing.Point(110, 16)
-        Me.TextBox6.MaxLength = 8
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(103, 23)
-        Me.TextBox6.TabIndex = 11
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(6, 19)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(103, 15)
-        Me.Label7.TabIndex = 12
-        Me.Label7.Text = "Unknown Data 1 :"
-        '
-        'TextBox5
-        '
-        Me.TextBox5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox5.Location = New System.Drawing.Point(177, 74)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(35, 23)
-        Me.TextBox5.TabIndex = 8
-        Me.TextBox5.Tag = "9"
-        Me.TextBox5.Text = "9"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(6, 77)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(171, 15)
-        Me.Label6.TabIndex = 9
-        Me.Label6.Text = "Number Of Frames [Decimal] :"
-        '
-        'TextBox4
-        '
-        Me.TextBox4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox4.Location = New System.Drawing.Point(159, 45)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(53, 23)
-        Me.TextBox4.TabIndex = 6
-        Me.TextBox4.Tag = "0"
-        Me.TextBox4.Text = "0"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(6, 48)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(153, 15)
-        Me.Label5.TabIndex = 7
-        Me.Label5.Text = "Palette Number [Decimal] :"
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(109, 16)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(50, 23)
-        Me.TextBox2.TabIndex = 3
-        Me.TextBox2.Tag = "16"
-        Me.TextBox2.Text = "16"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(6, 19)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(103, 15)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Width [Decimal] :"
-        '
-        'Button6
-        '
-        Me.Button6.Location = New System.Drawing.Point(6, 246)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(588, 26)
-        Me.Button6.TabIndex = 17
-        Me.Button6.Text = "Back"
-        Me.Button6.UseVisualStyleBackColor = True
-        '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(6, 246)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(588, 26)
-        Me.Button4.TabIndex = 11
-        Me.Button4.Text = "Start Sprite Writing"
-        Me.Button4.UseVisualStyleBackColor = True
+        'PokemonRomGroupBox
+        '
+        Me.PokemonRomGroupBox.Controls.Add(Me.FilePathLabel)
+        Me.PokemonRomGroupBox.Controls.Add(Me.FilePathTextBox)
+        Me.PokemonRomGroupBox.Controls.Add(Me.OpenRomButton)
+        Me.PokemonRomGroupBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PokemonRomGroupBox.Location = New System.Drawing.Point(13, 13)
+        Me.PokemonRomGroupBox.Name = "PokemonRomGroupBox"
+        Me.PokemonRomGroupBox.Size = New System.Drawing.Size(600, 66)
+        Me.PokemonRomGroupBox.TabIndex = 0
+        Me.PokemonRomGroupBox.TabStop = False
+        Me.PokemonRomGroupBox.Text = "Pokemon Fire Red Rom"
+        '
+        'FilePathLabel
+        '
+        Me.FilePathLabel.AutoSize = True
+        Me.FilePathLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FilePathLabel.Location = New System.Drawing.Point(7, 17)
+        Me.FilePathLabel.Name = "FilePathLabel"
+        Me.FilePathLabel.Size = New System.Drawing.Size(316, 15)
+        Me.FilePathLabel.TabIndex = 2
+        Me.FilePathLabel.Text = "Enter or Browse the path to your Pokemon Fire Red Rom :"
+        '
+        'FilePathTextBox
+        '
+        Me.FilePathTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FilePathTextBox.Location = New System.Drawing.Point(6, 36)
+        Me.FilePathTextBox.Name = "FilePathTextBox"
+        Me.FilePathTextBox.Size = New System.Drawing.Size(507, 23)
+        Me.FilePathTextBox.TabIndex = 1
+        '
+        'OpenRomButton
+        '
+        Me.OpenRomButton.Location = New System.Drawing.Point(519, 34)
+        Me.OpenRomButton.Name = "OpenRomButton"
+        Me.OpenRomButton.Size = New System.Drawing.Size(75, 26)
+        Me.OpenRomButton.TabIndex = 0
+        Me.OpenRomButton.Text = "Open Rom"
+        Me.OpenRomButton.UseVisualStyleBackColor = True
+        '
+        'SpriteTemplateSettingsGroupBox
+        '
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.CancelSpriteInsertionButton)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.BackButton)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.CreateOWSTableButton)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.PaletteInserterButton)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.CustomSpriteArtButton)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.HeightTextBox)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.HeightLabel)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.SkipBytesTextBox)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.SkipBytesLabel)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.StartOffsetTextBox)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.StartOffsetLabel)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.FreeSpaceOffsetsButton)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.UseFreeSpaceFinderCheckBox)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.SpriteDataPresetGroupBox)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.NumberOfFramesTextBox)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.NumberOfFramesLabel)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.PaletteNumberTextBox)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.PaletteNumberLabel)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.WidthTextBox)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.WidthLabel)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.StartSpriteInsertionButton)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.SelectOWSTableGroupBox)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.SelectOWSTablePanel)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.Log)
+        Me.SpriteTemplateSettingsGroupBox.Cursor = System.Windows.Forms.Cursors.Default
+        Me.SpriteTemplateSettingsGroupBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SpriteTemplateSettingsGroupBox.Location = New System.Drawing.Point(13, 85)
+        Me.SpriteTemplateSettingsGroupBox.Name = "SpriteTemplateSettingsGroupBox"
+        Me.SpriteTemplateSettingsGroupBox.Size = New System.Drawing.Size(600, 278)
+        Me.SpriteTemplateSettingsGroupBox.TabIndex = 1
+        Me.SpriteTemplateSettingsGroupBox.TabStop = False
+        Me.SpriteTemplateSettingsGroupBox.Text = "Sprite Template Settings"
+        '
+        'CancelSpriteInsertionButton
+        '
+        Me.CancelSpriteInsertionButton.Location = New System.Drawing.Point(6, 246)
+        Me.CancelSpriteInsertionButton.Name = "CancelSpriteInsertionButton"
+        Me.CancelSpriteInsertionButton.Size = New System.Drawing.Size(588, 26)
+        Me.CancelSpriteInsertionButton.TabIndex = 33
+        Me.CancelSpriteInsertionButton.Text = "Cancel Sprite Insertion"
+        Me.CancelSpriteInsertionButton.UseVisualStyleBackColor = True
+        '
+        'SelectOWSTableGroupBox
+        '
+        Me.SelectOWSTableGroupBox.Location = New System.Drawing.Point(6, 16)
+        Me.SelectOWSTableGroupBox.Name = "SelectOWSTableGroupBox"
+        Me.SelectOWSTableGroupBox.Size = New System.Drawing.Size(588, 224)
+        Me.SelectOWSTableGroupBox.TabIndex = 0
+        Me.SelectOWSTableGroupBox.TabStop = False
+        Me.SelectOWSTableGroupBox.Text = "Select OWS Table"
+        '
+        'BackButton
+        '
+        Me.BackButton.Location = New System.Drawing.Point(6, 246)
+        Me.BackButton.Name = "BackButton"
+        Me.BackButton.Size = New System.Drawing.Size(588, 26)
+        Me.BackButton.TabIndex = 17
+        Me.BackButton.Text = "Back"
+        Me.BackButton.UseVisualStyleBackColor = True
+        '
+        'SelectOWSTablePanel
+        '
+        Me.SelectOWSTablePanel.AutoScroll = True
+        Me.SelectOWSTablePanel.Location = New System.Drawing.Point(6, 16)
+        Me.SelectOWSTablePanel.Name = "SelectOWSTablePanel"
+        Me.SelectOWSTablePanel.Size = New System.Drawing.Size(588, 224)
+        Me.SelectOWSTablePanel.TabIndex = 35
+        '
+        'Log
+        '
+        Me.Log.Location = New System.Drawing.Point(6, 16)
+        Me.Log.Name = "Log"
+        Me.Log.Size = New System.Drawing.Size(588, 224)
+        Me.Log.TabIndex = 34
+        Me.Log.Text = ""
+        '
+        'CreateOWSTableButton
+        '
+        Me.CreateOWSTableButton.Location = New System.Drawing.Point(475, 141)
+        Me.CreateOWSTableButton.Name = "CreateOWSTableButton"
+        Me.CreateOWSTableButton.Size = New System.Drawing.Size(119, 54)
+        Me.CreateOWSTableButton.TabIndex = 30
+        Me.CreateOWSTableButton.Text = "Create Empty OWS Table"
+        Me.CreateOWSTableButton.UseVisualStyleBackColor = True
+        '
+        'PaletteInserterButton
+        '
+        Me.PaletteInserterButton.Location = New System.Drawing.Point(475, 110)
+        Me.PaletteInserterButton.Name = "PaletteInserterButton"
+        Me.PaletteInserterButton.Size = New System.Drawing.Size(119, 25)
+        Me.PaletteInserterButton.TabIndex = 27
+        Me.PaletteInserterButton.Text = "Palette Inserter"
+        Me.PaletteInserterButton.UseVisualStyleBackColor = True
+        '
+        'CustomSpriteArtButton
+        '
+        Me.CustomSpriteArtButton.Location = New System.Drawing.Point(323, 16)
+        Me.CustomSpriteArtButton.Name = "CustomSpriteArtButton"
+        Me.CustomSpriteArtButton.Size = New System.Drawing.Size(271, 25)
+        Me.CustomSpriteArtButton.TabIndex = 25
+        Me.CustomSpriteArtButton.Text = "Use Custom Sprite Art Data - Off"
+        Me.CustomSpriteArtButton.UseVisualStyleBackColor = True
+        '
+        'HeightTextBox
+        '
+        Me.HeightTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.HeightTextBox.Location = New System.Drawing.Point(267, 17)
+        Me.HeightTextBox.Name = "HeightTextBox"
+        Me.HeightTextBox.Size = New System.Drawing.Size(50, 23)
+        Me.HeightTextBox.TabIndex = 4
+        Me.HeightTextBox.Tag = "32"
+        Me.HeightTextBox.Text = "32"
+        '
+        'HeightLabel
+        '
+        Me.HeightLabel.AutoSize = True
+        Me.HeightLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.HeightLabel.Location = New System.Drawing.Point(164, 20)
+        Me.HeightLabel.Name = "HeightLabel"
+        Me.HeightLabel.Size = New System.Drawing.Size(107, 15)
+        Me.HeightLabel.TabIndex = 5
+        Me.HeightLabel.Text = "Height [Decimal] : "
+        '
+        'SkipBytesTextBox
+        '
+        Me.SkipBytesTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SkipBytesTextBox.Location = New System.Drawing.Point(542, 75)
+        Me.SkipBytesTextBox.Name = "SkipBytesTextBox"
+        Me.SkipBytesTextBox.Size = New System.Drawing.Size(52, 23)
+        Me.SkipBytesTextBox.TabIndex = 29
+        Me.SkipBytesTextBox.Tag = "16"
+        Me.SkipBytesTextBox.Text = "16"
+        '
+        'SkipBytesLabel
+        '
+        Me.SkipBytesLabel.AutoSize = True
+        Me.SkipBytesLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SkipBytesLabel.Location = New System.Drawing.Point(474, 78)
+        Me.SkipBytesLabel.Name = "SkipBytesLabel"
+        Me.SkipBytesLabel.Size = New System.Drawing.Size(68, 15)
+        Me.SkipBytesLabel.TabIndex = 28
+        Me.SkipBytesLabel.Text = "Skip Bytes :"
+        '
+        'StartOffsetTextBox
+        '
+        Me.StartOffsetTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.StartOffsetTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.StartOffsetTextBox.Location = New System.Drawing.Point(368, 75)
+        Me.StartOffsetTextBox.MaxLength = 6
+        Me.StartOffsetTextBox.Name = "StartOffsetTextBox"
+        Me.StartOffsetTextBox.Size = New System.Drawing.Size(101, 23)
+        Me.StartOffsetTextBox.TabIndex = 14
+        Me.StartOffsetTextBox.Tag = "800000"
+        Me.StartOffsetTextBox.Text = "800000"
+        '
+        'StartOffsetLabel
+        '
+        Me.StartOffsetLabel.AutoSize = True
+        Me.StartOffsetLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.StartOffsetLabel.Location = New System.Drawing.Point(262, 78)
+        Me.StartOffsetLabel.Name = "StartOffsetLabel"
+        Me.StartOffsetLabel.Size = New System.Drawing.Size(109, 15)
+        Me.StartOffsetLabel.TabIndex = 15
+        Me.StartOffsetLabel.Text = "Start Offset [Hex] : "
+        '
+        'FreeSpaceOffsetsButton
+        '
+        Me.FreeSpaceOffsetsButton.Location = New System.Drawing.Point(390, 74)
+        Me.FreeSpaceOffsetsButton.Name = "FreeSpaceOffsetsButton"
+        Me.FreeSpaceOffsetsButton.Size = New System.Drawing.Size(204, 25)
+        Me.FreeSpaceOffsetsButton.TabIndex = 12
+        Me.FreeSpaceOffsetsButton.Text = "Free Space Offsets"
+        Me.FreeSpaceOffsetsButton.UseVisualStyleBackColor = True
+        '
+        'UseFreeSpaceFinderCheckBox
+        '
+        Me.UseFreeSpaceFinderCheckBox.AutoSize = True
+        Me.UseFreeSpaceFinderCheckBox.Checked = True
+        Me.UseFreeSpaceFinderCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.UseFreeSpaceFinderCheckBox.Location = New System.Drawing.Point(279, 50)
+        Me.UseFreeSpaceFinderCheckBox.Name = "UseFreeSpaceFinderCheckBox"
+        Me.UseFreeSpaceFinderCheckBox.Size = New System.Drawing.Size(315, 19)
+        Me.UseFreeSpaceFinderCheckBox.TabIndex = 13
+        Me.UseFreeSpaceFinderCheckBox.Text = "Use Built-In Free Space Finder For Sprite Data Offsets"
+        Me.UseFreeSpaceFinderCheckBox.UseVisualStyleBackColor = True
+        '
+        'SpriteDataPresetGroupBox
+        '
+        Me.SpriteDataPresetGroupBox.Controls.Add(Me.CustomPresetCheckBox)
+        Me.SpriteDataPresetGroupBox.Controls.Add(Me.Pointer4TextBox)
+        Me.SpriteDataPresetGroupBox.Controls.Add(Me.Pointer4Label)
+        Me.SpriteDataPresetGroupBox.Controls.Add(Me.AnimPointerTextBox)
+        Me.SpriteDataPresetGroupBox.Controls.Add(Me.AnimPointerLabel)
+        Me.SpriteDataPresetGroupBox.Controls.Add(Me.SelectDataPresetButton)
+        Me.SpriteDataPresetGroupBox.Controls.Add(Me.Pointer2TextBox)
+        Me.SpriteDataPresetGroupBox.Controls.Add(Me.Pointer2Label)
+        Me.SpriteDataPresetGroupBox.Controls.Add(Me.Pointer1TextBox)
+        Me.SpriteDataPresetGroupBox.Controls.Add(Me.Pointer1Label)
+        Me.SpriteDataPresetGroupBox.Controls.Add(Me.PalRegistersTextBox)
+        Me.SpriteDataPresetGroupBox.Controls.Add(Me.PalRegistersLabel)
+        Me.SpriteDataPresetGroupBox.Controls.Add(Me.UnknownData1TextBox)
+        Me.SpriteDataPresetGroupBox.Controls.Add(Me.UnknownData1Label)
+        Me.SpriteDataPresetGroupBox.Location = New System.Drawing.Point(6, 103)
+        Me.SpriteDataPresetGroupBox.Name = "SpriteDataPresetGroupBox"
+        Me.SpriteDataPresetGroupBox.Size = New System.Drawing.Size(463, 137)
+        Me.SpriteDataPresetGroupBox.TabIndex = 10
+        Me.SpriteDataPresetGroupBox.TabStop = False
+        Me.SpriteDataPresetGroupBox.Text = "Sprite Data Preset [Current : Preset - 1]"
+        '
+        'CustomPresetCheckBox
+        '
+        Me.CustomPresetCheckBox.AutoSize = True
+        Me.CustomPresetCheckBox.Location = New System.Drawing.Point(302, 113)
+        Me.CustomPresetCheckBox.Name = "CustomPresetCheckBox"
+        Me.CustomPresetCheckBox.Size = New System.Drawing.Size(158, 19)
+        Me.CustomPresetCheckBox.TabIndex = 14
+        Me.CustomPresetCheckBox.Text = "Use Custom Preset Data"
+        Me.CustomPresetCheckBox.UseVisualStyleBackColor = True
+        '
+        'Pointer4TextBox
+        '
+        Me.Pointer4TextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Pointer4TextBox.Location = New System.Drawing.Point(70, 106)
+        Me.Pointer4TextBox.MaxLength = 8
+        Me.Pointer4TextBox.Name = "Pointer4TextBox"
+        Me.Pointer4TextBox.Size = New System.Drawing.Size(143, 23)
+        Me.Pointer4TextBox.TabIndex = 23
+        '
+        'Pointer4Label
+        '
+        Me.Pointer4Label.AutoSize = True
+        Me.Pointer4Label.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Pointer4Label.Location = New System.Drawing.Point(6, 109)
+        Me.Pointer4Label.Name = "Pointer4Label"
+        Me.Pointer4Label.Size = New System.Drawing.Size(66, 15)
+        Me.Pointer4Label.TabIndex = 24
+        Me.Pointer4Label.Text = "Pointer 4 : "
+        '
+        'AnimPointerTextBox
+        '
+        Me.AnimPointerTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AnimPointerTextBox.Location = New System.Drawing.Point(91, 77)
+        Me.AnimPointerTextBox.MaxLength = 8
+        Me.AnimPointerTextBox.Name = "AnimPointerTextBox"
+        Me.AnimPointerTextBox.Size = New System.Drawing.Size(122, 23)
+        Me.AnimPointerTextBox.TabIndex = 19
+        '
+        'AnimPointerLabel
+        '
+        Me.AnimPointerLabel.AutoSize = True
+        Me.AnimPointerLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AnimPointerLabel.Location = New System.Drawing.Point(6, 80)
+        Me.AnimPointerLabel.Name = "AnimPointerLabel"
+        Me.AnimPointerLabel.Size = New System.Drawing.Size(87, 15)
+        Me.AnimPointerLabel.TabIndex = 20
+        Me.AnimPointerLabel.Text = "Anim Pointer : "
+        '
+        'SelectDataPresetButton
+        '
+        Me.SelectDataPresetButton.Location = New System.Drawing.Point(255, 81)
+        Me.SelectDataPresetButton.Name = "SelectDataPresetButton"
+        Me.SelectDataPresetButton.Size = New System.Drawing.Size(202, 26)
+        Me.SelectDataPresetButton.TabIndex = 3
+        Me.SelectDataPresetButton.Text = "Select Data Preset"
+        Me.SelectDataPresetButton.UseVisualStyleBackColor = True
+        '
+        'Pointer2TextBox
+        '
+        Me.Pointer2TextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Pointer2TextBox.Location = New System.Drawing.Point(318, 52)
+        Me.Pointer2TextBox.MaxLength = 8
+        Me.Pointer2TextBox.Name = "Pointer2TextBox"
+        Me.Pointer2TextBox.Size = New System.Drawing.Size(138, 23)
+        Me.Pointer2TextBox.TabIndex = 17
+        '
+        'Pointer2Label
+        '
+        Me.Pointer2Label.AutoSize = True
+        Me.Pointer2Label.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Pointer2Label.Location = New System.Drawing.Point(255, 55)
+        Me.Pointer2Label.Name = "Pointer2Label"
+        Me.Pointer2Label.Size = New System.Drawing.Size(66, 15)
+        Me.Pointer2Label.TabIndex = 18
+        Me.Pointer2Label.Text = "Pointer 2 : "
+        '
+        'Pointer1TextBox
+        '
+        Me.Pointer1TextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Pointer1TextBox.Location = New System.Drawing.Point(70, 48)
+        Me.Pointer1TextBox.MaxLength = 8
+        Me.Pointer1TextBox.Name = "Pointer1TextBox"
+        Me.Pointer1TextBox.Size = New System.Drawing.Size(143, 23)
+        Me.Pointer1TextBox.TabIndex = 15
+        '
+        'Pointer1Label
+        '
+        Me.Pointer1Label.AutoSize = True
+        Me.Pointer1Label.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Pointer1Label.Location = New System.Drawing.Point(6, 51)
+        Me.Pointer1Label.Name = "Pointer1Label"
+        Me.Pointer1Label.Size = New System.Drawing.Size(66, 15)
+        Me.Pointer1Label.TabIndex = 16
+        Me.Pointer1Label.Text = "Pointer 1 : "
+        '
+        'PalRegistersTextBox
+        '
+        Me.PalRegistersTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PalRegistersTextBox.Location = New System.Drawing.Point(339, 18)
+        Me.PalRegistersTextBox.MaxLength = 8
+        Me.PalRegistersTextBox.Name = "PalRegistersTextBox"
+        Me.PalRegistersTextBox.Size = New System.Drawing.Size(117, 23)
+        Me.PalRegistersTextBox.TabIndex = 13
+        '
+        'PalRegistersLabel
+        '
+        Me.PalRegistersLabel.AutoSize = True
+        Me.PalRegistersLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PalRegistersLabel.Location = New System.Drawing.Point(255, 21)
+        Me.PalRegistersLabel.Name = "PalRegistersLabel"
+        Me.PalRegistersLabel.Size = New System.Drawing.Size(84, 15)
+        Me.PalRegistersLabel.TabIndex = 14
+        Me.PalRegistersLabel.Text = "Pal Registers :"
+        '
+        'UnknownData1TextBox
+        '
+        Me.UnknownData1TextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.UnknownData1TextBox.Location = New System.Drawing.Point(110, 19)
+        Me.UnknownData1TextBox.MaxLength = 8
+        Me.UnknownData1TextBox.Name = "UnknownData1TextBox"
+        Me.UnknownData1TextBox.Size = New System.Drawing.Size(103, 23)
+        Me.UnknownData1TextBox.TabIndex = 11
+        '
+        'UnknownData1Label
+        '
+        Me.UnknownData1Label.AutoSize = True
+        Me.UnknownData1Label.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.UnknownData1Label.Location = New System.Drawing.Point(6, 22)
+        Me.UnknownData1Label.Name = "UnknownData1Label"
+        Me.UnknownData1Label.Size = New System.Drawing.Size(103, 15)
+        Me.UnknownData1Label.TabIndex = 12
+        Me.UnknownData1Label.Text = "Unknown Data 1 :"
+        '
+        'NumberOfFramesTextBox
+        '
+        Me.NumberOfFramesTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumberOfFramesTextBox.Location = New System.Drawing.Point(177, 74)
+        Me.NumberOfFramesTextBox.Name = "NumberOfFramesTextBox"
+        Me.NumberOfFramesTextBox.Size = New System.Drawing.Size(35, 23)
+        Me.NumberOfFramesTextBox.TabIndex = 8
+        Me.NumberOfFramesTextBox.Tag = "9"
+        Me.NumberOfFramesTextBox.Text = "9"
+        '
+        'NumberOfFramesLabel
+        '
+        Me.NumberOfFramesLabel.AutoSize = True
+        Me.NumberOfFramesLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumberOfFramesLabel.Location = New System.Drawing.Point(6, 77)
+        Me.NumberOfFramesLabel.Name = "NumberOfFramesLabel"
+        Me.NumberOfFramesLabel.Size = New System.Drawing.Size(171, 15)
+        Me.NumberOfFramesLabel.TabIndex = 9
+        Me.NumberOfFramesLabel.Text = "Number Of Frames [Decimal] :"
+        '
+        'PaletteNumberTextBox
+        '
+        Me.PaletteNumberTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PaletteNumberTextBox.Location = New System.Drawing.Point(159, 45)
+        Me.PaletteNumberTextBox.Name = "PaletteNumberTextBox"
+        Me.PaletteNumberTextBox.Size = New System.Drawing.Size(53, 23)
+        Me.PaletteNumberTextBox.TabIndex = 6
+        Me.PaletteNumberTextBox.Tag = "0"
+        Me.PaletteNumberTextBox.Text = "0"
+        '
+        'PaletteNumberLabel
+        '
+        Me.PaletteNumberLabel.AutoSize = True
+        Me.PaletteNumberLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PaletteNumberLabel.Location = New System.Drawing.Point(6, 48)
+        Me.PaletteNumberLabel.Name = "PaletteNumberLabel"
+        Me.PaletteNumberLabel.Size = New System.Drawing.Size(153, 15)
+        Me.PaletteNumberLabel.TabIndex = 7
+        Me.PaletteNumberLabel.Text = "Palette Number [Decimal] :"
+        '
+        'WidthTextBox
+        '
+        Me.WidthTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.WidthTextBox.Location = New System.Drawing.Point(109, 16)
+        Me.WidthTextBox.Name = "WidthTextBox"
+        Me.WidthTextBox.Size = New System.Drawing.Size(50, 23)
+        Me.WidthTextBox.TabIndex = 3
+        Me.WidthTextBox.Tag = "16"
+        Me.WidthTextBox.Text = "16"
+        '
+        'WidthLabel
+        '
+        Me.WidthLabel.AutoSize = True
+        Me.WidthLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.WidthLabel.Location = New System.Drawing.Point(6, 19)
+        Me.WidthLabel.Name = "WidthLabel"
+        Me.WidthLabel.Size = New System.Drawing.Size(103, 15)
+        Me.WidthLabel.TabIndex = 3
+        Me.WidthLabel.Text = "Width [Decimal] :"
+        '
+        'StartSpriteInsertionButton
+        '
+        Me.StartSpriteInsertionButton.Location = New System.Drawing.Point(6, 246)
+        Me.StartSpriteInsertionButton.Name = "StartSpriteInsertionButton"
+        Me.StartSpriteInsertionButton.Size = New System.Drawing.Size(588, 26)
+        Me.StartSpriteInsertionButton.TabIndex = 11
+        Me.StartSpriteInsertionButton.Text = "Start Sprite Insertion"
+        Me.StartSpriteInsertionButton.UseVisualStyleBackColor = True
         '
         'RomFile
         '
         Me.RomFile.FileName = "Open Rom"
         Me.RomFile.Title = "Open Pokemon Fire Red Rom"
         '
-        'Label4
+        'RomStateLabel
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(10, 381)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(173, 15)
-        Me.Label4.TabIndex = 6
-        Me.Label4.Text = "Load a Pokemon Fire Red Rom."
+        Me.RomStateLabel.AutoSize = True
+        Me.RomStateLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RomStateLabel.Location = New System.Drawing.Point(10, 381)
+        Me.RomStateLabel.Name = "RomStateLabel"
+        Me.RomStateLabel.Size = New System.Drawing.Size(173, 15)
+        Me.RomStateLabel.TabIndex = 6
+        Me.RomStateLabel.Text = "Load a Pokemon Fire Red Rom."
         '
-        'Button3
+        'AboutButton
         '
-        Me.Button3.Location = New System.Drawing.Point(547, 369)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(66, 26)
-        Me.Button3.TabIndex = 25
-        Me.Button3.Text = "About"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.AboutButton.Location = New System.Drawing.Point(547, 369)
+        Me.AboutButton.Name = "AboutButton"
+        Me.AboutButton.Size = New System.Drawing.Size(66, 26)
+        Me.AboutButton.TabIndex = 25
+        Me.AboutButton.Text = "About"
+        Me.AboutButton.UseVisualStyleBackColor = True
         '
-        'Button7
+        'SettingsButton
         '
-        Me.Button7.Location = New System.Drawing.Point(476, 369)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(65, 26)
-        Me.Button7.TabIndex = 26
-        Me.Button7.Text = "Settings"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.SettingsButton.Location = New System.Drawing.Point(476, 369)
+        Me.SettingsButton.Name = "SettingsButton"
+        Me.SettingsButton.Size = New System.Drawing.Size(65, 26)
+        Me.SettingsButton.TabIndex = 26
+        Me.SettingsButton.Text = "Settings"
+        Me.SettingsButton.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(625, 405)
-        Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.Button7)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.SettingsButton)
+        Me.Controls.Add(Me.AboutButton)
+        Me.Controls.Add(Me.RomStateLabel)
+        Me.Controls.Add(Me.PokemonRomGroupBox)
+        Me.Controls.Add(Me.SpriteTemplateSettingsGroupBox)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form1"
         Me.Text = "Pokemon Sprite Inserter"
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
+        Me.PokemonRomGroupBox.ResumeLayout(False)
+        Me.PokemonRomGroupBox.PerformLayout()
+        Me.SpriteTemplateSettingsGroupBox.ResumeLayout(False)
+        Me.SpriteTemplateSettingsGroupBox.PerformLayout()
+        Me.SpriteDataPresetGroupBox.ResumeLayout(False)
+        Me.SpriteDataPresetGroupBox.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents PokemonRomGroupBox As System.Windows.Forms.GroupBox
+    Friend WithEvents SpriteTemplateSettingsGroupBox As System.Windows.Forms.GroupBox
     Friend WithEvents RomFile As System.Windows.Forms.OpenFileDialog
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
-    Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents TextBox5 As System.Windows.Forms.TextBox
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
-    Friend WithEvents TextBox6 As System.Windows.Forms.TextBox
-    Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents TextBox7 As System.Windows.Forms.TextBox
-    Friend WithEvents Label8 As System.Windows.Forms.Label
-    Friend WithEvents TextBox8 As System.Windows.Forms.TextBox
-    Friend WithEvents Label9 As System.Windows.Forms.Label
-    Friend WithEvents TextBox9 As System.Windows.Forms.TextBox
-    Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents TextBox10 As System.Windows.Forms.TextBox
-    Friend WithEvents Label11 As System.Windows.Forms.Label
-    Friend WithEvents TextBox12 As System.Windows.Forms.TextBox
-    Friend WithEvents Label13 As System.Windows.Forms.Label
-    Friend WithEvents Button4 As System.Windows.Forms.Button
-    Friend WithEvents Button5 As System.Windows.Forms.Button
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
-    Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
-    Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents TextBox11 As System.Windows.Forms.TextBox
-    Friend WithEvents Label12 As System.Windows.Forms.Label
-    Friend WithEvents Button6 As System.Windows.Forms.Button
-    Friend WithEvents Button7 As System.Windows.Forms.Button
-    Friend WithEvents Label14 As System.Windows.Forms.Label
-    Friend WithEvents TextBox13 As System.Windows.Forms.TextBox
-    Friend WithEvents Button9 As System.Windows.Forms.Button
-    Public WithEvents TextBox2 As System.Windows.Forms.TextBox
-    Public WithEvents TextBox3 As System.Windows.Forms.TextBox
-    Friend WithEvents Button8 As System.Windows.Forms.Button
-    Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
+    Friend WithEvents OpenRomButton As System.Windows.Forms.Button
+    Friend WithEvents FilePathTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents FilePathLabel As System.Windows.Forms.Label
+    Friend WithEvents HeightLabel As System.Windows.Forms.Label
+    Friend WithEvents RomStateLabel As System.Windows.Forms.Label
+    Friend WithEvents PaletteNumberTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents PaletteNumberLabel As System.Windows.Forms.Label
+    Friend WithEvents SelectDataPresetButton As System.Windows.Forms.Button
+    Friend WithEvents NumberOfFramesTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents NumberOfFramesLabel As System.Windows.Forms.Label
+    Friend WithEvents SpriteDataPresetGroupBox As System.Windows.Forms.GroupBox
+    Friend WithEvents UnknownData1TextBox As System.Windows.Forms.TextBox
+    Friend WithEvents UnknownData1Label As System.Windows.Forms.Label
+    Friend WithEvents PalRegistersTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents PalRegistersLabel As System.Windows.Forms.Label
+    Friend WithEvents Pointer1TextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Pointer1Label As System.Windows.Forms.Label
+    Friend WithEvents Pointer2TextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Pointer2Label As System.Windows.Forms.Label
+    Friend WithEvents AnimPointerTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents AnimPointerLabel As System.Windows.Forms.Label
+    Friend WithEvents Pointer4TextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Pointer4Label As System.Windows.Forms.Label
+    Friend WithEvents StartSpriteInsertionButton As System.Windows.Forms.Button
+    Friend WithEvents FreeSpaceOffsetsButton As System.Windows.Forms.Button
+    Friend WithEvents UseFreeSpaceFinderCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents CustomPresetCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents AboutButton As System.Windows.Forms.Button
+    Friend WithEvents StartOffsetTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents StartOffsetLabel As System.Windows.Forms.Label
+    Friend WithEvents BackButton As System.Windows.Forms.Button
+    Friend WithEvents SkipBytesLabel As System.Windows.Forms.Label
+    Friend WithEvents SkipBytesTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents CustomSpriteArtButton As System.Windows.Forms.Button
+    Public WithEvents WidthTextBox As System.Windows.Forms.TextBox
+    Public WithEvents HeightTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents PaletteInserterButton As System.Windows.Forms.Button
+    Friend WithEvents CreateOWSTableButton As System.Windows.Forms.Button
+    Friend WithEvents CancelSpriteInsertionButton As System.Windows.Forms.Button
+    Friend WithEvents Log As System.Windows.Forms.RichTextBox
+    Friend WithEvents SelectOWSTablePanel As System.Windows.Forms.Panel
+    Friend WithEvents SelectOWSTableGroupBox As System.Windows.Forms.GroupBox
+    Friend WithEvents SettingsButton As System.Windows.Forms.Button
+    Friend WithEvents WidthLabel As System.Windows.Forms.Label
 
 End Class

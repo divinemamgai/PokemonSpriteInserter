@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="RichTextBox1.Text" xml:space="preserve">
+  <data name="AboutRichTextBox.Text" xml:space="preserve">
     <value>Pokemon Fire Red Sprite Addeer is a Free-Software devolped by
 Divya Mamgai, 2014, licensed under GPL V3 License.
 

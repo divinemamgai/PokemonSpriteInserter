@@ -23,75 +23,75 @@ Partial Class Form6
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form6))
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox1.SuspendLayout()
+        Me.DoneButton = New System.Windows.Forms.Button()
+        Me.MyLogo = New System.Windows.Forms.PictureBox()
+        Me.AboutGroupBox = New System.Windows.Forms.GroupBox()
+        Me.AboutRichTextBox = New System.Windows.Forms.RichTextBox()
+        CType(Me.MyLogo, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.AboutGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Button1
+        'DoneButton
         '
-        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(12, 227)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(401, 29)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Done"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.DoneButton.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DoneButton.Location = New System.Drawing.Point(12, 227)
+        Me.DoneButton.Name = "DoneButton"
+        Me.DoneButton.Size = New System.Drawing.Size(401, 29)
+        Me.DoneButton.TabIndex = 0
+        Me.DoneButton.Text = "Done"
+        Me.DoneButton.UseVisualStyleBackColor = True
         '
-        'PictureBox1
+        'MyLogo
         '
-        Me.PictureBox1.BackgroundImage = Global.Pokemon_Sprite_Inserter.My.Resources.Resources.main
-        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox1.Location = New System.Drawing.Point(12, 12)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(401, 75)
-        Me.PictureBox1.TabIndex = 1
-        Me.PictureBox1.TabStop = False
+        Me.MyLogo.BackgroundImage = Global.Pokemon_Sprite_Inserter.My.Resources.Resources.main
+        Me.MyLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.MyLogo.Location = New System.Drawing.Point(12, 12)
+        Me.MyLogo.Name = "MyLogo"
+        Me.MyLogo.Size = New System.Drawing.Size(401, 75)
+        Me.MyLogo.TabIndex = 1
+        Me.MyLogo.TabStop = False
         '
-        'GroupBox1
+        'AboutGroupBox
         '
-        Me.GroupBox1.Controls.Add(Me.RichTextBox1)
-        Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 94)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(401, 127)
-        Me.GroupBox1.TabIndex = 2
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "About"
+        Me.AboutGroupBox.Controls.Add(Me.AboutRichTextBox)
+        Me.AboutGroupBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AboutGroupBox.Location = New System.Drawing.Point(12, 94)
+        Me.AboutGroupBox.Name = "AboutGroupBox"
+        Me.AboutGroupBox.Size = New System.Drawing.Size(401, 127)
+        Me.AboutGroupBox.TabIndex = 2
+        Me.AboutGroupBox.TabStop = False
+        Me.AboutGroupBox.Text = "About"
         '
-        'RichTextBox1
+        'AboutRichTextBox
         '
-        Me.RichTextBox1.BackColor = System.Drawing.SystemColors.Control
-        Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.RichTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.RichTextBox1.Location = New System.Drawing.Point(7, 15)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.ReadOnly = True
-        Me.RichTextBox1.Size = New System.Drawing.Size(388, 106)
-        Me.RichTextBox1.TabIndex = 0
-        Me.RichTextBox1.Text = resources.GetString("RichTextBox1.Text")
+        Me.AboutRichTextBox.BackColor = System.Drawing.SystemColors.Control
+        Me.AboutRichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.AboutRichTextBox.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.AboutRichTextBox.Location = New System.Drawing.Point(7, 15)
+        Me.AboutRichTextBox.Name = "AboutRichTextBox"
+        Me.AboutRichTextBox.ReadOnly = True
+        Me.AboutRichTextBox.Size = New System.Drawing.Size(388, 106)
+        Me.AboutRichTextBox.TabIndex = 0
+        Me.AboutRichTextBox.Text = resources.GetString("AboutRichTextBox.Text")
         '
         'Form6
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(425, 267)
-        Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.PictureBox1)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.AboutGroupBox)
+        Me.Controls.Add(Me.MyLogo)
+        Me.Controls.Add(Me.DoneButton)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form6"
         Me.Text = "Pokemon Sprite Inserter - About"
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox1.ResumeLayout(False)
+        CType(Me.MyLogo, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.AboutGroupBox.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
+    Friend WithEvents DoneButton As System.Windows.Forms.Button
+    Friend WithEvents MyLogo As System.Windows.Forms.PictureBox
+    Friend WithEvents AboutGroupBox As System.Windows.Forms.GroupBox
+    Friend WithEvents AboutRichTextBox As System.Windows.Forms.RichTextBox
 End Class

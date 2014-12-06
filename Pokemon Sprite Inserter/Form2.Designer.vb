@@ -23,127 +23,127 @@ Partial Class Form2
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.GroupBox1.SuspendLayout()
+        Me.SetSpriteDataOffsetsGroupBox = New System.Windows.Forms.GroupBox()
+        Me.SpriteArtDataOffsetTextBox = New System.Windows.Forms.TextBox()
+        Me.SpriteArtDataOffsetLabel = New System.Windows.Forms.Label()
+        Me.SpriteFrameDataOffsetTextBox = New System.Windows.Forms.TextBox()
+        Me.SpriteFrameDataOffsetLabel = New System.Windows.Forms.Label()
+        Me.SpriteHeaderDataOffsetTextBox = New System.Windows.Forms.TextBox()
+        Me.SpriteHeaderDataOffsetLabel = New System.Windows.Forms.Label()
+        Me.UseTheseOffsetsButton = New System.Windows.Forms.Button()
+        Me.SetSpriteDataOffsetsGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
-        'GroupBox1
+        'SetSpriteDataOffsetsGroupBox
         '
-        Me.GroupBox1.Controls.Add(Me.TextBox3)
-        Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
-        Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.TextBox2)
-        Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(13, 13)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(353, 112)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Set Sprite Data Offsets"
+        Me.SetSpriteDataOffsetsGroupBox.Controls.Add(Me.SpriteArtDataOffsetTextBox)
+        Me.SetSpriteDataOffsetsGroupBox.Controls.Add(Me.SpriteArtDataOffsetLabel)
+        Me.SetSpriteDataOffsetsGroupBox.Controls.Add(Me.SpriteFrameDataOffsetTextBox)
+        Me.SetSpriteDataOffsetsGroupBox.Controls.Add(Me.SpriteFrameDataOffsetLabel)
+        Me.SetSpriteDataOffsetsGroupBox.Controls.Add(Me.SpriteHeaderDataOffsetTextBox)
+        Me.SetSpriteDataOffsetsGroupBox.Controls.Add(Me.SpriteHeaderDataOffsetLabel)
+        Me.SetSpriteDataOffsetsGroupBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SetSpriteDataOffsetsGroupBox.Location = New System.Drawing.Point(13, 13)
+        Me.SetSpriteDataOffsetsGroupBox.Name = "SetSpriteDataOffsetsGroupBox"
+        Me.SetSpriteDataOffsetsGroupBox.Size = New System.Drawing.Size(353, 112)
+        Me.SetSpriteDataOffsetsGroupBox.TabIndex = 0
+        Me.SetSpriteDataOffsetsGroupBox.TabStop = False
+        Me.SetSpriteDataOffsetsGroupBox.Text = "Set Sprite Data Offsets"
         '
-        'TextBox3
+        'SpriteArtDataOffsetTextBox
         '
-        Me.TextBox3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TextBox3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(135, 78)
-        Me.TextBox3.MaxLength = 6
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(126, 23)
-        Me.TextBox3.TabIndex = 8
-        Me.TextBox3.Text = "000000"
+        Me.SpriteArtDataOffsetTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.SpriteArtDataOffsetTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SpriteArtDataOffsetTextBox.Location = New System.Drawing.Point(135, 78)
+        Me.SpriteArtDataOffsetTextBox.MaxLength = 6
+        Me.SpriteArtDataOffsetTextBox.Name = "SpriteArtDataOffsetTextBox"
+        Me.SpriteArtDataOffsetTextBox.Size = New System.Drawing.Size(126, 23)
+        Me.SpriteArtDataOffsetTextBox.TabIndex = 8
+        Me.SpriteArtDataOffsetTextBox.Text = "000000"
         '
-        'Label3
+        'SpriteArtDataOffsetLabel
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(6, 81)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(132, 15)
-        Me.Label3.TabIndex = 9
-        Me.Label3.Text = "Sprite Art Data Offset : "
+        Me.SpriteArtDataOffsetLabel.AutoSize = True
+        Me.SpriteArtDataOffsetLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SpriteArtDataOffsetLabel.Location = New System.Drawing.Point(6, 81)
+        Me.SpriteArtDataOffsetLabel.Name = "SpriteArtDataOffsetLabel"
+        Me.SpriteArtDataOffsetLabel.Size = New System.Drawing.Size(132, 15)
+        Me.SpriteArtDataOffsetLabel.TabIndex = 9
+        Me.SpriteArtDataOffsetLabel.Text = "Sprite Art Data Offset : "
         '
-        'TextBox1
+        'SpriteFrameDataOffsetTextBox
         '
-        Me.TextBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TextBox1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(153, 49)
-        Me.TextBox1.MaxLength = 6
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(108, 23)
-        Me.TextBox1.TabIndex = 6
-        Me.TextBox1.Text = "000000"
+        Me.SpriteFrameDataOffsetTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.SpriteFrameDataOffsetTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SpriteFrameDataOffsetTextBox.Location = New System.Drawing.Point(153, 49)
+        Me.SpriteFrameDataOffsetTextBox.MaxLength = 6
+        Me.SpriteFrameDataOffsetTextBox.Name = "SpriteFrameDataOffsetTextBox"
+        Me.SpriteFrameDataOffsetTextBox.Size = New System.Drawing.Size(108, 23)
+        Me.SpriteFrameDataOffsetTextBox.TabIndex = 6
+        Me.SpriteFrameDataOffsetTextBox.Text = "000000"
         '
-        'Label1
+        'SpriteFrameDataOffsetLabel
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(6, 52)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(150, 15)
-        Me.Label1.TabIndex = 7
-        Me.Label1.Text = "Sprite Frame Data Offset : "
+        Me.SpriteFrameDataOffsetLabel.AutoSize = True
+        Me.SpriteFrameDataOffsetLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SpriteFrameDataOffsetLabel.Location = New System.Drawing.Point(6, 52)
+        Me.SpriteFrameDataOffsetLabel.Name = "SpriteFrameDataOffsetLabel"
+        Me.SpriteFrameDataOffsetLabel.Size = New System.Drawing.Size(150, 15)
+        Me.SpriteFrameDataOffsetLabel.TabIndex = 7
+        Me.SpriteFrameDataOffsetLabel.Text = "Sprite Frame Data Offset : "
         '
-        'TextBox2
+        'SpriteHeaderDataOffsetTextBox
         '
-        Me.TextBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TextBox2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(158, 20)
-        Me.TextBox2.MaxLength = 6
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(103, 23)
-        Me.TextBox2.TabIndex = 4
-        Me.TextBox2.Text = "000000"
+        Me.SpriteHeaderDataOffsetTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.SpriteHeaderDataOffsetTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SpriteHeaderDataOffsetTextBox.Location = New System.Drawing.Point(158, 20)
+        Me.SpriteHeaderDataOffsetTextBox.MaxLength = 6
+        Me.SpriteHeaderDataOffsetTextBox.Name = "SpriteHeaderDataOffsetTextBox"
+        Me.SpriteHeaderDataOffsetTextBox.Size = New System.Drawing.Size(103, 23)
+        Me.SpriteHeaderDataOffsetTextBox.TabIndex = 4
+        Me.SpriteHeaderDataOffsetTextBox.Text = "000000"
         '
-        'Label2
+        'SpriteHeaderDataOffsetLabel
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(6, 23)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(155, 15)
-        Me.Label2.TabIndex = 5
-        Me.Label2.Text = "Sprite Header Data Offset : "
+        Me.SpriteHeaderDataOffsetLabel.AutoSize = True
+        Me.SpriteHeaderDataOffsetLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SpriteHeaderDataOffsetLabel.Location = New System.Drawing.Point(6, 23)
+        Me.SpriteHeaderDataOffsetLabel.Name = "SpriteHeaderDataOffsetLabel"
+        Me.SpriteHeaderDataOffsetLabel.Size = New System.Drawing.Size(155, 15)
+        Me.SpriteHeaderDataOffsetLabel.TabIndex = 5
+        Me.SpriteHeaderDataOffsetLabel.Text = "Sprite Header Data Offset : "
         '
-        'Button1
+        'UseTheseOffsetsButton
         '
-        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(13, 131)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(353, 26)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Done"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.UseTheseOffsetsButton.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.UseTheseOffsetsButton.Location = New System.Drawing.Point(13, 131)
+        Me.UseTheseOffsetsButton.Name = "UseTheseOffsetsButton"
+        Me.UseTheseOffsetsButton.Size = New System.Drawing.Size(353, 26)
+        Me.UseTheseOffsetsButton.TabIndex = 1
+        Me.UseTheseOffsetsButton.Text = "Use These Offsets"
+        Me.UseTheseOffsetsButton.UseVisualStyleBackColor = True
         '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(378, 167)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.UseTheseOffsetsButton)
+        Me.Controls.Add(Me.SetSpriteDataOffsetsGroupBox)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form2"
         Me.Text = "Pokemon Sprite Inserter - Offsets"
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.SetSpriteDataOffsetsGroupBox.ResumeLayout(False)
+        Me.SetSpriteDataOffsetsGroupBox.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
-    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents SetSpriteDataOffsetsGroupBox As System.Windows.Forms.GroupBox
+    Friend WithEvents UseTheseOffsetsButton As System.Windows.Forms.Button
+    Friend WithEvents SpriteHeaderDataOffsetTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents SpriteHeaderDataOffsetLabel As System.Windows.Forms.Label
+    Friend WithEvents SpriteFrameDataOffsetTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents SpriteFrameDataOffsetLabel As System.Windows.Forms.Label
+    Friend WithEvents SpriteArtDataOffsetTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents SpriteArtDataOffsetLabel As System.Windows.Forms.Label
 End Class

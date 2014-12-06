@@ -1,26 +1,26 @@
 ﻿Public Class Form2
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles UseTheseOffsetsButton.Click
         Dim ErrorFlag As Boolean = False
-        If String.Compare(TextBox1.Text, "000000") = 0 Then
+        If String.Compare(SpriteFrameDataOffsetTextBox.Text, "000000") = 0 Then
             MessageBox.Show("Sprite Header Data Offset cannot be zero!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
             ErrorFlag = True
         End If
-        If String.Compare(TextBox2.Text, "000000") = 0 Then
+        If String.Compare(SpriteHeaderDataOffsetTextBox.Text, "000000") = 0 Then
             MessageBox.Show("Sprite Frame Data Offset cannot be zero!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
             ErrorFlag = True
         End If
-        If String.Compare(TextBox3.Text, "000000") = 0 Then
+        If String.Compare(SpriteArtDataOffsetTextBox.Text, "000000") = 0 Then
             MessageBox.Show("Sprite Art Data Offset cannot be zero!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
             ErrorFlag = True
         End If
         If ErrorFlag = False Then
-            Form1.GlobalSpriteHeaderDataOffset = TextBox1.Text
-            Form1.GlobalSpriteFrameDataOffset = TextBox2.Text
-            Form1.GlobalSpriteArtDataOffset = TextBox3.Text
+            Form1.GlobalSpriteHeaderDataOffset = SpriteFrameDataOffsetTextBox.Text
+            Form1.GlobalSpriteFrameDataOffset = SpriteHeaderDataOffsetTextBox.Text
+            Form1.GlobalSpriteArtDataOffset = SpriteArtDataOffsetTextBox.Text
             Me.Close()
         End If
     End Sub
-    Private Sub TextBox_Changed(sender As Object, e As EventArgs) Handles TextBox1.Leave, TextBox2.Leave, TextBox3.Leave
+    Private Sub TextBox_Changed(sender As Object, e As EventArgs) Handles SpriteFrameDataOffsetTextBox.Leave, SpriteHeaderDataOffsetTextBox.Leave, SpriteArtDataOffsetTextBox.Leave
         Dim TextBoxItem As TextBox = CType(sender, TextBox)
         If TextBoxItem.Text <> "" Then
             If TextBoxItem.Text.Length <> 6 Then
@@ -36,13 +36,13 @@
     End Sub
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If Form1.GlobalSpriteHeaderDataOffset <> "" Then
-            TextBox1.Text = Form1.GlobalSpriteHeaderDataOffset
+            SpriteFrameDataOffsetTextBox.Text = Form1.GlobalSpriteHeaderDataOffset
         End If
         If Form1.GlobalSpriteFrameDataOffset <> "" Then
-            TextBox2.Text = Form1.GlobalSpriteHeaderDataOffset
+            SpriteHeaderDataOffsetTextBox.Text = Form1.GlobalSpriteHeaderDataOffset
         End If
         If Form1.GlobalSpriteArtDataOffset <> "" Then
-            TextBox3.Text = Form1.GlobalSpriteArtDataOffset
+            SpriteArtDataOffsetTextBox.Text = Form1.GlobalSpriteArtDataOffset
         End If
     End Sub
 End Class

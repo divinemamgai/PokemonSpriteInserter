@@ -21,45 +21,45 @@ Public Class Form3
     Dim SettingsFilePath As String = ProgramDataPath + "\settings.bin"
     Dim SettingsDataVar As SettingsData
     Private Sub DefaultSettings()
-        TextBox1.Text = "FF"
-        TextBox1.Tag = "FF"
-        TextBox2.Text = "BB"
-        TextBox2.Tag = "BB"
-        TextBox3.Text = "1A2000"
-        TextBox3.Tag = "1A2000"
-        TextBox4.Text = "00000000"
-        TextBox4.Tag = "00000000"
-        TextBox5.Text = "00000000"
-        TextBox5.Tag = "00000000"
-        TextBox6.Text = 100
-        TextBox6.Tag = 100
-        TextBox7.Text = 152
-        TextBox7.Tag = 152
-        TextBox8.Text = "1A2400"
-        TextBox8.Tag = "1A2400"
-        TextBox9.Text = 100
-        TextBox9.Tag = 100
-        TextBox10.Text = "00000000FF11"
-        TextBox10.Tag = "00000000FF11"
+        FreeSpaceByteTextBox.Text = "FF"
+        FreeSpaceByteTextBox.Tag = "FF"
+        SpriteArtDataByteTextBox.Text = "BB"
+        SpriteArtDataByteTextBox.Tag = "BB"
+        OWSTableListOffsetTextBox.Text = "1A2000"
+        OWSTableListOffsetTextBox.Tag = "1A2000"
+        TableListEmptyDataTextBox.Text = "00000000"
+        TableListEmptyDataTextBox.Tag = "00000000"
+        TableEmptyDataTextBox.Text = "00000000"
+        TableEmptyDataTextBox.Tag = "00000000"
+        TableListMaxTextBox.Text = 100
+        TableListMaxTextBox.Tag = 100
+        TableMaxSpritesTextBox.Text = 152
+        TableMaxSpritesTextBox.Tag = 152
+        PaletteTableOffsetTextBox.Text = "1A2400"
+        PaletteTableOffsetTextBox.Tag = "1A2400"
+        MaxPaletteTextBox.Text = 100
+        MaxPaletteTextBox.Tag = 100
+        PaletteTableEndTextBox.Text = "00000000FF11"
+        PaletteTableEndTextBox.Tag = "00000000FF11"
         RomLock = True
-        Button3.Text = "Rom Lock - On"
+        RomCheckButton.Text = "Rom Lock - On"
     End Sub
     Public Sub UpdateSettingsFile()
         If Not Directory.Exists(ProgramDataPath) Then
             Directory.CreateDirectory(ProgramDataPath)
         End If
         Dim SettingsDataVarTemp As SettingsData = New SettingsData With {
-            .FreeSpaceByteValue = TextBox1.Text,
-            .SpriteArtDataValue = TextBox2.Text,
-            .OWSTableListOffset = TextBox3.Text,
-            .OWSTableListEmptyDataHex = TextBox4.Text,
-            .OWSTableEmptyDataHex = TextBox5.Text,
-            .OWSTableListMaxTables = CInt(TextBox6.Text),
-            .OWSTableMaxSprites = CInt(TextBox7.Text),
+            .FreeSpaceByteValue = FreeSpaceByteTextBox.Text,
+            .SpriteArtDataValue = SpriteArtDataByteTextBox.Text,
+            .OWSTableListOffset = OWSTableListOffsetTextBox.Text,
+            .OWSTableListEmptyDataHex = TableListEmptyDataTextBox.Text,
+            .OWSTableEmptyDataHex = TableEmptyDataTextBox.Text,
+            .OWSTableListMaxTables = CInt(TableListMaxTextBox.Text),
+            .OWSTableMaxSprites = CInt(TableMaxSpritesTextBox.Text),
             .RomLock = RomLock,
-            .PaletteTableOffset = TextBox8.Text,
-            .MaxPalette = CInt(TextBox9.Text),
-            .PaletteTableEndHex = TextBox10.Text
+            .PaletteTableOffset = PaletteTableOffsetTextBox.Text,
+            .MaxPalette = CInt(MaxPaletteTextBox.Text),
+            .PaletteTableEndHex = PaletteTableEndTextBox.Text
         }
         Dim UpdateFormatter As BinaryFormatter = New BinaryFormatter()
         Try
@@ -127,7 +127,7 @@ Public Class Form3
         Form1.MaxPalette = SettingsDataVar.MaxPalette
         Form1.PaletteTableEndHex = SettingsDataVar.PaletteTableEndHex
     End Sub
-    Private Sub TextBox_TextChanged(sender As Object, e As EventArgs) Handles TextBox6.TextChanged, TextBox7.TextChanged, TextBox9.TextChanged
+    Private Sub LimitValidator(sender As Object, e As EventArgs) Handles TableListMaxTextBox.TextChanged, TableMaxSpritesTextBox.TextChanged, MaxPaletteTextBox.TextChanged
         Dim TextBoxItem As TextBox = CType(sender, TextBox)
         If TextBoxItem.Text <> "" Then
             Dim TextBoxValue = Integer.Parse(TextBoxItem.Text)
@@ -146,7 +146,7 @@ Public Class Form3
         End If
     End Sub
 
-    Private Sub OffsetValidator(sender As Object, e As EventArgs) Handles TextBox3.Leave, TextBox8.Leave
+    Private Sub OffsetValidator(sender As Object, e As EventArgs) Handles OWSTableListOffsetTextBox.Leave, PaletteTableOffsetTextBox.Leave
         Dim TextBoxItem As TextBox = CType(sender, TextBox)
         If TextBoxItem.Text <> "" Then
             If TextBoxItem.Text.Length <> 6 Then
@@ -164,7 +164,7 @@ Public Class Form3
         End If
     End Sub
 
-    Private Sub ByteValidator(sender As Object, e As EventArgs) Handles TextBox1.Leave, TextBox2.Leave
+    Private Sub ByteValidator(sender As Object, e As EventArgs) Handles FreeSpaceByteTextBox.Leave, SpriteArtDataByteTextBox.Leave
         Dim TextBoxItem As TextBox = CType(sender, TextBox)
         If TextBoxItem.Text <> "" Then
             If TextBoxItem.Text.Length <> 2 Then
@@ -182,7 +182,7 @@ Public Class Form3
         End If
     End Sub
 
-    Private Sub EmptyDataValidator(sender As Object, e As EventArgs) Handles TextBox4.Leave, TextBox5.Leave
+    Private Sub EmptyDataValidator(sender As Object, e As EventArgs) Handles TableListEmptyDataTextBox.Leave, TableEmptyDataTextBox.Leave
         Dim TextBoxItem As TextBox = CType(sender, TextBox)
         If TextBoxItem.Text <> "" Then
             If TextBoxItem.Text.Length <> 8 Then
@@ -202,68 +202,77 @@ Public Class Form3
 
     Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadSettings()
-        TextBox1.Text = SettingsDataVar.FreeSpaceByteValue
-        TextBox1.Tag = SettingsDataVar.FreeSpaceByteValue
-        TextBox2.Text = SettingsDataVar.SpriteArtDataValue
-        TextBox2.Tag = SettingsDataVar.SpriteArtDataValue
-        TextBox3.Text = SettingsDataVar.OWSTableListOffset
-        TextBox3.Tag = SettingsDataVar.OWSTableListOffset
-        TextBox4.Text = SettingsDataVar.OWSTableListEmptyDataHex
-        TextBox4.Tag = SettingsDataVar.OWSTableListEmptyDataHex
-        TextBox5.Text = SettingsDataVar.OWSTableEmptyDataHex
-        TextBox5.Tag = SettingsDataVar.OWSTableEmptyDataHex
-        TextBox6.Text = SettingsDataVar.OWSTableListMaxTables
-        TextBox6.Tag = SettingsDataVar.OWSTableListMaxTables
-        TextBox7.Text = SettingsDataVar.OWSTableMaxSprites
-        TextBox7.Tag = SettingsDataVar.OWSTableMaxSprites
-        TextBox8.Text = SettingsDataVar.PaletteTableOffset
-        TextBox8.Tag = SettingsDataVar.PaletteTableOffset
-        TextBox9.Text = SettingsDataVar.MaxPalette
-        TextBox9.Tag = SettingsDataVar.MaxPalette
-        TextBox10.Text = SettingsDataVar.PaletteTableEndHex
-        TextBox10.Tag = SettingsDataVar.PaletteTableEndHex
+        FreeSpaceByteTextBox.Text = SettingsDataVar.FreeSpaceByteValue
+        FreeSpaceByteTextBox.Tag = SettingsDataVar.FreeSpaceByteValue
+        SpriteArtDataByteTextBox.Text = SettingsDataVar.SpriteArtDataValue
+        SpriteArtDataByteTextBox.Tag = SettingsDataVar.SpriteArtDataValue
+        OWSTableListOffsetTextBox.Text = SettingsDataVar.OWSTableListOffset
+        OWSTableListOffsetTextBox.Tag = SettingsDataVar.OWSTableListOffset
+        TableListEmptyDataTextBox.Text = SettingsDataVar.OWSTableListEmptyDataHex
+        TableListEmptyDataTextBox.Tag = SettingsDataVar.OWSTableListEmptyDataHex
+        TableEmptyDataTextBox.Text = SettingsDataVar.OWSTableEmptyDataHex
+        TableEmptyDataTextBox.Tag = SettingsDataVar.OWSTableEmptyDataHex
+        TableListMaxTextBox.Text = SettingsDataVar.OWSTableListMaxTables
+        TableListMaxTextBox.Tag = SettingsDataVar.OWSTableListMaxTables
+        TableMaxSpritesTextBox.Text = SettingsDataVar.OWSTableMaxSprites
+        TableMaxSpritesTextBox.Tag = SettingsDataVar.OWSTableMaxSprites
+        PaletteTableOffsetTextBox.Text = SettingsDataVar.PaletteTableOffset
+        PaletteTableOffsetTextBox.Tag = SettingsDataVar.PaletteTableOffset
+        MaxPaletteTextBox.Text = SettingsDataVar.MaxPalette
+        MaxPaletteTextBox.Tag = SettingsDataVar.MaxPalette
+        PaletteTableEndTextBox.Text = SettingsDataVar.PaletteTableEndHex
+        PaletteTableEndTextBox.Tag = SettingsDataVar.PaletteTableEndHex
         RomLock = SettingsDataVar.RomLock
         If RomLock = True Then
-            Button3.Text = "Rom Lock - On"
+            RomCheckButton.Text = "Rom Check - On"
         Else
-            Button3.Text = "Rom Lock - Off"
+            RomCheckButton.Text = "Rom Check - Off"
         End If
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Form1.FreeSpaceByteValue = TextBox1.Text
-        Form1.SpriteArtDataValue = TextBox2.Text
-        Form1.OWSTableListOffset = TextBox3.Text
-        Form1.OWSTableListEmptyDataHex = TextBox4.Text
-        Form1.OWSTableEmptyDataHex = TextBox5.Text
-        Form1.OWSTableListMaxTables = CInt(TextBox6.Text)
-        Form1.OWSTableMaxSprites = CInt(TextBox7.Text)
+        Form1.FreeSpaceByteValue = FreeSpaceByteTextBox.Text
+        Form1.SpriteArtDataValue = SpriteArtDataByteTextBox.Text
+        Form1.OWSTableListOffset = OWSTableListOffsetTextBox.Text
+        Form1.OWSTableListEmptyDataHex = TableListEmptyDataTextBox.Text
+        Form1.OWSTableEmptyDataHex = TableEmptyDataTextBox.Text
+        Form1.OWSTableListMaxTables = CInt(TableListMaxTextBox.Text)
+        Form1.OWSTableMaxSprites = CInt(TableMaxSpritesTextBox.Text)
         Form1.RomLock = RomLock
-        Form1.PaletteTableOffset = TextBox8.Text
-        Form1.MaxPalette = CInt(TextBox9.Text)
-        Form1.PaletteTableEndHex = TextBox10.Text
+        Form1.PaletteTableOffset = PaletteTableOffsetTextBox.Text
+        Form1.MaxPalette = CInt(MaxPaletteTextBox.Text)
+        Form1.PaletteTableEndHex = PaletteTableEndTextBox.Text
         UpdateSettingsFile()
+        If Form1.RomLock = False Then
+            Form1.RomStateLabel.Text = "Load a Pokemon Rom."
+            Form1.FilePathLabel.Text = "Enter or Browse the path to your Pokemon Rom :"
+            Form1.PokemonRomGroupBox.Text = "Pokemon Rom"
+        Else
+            Form1.RomStateLabel.Text = "Load a Pokemon Fire Red Rom."
+            Form1.FilePathLabel.Text = "Enter or Browse the path to your Pokemon Fire Red Rom :"
+            Form1.PokemonRomGroupBox.Text = "Pokemon Fire Red Rom"
+        End If
         Me.Close()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles DefaultButton.Click
         DefaultSettings()
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles RomCheckButton.Click
         If RomLock = True Then
             Dim Result As Integer = MessageBox.Show("Are you sure?" & vbCrLf & vbCrLf & "Turning this option off means you would have to provide table list offsets and other sprite data yourself to make this program work." & vbCrLf & "If you don't know how to do that, just keep this option off.", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
             If Result = DialogResult.Yes Then
                 RomLock = False
-                Button3.Text = "Rom Lock - Off"
+                RomCheckButton.Text = "Rom Check - Off"
             End If
         Else
             RomLock = True
-            Button3.Text = "Rom Lock - On"
+            RomCheckButton.Text = "Rom Check - On"
         End If
     End Sub
 
-    Private Sub TextBox10_Leave(sender As Object, e As EventArgs) Handles TextBox10.Leave
+    Private Sub TextBox10_Leave(sender As Object, e As EventArgs) Handles PaletteTableEndTextBox.Leave
         Dim TextBoxItem As TextBox = CType(sender, TextBox)
         If TextBoxItem.Text <> "" Then
             If TextBoxItem.Text.Length <> 12 Then
@@ -281,9 +290,8 @@ Public Class Form3
         End If
     End Sub
 
-    Private Sub TextBoxDigitValidator(sender As Object, e As KeyPressEventArgs) Handles TextBox6.KeyPress, TextBox7.KeyPress, TextBox9.KeyPress
-        If (Microsoft.VisualBasic.Asc(e.KeyChar) < 48) _
-                  Or (Microsoft.VisualBasic.Asc(e.KeyChar) > 57) Then
+    Private Sub TextBoxDigitValidator(sender As Object, e As KeyPressEventArgs) Handles TableListMaxTextBox.KeyPress, TableMaxSpritesTextBox.KeyPress, MaxPaletteTextBox.KeyPress
+        If (Microsoft.VisualBasic.Asc(e.KeyChar) < 48) Or (Microsoft.VisualBasic.Asc(e.KeyChar) > 57) Then
             e.Handled = True
         End If
         If (Microsoft.VisualBasic.Asc(e.KeyChar) = 8) Then
@@ -291,7 +299,7 @@ Public Class Form3
         End If
     End Sub
 
-    Private Sub SpaceValidator(sender As Object, e As KeyPressEventArgs) Handles TextBox1.KeyPress, TextBox2.KeyPress, TextBox3.KeyPress, TextBox4.KeyPress, TextBox5.KeyPress, TextBox6.KeyPress, TextBox7.KeyPress, TextBox8.KeyPress, TextBox9.KeyPress, TextBox10.KeyPress
+    Private Sub SpaceValidator(sender As Object, e As KeyPressEventArgs) Handles FreeSpaceByteTextBox.KeyPress, SpriteArtDataByteTextBox.KeyPress, OWSTableListOffsetTextBox.KeyPress, TableListEmptyDataTextBox.KeyPress, TableEmptyDataTextBox.KeyPress, TableListMaxTextBox.KeyPress, TableMaxSpritesTextBox.KeyPress, PaletteTableOffsetTextBox.KeyPress, MaxPaletteTextBox.KeyPress, PaletteTableEndTextBox.KeyPress
         If Asc(e.KeyChar) = Keys.Space Then
             e.Handled = True
         End If
