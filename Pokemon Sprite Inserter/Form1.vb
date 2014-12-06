@@ -846,7 +846,7 @@ WriteDataTry:
         End If
     End Sub
 
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles BackButton.Click
+    Private Sub BackButtonClick(sender As Object, e As EventArgs) Handles BackButton.Click
         Log.Hide()
         Log.Text = ""
         SpriteTemplateSettingsGroupBox.Text = "Sprite Template Settings"
@@ -855,6 +855,7 @@ WriteDataTry:
         SelectOWSTableGroupBox.Hide()
         SelectOWSTableGroupBox.Controls.Clear()
         SelectOWSTablePanel.Hide()
+        StartSpriteInsertionButton.Enabled = True
     End Sub
 
     Private Sub LogChange(sender As Object, e As EventArgs) Handles Log.TextChanged
