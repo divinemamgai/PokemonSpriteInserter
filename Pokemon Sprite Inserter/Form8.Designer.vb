@@ -22,6 +22,7 @@ Partial Class Form8
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form8))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Log = New System.Windows.Forms.RichTextBox()
         Me.NumberOfSpritesTextBox = New System.Windows.Forms.TextBox()
@@ -194,6 +195,7 @@ Partial Class Form8
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.BackButton)
         Me.Controls.Add(Me.InsertTableButton)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form8"
         Me.Text = "Pokemon Sprite Inserter - Table Creator"
         Me.GroupBox1.ResumeLayout(False)

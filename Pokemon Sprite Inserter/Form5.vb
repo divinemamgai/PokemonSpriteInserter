@@ -69,7 +69,7 @@ Public Class Form5
         End If
     End Sub
 
-    Private Sub SpaceValidator(sender As Object, e As KeyPressEventArgs) Handles PaletteHexDataTextBox.KeyPress, PaletteNumberTextBox.KeyPress
+    Private Sub SpaceValidator(sender As Object, e As KeyPressEventArgs) Handles PaletteHexDataTextBox.KeyPress, PaletteNumberTextBox.KeyPress, PaletteOffsetTextBox.KeyPress
         If Asc(e.KeyChar) = Keys.Space Then
             e.Handled = True
         End If
@@ -103,28 +103,36 @@ Public Class Form5
         Log.Show()
         BackButton.Enabled = False
         BackButton.Show()
+        Log.Text += "Starting Palette Insertion Process..."
         If SearchForOffset = True Then
-            Log.Text += "Searching free space for Palette Data [" + CStr(PaletteDataSize) + " Bytes]..."
+            Log.Text += vbCrLf & "Searching Free Space For Palette Data [" + CStr(PaletteDataSize) + " Bytes]..."
             PaletteDataOffset = Form1.SearchFreeSpace(Form1.ToDecimal(FreeSpaceStartTextBox.Text), PaletteDataSize, Form1.FreeSpaceByteValue)
             If String.Compare(PaletteDataOffset, "Null") <> 0 Then
-                Log.Text += vbCrLf & "     Found at offset => 0x" + PaletteDataOffset
+                Log.Text += vbCrLf & "     Found At Offset => 0x" + PaletteDataOffset
             Else
                 ErrorFlag = True
-                Log.Text += vbCrLf & "     Cannot found free space!"
+                Log.Text += vbCrLf & "     Cannot Found Free Space!"
             End If
         Else
-            PaletteDataOffset = PaletteOffsetTextBox.Text
-            Log.Text += "Using Palette Data Offset => 0x" + PaletteDataOffset
+            If Form1.ToDecimal(PaletteOffsetTextBox.Text) <> 0 Then
+                ErrorFlag = False
+                PaletteDataOffset = PaletteOffsetTextBox.Text
+                Log.Text += "Using Palette Data Offset => 0x" + PaletteDataOffset
+            Else
+                ErrorFlag = True
+                Log.Text += vbCrLf & "Palette Offset Value Cannot Be Zero!"
+                MessageBox.Show("Palette Offset Value Cannot Be Zero!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
         End If
         If ErrorFlag = False Then
-            Log.Text += vbCrLf & "Prompting user to proceed to writing..."
+            Log.Text += vbCrLf & "Prompting User To Proceed To Write Palette Data..."
             Dim PromptResult As Integer = MessageBox.Show("Do you want to proceed writing Palette Data to your Rom?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If PromptResult = DialogResult.Yes Then
-                Log.Text += vbCrLf & "     Proceeding with writing procedure..."
-                Log.Text += vbCrLf & "Writing data..."
+                Log.Text += vbCrLf & "     Proceeding With Writing Procedure..."
+                Log.Text += vbCrLf & "Writing Data [" + CStr(PaletteDataSize) + " Bytes]..."
                 If Form1.WriteData(PaletteDataOffset, PaletteDataSize, PaletteHexDataTextBox.Text) = True Then
                     Log.Text += vbCrLf & "     Done!"
-                    Log.Text += vbCrLf & "Finding free space in Palette table..."
+                    Log.Text += vbCrLf & "Finding Free Space In Palette Table..."
                     Dim RomFileReadStream As FileStream
                     Dim NumberOfPalettes As Integer = 0
                     RomFileReadStream = File.OpenRead(Form1.RomFilePath)
@@ -144,8 +152,8 @@ Public Class Form5
                         Else
                             NumberOfPalettes += 1
                             If NumberOfPalettes > Form1.MaxPalette Then
-                                Log.Text += vbCrLf & "Palette Table is full! Aborting..."
-                                MessageBox.Show("Palette Table is full! Aborting.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Log.Text += vbCrLf & "Palette Table Is Full! Aborting..."
+                                MessageBox.Show("Palette Table Is Full! Aborting.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Flag = False
                                 ErrorFlag = True
                                 Exit While
@@ -155,7 +163,7 @@ Public Class Form5
                     RomFileReadStream.Close()
                     If ErrorFlag = False Then
                         Dim PaletteOffset As String = Form1.ToHex(Form1.ToDecimal(Form1.PaletteTableOffset) + NumberOfPalettes * 8)
-                        Log.Text += vbCrLf & "     Found at offset => 0x" + PaletteOffset
+                        Log.Text += vbCrLf & "     Found At Offset => 0x" + PaletteOffset
                         Log.Text += vbCrLf & "Generating Palette Header Data..."
                         Dim PaletteData As String = Form1.OffsetToPointer(PaletteDataOffset)
                         If Form1.ToHex(CInt(PaletteNumberTextBox.Text)).Length = 1 Then
@@ -165,10 +173,10 @@ Public Class Form5
                         PaletteData += "110000"
                         PaletteData += Form1.PaletteTableEndHex
                         Log.Text += vbCrLf & "     Done..."
-                        Log.Text += vbCrLf & "Writing data..."
+                        Log.Text += vbCrLf & "Writing Data [" + CStr(PaletteData.Length / 2) + " Bytes]..."
                         If Form1.WriteData(PaletteOffset, PaletteData.Length / 2, PaletteData) = True Then
                             Log.Text += vbCrLf & "     Done!"
-                            Log.Text += vbCrLf & "Everything completed successfully!"
+                            Log.Text += vbCrLf & "Everything Completed Successfully!"
                             BackButton.Enabled = True
                         Else
                             Log.Text += vbCrLf & "     Error! Aborting..."
