@@ -131,7 +131,7 @@ Public Class Form8
             If ErrorFlag = False Then
                 Log.Text += vbCrLf & "   Found At Offset => 0x" + OWSTableOffset
                 Log.Text += vbCrLf & "Prompting User To Proceed OWS Table Insertion Process..."
-                Dim Result As Integer = MessageBox.Show("Do you want to proceed with OWS Table Insertion?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                Dim Result As Integer = MessageBox.Show("Do You Want To Proceed With OWS Table Insertion?", "Proceed With OWS Table Insertion?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If Result = DialogResult.Yes Then
                     Log.Text += vbCrLf & "   Proceeding With OWS Table Insertion..."
                     Log.Text += vbCrLf & "Writing " + CStr(NumberOfBytes) + " Bytes To Rom..."
@@ -159,7 +159,7 @@ Public Class Form8
                                 OWSTableCount += 1
                                 If OWSTableCount > Form1.OWSTableListMaxTables Then
                                     ErrorFlag = True
-                                    MessageBox.Show("OWS Table List Table is Full!" & vbCrLf & vbCrLf & "If you want to proceed anyway then increase the OWS Table List Max Tables value in Settings.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                    MessageBox.Show("OWS Table List Table is Full!" & vbCrLf & vbCrLf & "If You Want To Proceed Anyway Then Increase The OWS Table List Max Tables Value In Settings.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                     Flag = False
                                     Exit While
                                 End If
@@ -199,6 +199,10 @@ Public Class Form8
     End Sub
 
     Private Sub Form8_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        OWSTableEmptyByteTextBox.Text = Form1.OWSTableEmptyDataHex.Substring(0, 2)
+        OWSTableEmptyByteTextBox.Tag = Form1.OWSTableEmptyDataHex.Substring(0, 2)
+        NumberOfSpritesTextBox.Text = Form1.OWSTableMaxSprites
+        NumberOfSpritesTextBox.Tag = Form1.OWSTableMaxSprites
         Log.Enabled = False
         Log.Hide()
         BackButton.Enabled = False

@@ -151,6 +151,10 @@ Public Class Form1
     Dim RomIdentifierHexValue As String = "504F4B454D4F4E204649524542505245"
     Dim RomIdentifierBytes As Integer = 16
     Dim MaxHexSize As Integer = 65536 ' 0xFFFF + 0x1 in Decimal
+    Dim PaletteFixOneData As String = "70880907090F002901D005E0"
+    Dim PaletteFixOneOffset As String = "05E5E0"
+    Dim PaletteFixTwoData As String = "03E0"
+    Dim PaletteFixTwoOffset As String = "05E5F8"
     Public RomFileLoaded As Boolean = False
     Dim SearchOffsetFlag As Boolean = True
     Public RomFilePath As String
@@ -228,7 +232,7 @@ WriteDataTry:
             Return True
         Catch ex As Exception
             Log.Text += vbCrLf & "Rom File Is In Use! Prompting User To Try Again..."
-            Dim DialogBoxResult As Integer = MessageBox.Show("The rom file is in use. Please close any program using the file and click Retry to try again." & vbCrLf & "[Exception.Message : " + ex.Message + "]", "Error!", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation)
+            Dim DialogBoxResult As Integer = MessageBox.Show("The Rom File Is In Use. Please Close Any Program Using The File And Click Retry To Try Again." & vbCrLf & "[Exception.Message : " + ex.Message + "]", "Error!", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation)
             If DialogBoxResult = DialogResult.Retry Then
                 Log.Text += vbCrLf & "Trying Again To Write Data..."
                 GoTo WriteDataTry
@@ -370,7 +374,7 @@ WriteDataTry:
                 NumberOfSprites += 1
                 If NumberOfSprites > OWSTableMaxSprites Then
                     Log.Text += vbCrLf & "OWS Table Is Full! Prompting User To Choose OWS Table Again..."
-                    MessageBox.Show("OWS Table is full! Please select another table.", "Oops!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    MessageBox.Show("Selected OWS Table Is Full! Please Select Another Table.", "Oops!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     Flag = False
                     Exit While
                 End If
@@ -380,6 +384,8 @@ WriteDataTry:
         If Flag = False Then
             SelectOWSTableGroupBox.Show()
             SelectOWSTablePanel.Show()
+            CancelSpriteInsertionButton.Enabled = True
+            CancelSpriteInsertionButton.Show()
         Else
             Log.Text += vbCrLf & "     Found At Offset => 0x" + EmptySpriteOffset
             Log.Text += vbCrLf & "Inserting Sprite Pointer To The Selected OWS Table..."
@@ -395,52 +401,56 @@ WriteDataTry:
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles OpenRomButton.Click
-        If RomFile.ShowDialog <> Windows.Forms.DialogResult.Cancel Then
-            RomFilePath = RomFile.FileName
-            FilePathTextBox.Text = RomFilePath
-            If RomLock Then
-                If ValidateRom() Then
-                    Dim RomFileStream As FileStream
-                    RomFileStream = File.OpenRead(RomFilePath)
-                    RomLength = RomFileStream.Length
-                    RomFileStream.Close()
-                    RomStateLabel.Text = "Pokemon Fire Red Rom Detected."
-                    RomStateLabel.ForeColor = Color.Green
-                    SpriteTemplateSettingsGroupBox.Enabled = True
-                    RomFileLoaded = True
-                    PaletteInserterButton.Enabled = True
+        Try
+            If RomFile.ShowDialog <> Windows.Forms.DialogResult.Cancel Then
+                RomFilePath = RomFile.FileName
+                FilePathTextBox.Text = RomFilePath
+                If RomLock Then
+                    If ValidateRom() Then
+                        Dim RomFileStream As FileStream
+                        RomFileStream = File.OpenRead(RomFilePath)
+                        RomLength = RomFileStream.Length
+                        RomFileStream.Close()
+                        RomStateLabel.Text = "Pokemon Fire Red Rom Detected."
+                        RomStateLabel.ForeColor = Color.Green
+                        SpriteTemplateSettingsGroupBox.Enabled = True
+                        RomFileLoaded = True
+                        PaletteInserterButton.Enabled = True
+                    Else
+                        RomStateLabel.Text = "Pokemon Fire Red Rom Not Detected!"
+                        RomStateLabel.ForeColor = Color.Red
+                        SpriteTemplateSettingsGroupBox.Enabled = False
+                        RomFileLoaded = False
+                        PaletteInserterButton.Enabled = False
+                        MessageBox.Show("This is not Pokemon Fire Red Rom!" & vbCrLf & vbCrLf & "You can disable this check by switching Rom Check to Off state in Settings.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
                 Else
-                    RomStateLabel.Text = "Pokemon Fire Red Rom Not Detected!"
-                    RomStateLabel.ForeColor = Color.Red
-                    SpriteTemplateSettingsGroupBox.Enabled = False
-                    RomFileLoaded = False
-                    PaletteInserterButton.Enabled = False
-                    MessageBox.Show("This is not Pokemon Fire Red Rom!" & vbCrLf & vbCrLf & "You can disable this check by switching Rom Check to Off state in Settings.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                End If
-            Else
-                If ValidateRom() Then
-                    Dim RomFileStream As FileStream
-                    RomFileStream = File.OpenRead(RomFilePath)
-                    RomLength = RomFileStream.Length
-                    RomFileStream.Close()
-                    RomStateLabel.Text = "Pokemon Fire Red Rom Detected."
-                    RomStateLabel.ForeColor = Color.Green
-                    SpriteTemplateSettingsGroupBox.Enabled = True
-                    RomFileLoaded = True
-                    PaletteInserterButton.Enabled = True
-                Else
-                    Dim RomFileStream As FileStream
-                    RomFileStream = File.OpenRead(RomFilePath)
-                    RomLength = RomFileStream.Length
-                    RomFileStream.Close()
-                    RomStateLabel.Text = "Custom Rom Loaded! Use Valid Sprite Preset Data!"
-                    RomStateLabel.ForeColor = Color.OrangeRed
-                    SpriteTemplateSettingsGroupBox.Enabled = True
-                    RomFileLoaded = True
-                    PaletteInserterButton.Enabled = True
+                    If ValidateRom() Then
+                        Dim RomFileStream As FileStream
+                        RomFileStream = File.OpenRead(RomFilePath)
+                        RomLength = RomFileStream.Length
+                        RomFileStream.Close()
+                        RomStateLabel.Text = "Pokemon Fire Red Rom Detected."
+                        RomStateLabel.ForeColor = Color.Green
+                        SpriteTemplateSettingsGroupBox.Enabled = True
+                        RomFileLoaded = True
+                        PaletteInserterButton.Enabled = True
+                    Else
+                        Dim RomFileStream As FileStream
+                        RomFileStream = File.OpenRead(RomFilePath)
+                        RomLength = RomFileStream.Length
+                        RomFileStream.Close()
+                        RomStateLabel.Text = "Custom Rom Loaded! Use Valid Sprite Preset Data!"
+                        RomStateLabel.ForeColor = Color.OrangeRed
+                        SpriteTemplateSettingsGroupBox.Enabled = True
+                        RomFileLoaded = True
+                        PaletteInserterButton.Enabled = True
+                    End If
                 End If
             End If
-        End If
+        Catch ex As Exception
+            MessageBox.Show("An Error Occurred While Opening Rom!" & vbCrLf & vbCrLf & "Exception.Message : " + ex.Message, "Error In Opening Rom!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Public Sub LoadForm()
@@ -714,7 +724,7 @@ WriteDataTry:
                 Log.Text += vbCrLf & "Offset For Sprite Art Data => 0x" + SpriteArtDataOffset
             End If
             Log.Text += vbCrLf & "Prompting User To Proceed Sprite Insertion Process..."
-            Dim PromptResult As Integer = MessageBox.Show("Do you want to proceed writing Sprite Data to your Rom?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            Dim PromptResult As Integer = MessageBox.Show("Do You Want To Proceed Writing Sprite Data To Your Rom?" & vbCrLf & vbCrLf & "You Can Revert Back If You Change Your Mind, Just Click Cancel Sprite Insertion On The Next Screen.", "Proceed With Sprite Data Writing?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If PromptResult = DialogResult.Yes Then
                 StartSpriteInsertionButton.Enabled = False
                 Log.Text += vbCrLf & "     Proceeding With Sprite Insertion Process..."
@@ -808,7 +818,7 @@ WriteDataTry:
                             End With
                             AddHandler OWSTablePointerButton.Click, Sub()
                                                                         Log.Text += vbCrLf & "Prompting User To Proceed Sprite Insertion Process..."
-                                                                        Dim PromptTableWriteResult As Integer = MessageBox.Show("Do you want to proceed inserting Sprite to Table - " + CStr(NumberOfOWSButtonRow * 4 + NumberOfOWSButton) + " [" + PointerToOffset(Data) + "] of your Rom?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                                                                        Dim PromptTableWriteResult As Integer = MessageBox.Show("Do You Want To Proceed Inserting Sprite To Table - " + CStr(NumberOfOWSButtonRow * 4 + NumberOfOWSButton) + " [" + PointerToOffset(Data) + "] Of Your Rom?", "Proceed With Sprite Table Insertion?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                                                                         If PromptTableWriteResult = DialogResult.Yes Then
                                                                             Log.Text += vbCrLf & "     Proceeding With Sprite Insertion Process..."
                                                                             CancelSpriteInsertionButton.Hide()
@@ -828,7 +838,7 @@ WriteDataTry:
                         End If
                     End While
                     RomFileReadStream.Close()
-                    SelectOWSTableGroupBox.Height = NumberOfOWSButtonRow * 35 + 57
+                    SelectOWSTableGroupBox.Height = If(NumberOfOWSButton > 0, NumberOfOWSButtonRow, NumberOfOWSButtonRow - 1) * 35 + 57
                     SelectOWSTableGroupBox.Show()
                     SelectOWSTablePanel.Show()
                     CancelSpriteInsertionButton.Enabled = True
@@ -905,15 +915,15 @@ WriteDataTry:
     End Sub
 
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles CancelSpriteInsertionButton.Click
-        Dim Result As Integer = MessageBox.Show("Do you really want to cancel the Sprite Insertion process?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Dim Result As Integer = MessageBox.Show("Do You Really Want To Cancel The Sprite Insertion Process?" & vbCrLf & vbCrLf & "Your Rom Wil Be Restored To It's Original State On Cancelation.", "Cancel Sprite Insertion?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If Result = DialogResult.Yes Then
             SelectOWSTableGroupBox.Controls.Clear()
             SelectOWSTableGroupBox.Hide()
             SelectOWSTablePanel.Hide()
             CancelSpriteInsertionButton.Enabled = False
             CancelSpriteInsertionButton.Hide()
-            Log.Text += vbCrLf & "Starting Cancellation process..."
-            Log.Text += vbCrLf & "Rewriting the writed offsets with free space byte..."
+            Log.Text += vbCrLf & "Starting Cancellation Process..."
+            Log.Text += vbCrLf & "Rewriting The Writed Offsets With Free Space Byte..."
             Log.Text += vbCrLf & "     Freeing Sprite Art Data [" + CStr(SpriteArtDataSize) + " Bytes] At Offset => 0x" + SpriteArtDataOffset
             WriteData(SpriteArtDataOffset, SpriteArtDataSize, FreeSpaceByteValue, 1)
             Log.Text += vbCrLf & "          Done!"
@@ -923,8 +933,8 @@ WriteDataTry:
             Log.Text += vbCrLf & "     Freeing Sprite Header Data [" + CStr(SpriteHeaderDataSize) + " Bytes] At Offset => 0x" + SpriteHeaderDataOffset
             WriteData(SpriteHeaderDataOffset, SpriteHeaderDataSize, FreeSpaceByteValue, 1)
             Log.Text += vbCrLf & "          Done!"
-            Log.Text += vbCrLf & "     Free space restoration complete!"
-            Log.Text += vbCrLf & "Sprite Insertion successfully cancelled!"
+            Log.Text += vbCrLf & "     Free Space Restoration Complete!"
+            Log.Text += vbCrLf & "Sprite Insertion Successfully Cancelled!"
             BackButton.Enabled = True
             StartSpriteInsertionButton.Enabled = True
         End If
@@ -934,4 +944,18 @@ WriteDataTry:
         Form8.Show()
     End Sub
 
+    Private Sub PaletteFixButtonClick(sender As Object, e As EventArgs) Handles PaletteFixButton.Click
+        Dim Result As Integer = MessageBox.Show("Do You Really Want To Apply The Palette Fix?" & vbCrLf & vbCrLf & "Please Note That After Applying This Fix The OWS Sprites Inserted In Table Other Than The Original One Cannot Use The Original Palettes.", "Apply Palette Fix?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If Result = DialogResult.Yes Then
+            If WriteData(PaletteFixOneOffset, PaletteFixOneData.Length / 2, PaletteFixOneData) = True Then
+                If WriteData(PaletteFixTwoOffset, PaletteFixTwoData.Length / 2, PaletteFixTwoData) = True Then
+                    MessageBox.Show("Done! Palette Fix Has Been Applied To You Rom Successfully!", "Palette Fix - Completed!", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Else
+                    MessageBox.Show("An Error Occured While Applying The Fix!", "Palette Fix - Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
+            Else
+                MessageBox.Show("An Error Occured While Applying The Fix!", "Palette Fix - Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        End If
+    End Sub
 End Class

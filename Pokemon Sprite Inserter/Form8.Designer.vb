@@ -24,7 +24,6 @@ Partial Class Form8
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form8))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Log = New System.Windows.Forms.RichTextBox()
         Me.NumberOfSpritesTextBox = New System.Windows.Forms.TextBox()
         Me.NumberOfSpritesLabel = New System.Windows.Forms.Label()
         Me.OWSTableOffsetTextBox = New System.Windows.Forms.TextBox()
@@ -34,6 +33,7 @@ Partial Class Form8
         Me.FreeSpaceCheckBox = New System.Windows.Forms.CheckBox()
         Me.OWSTableEmptyByteTextBox = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Log = New System.Windows.Forms.RichTextBox()
         Me.InsertTableButton = New System.Windows.Forms.Button()
         Me.BackButton = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
@@ -58,14 +58,6 @@ Partial Class Form8
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Create Empty OWS Table"
-        '
-        'Log
-        '
-        Me.Log.Location = New System.Drawing.Point(7, 22)
-        Me.Log.Name = "Log"
-        Me.Log.Size = New System.Drawing.Size(465, 118)
-        Me.Log.TabIndex = 21
-        Me.Log.Text = ""
         '
         'NumberOfSpritesTextBox
         '
@@ -166,6 +158,14 @@ Partial Class Form8
         Me.Label1.Size = New System.Drawing.Size(137, 15)
         Me.Label1.TabIndex = 7
         Me.Label1.Text = "OWS Table Empty Byte : "
+        '
+        'Log
+        '
+        Me.Log.Location = New System.Drawing.Point(7, 22)
+        Me.Log.Name = "Log"
+        Me.Log.Size = New System.Drawing.Size(465, 118)
+        Me.Log.TabIndex = 21
+        Me.Log.Text = ""
         '
         'InsertTableButton
         '
