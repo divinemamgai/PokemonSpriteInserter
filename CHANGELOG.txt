@@ -21,4 +21,8 @@
 				a. Added Palette Fix
 				b. Fixed Some UI Related Bugs
 				c. Improved Validations
+7/12/2014 : 2. Build 1.1.0
+				a. Upgraded Build Version To 1.1.0
+				b. Some Minor UI Changes
+				c. New Icon!
 +-------------------------------------------------------------------------------------------------------------+
