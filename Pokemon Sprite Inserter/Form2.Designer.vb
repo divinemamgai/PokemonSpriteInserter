@@ -31,11 +31,17 @@ Partial Class Form2
         Me.SpriteHeaderDataOffsetTextBox = New System.Windows.Forms.TextBox()
         Me.SpriteHeaderDataOffsetLabel = New System.Windows.Forms.Label()
         Me.UseTheseOffsetsButton = New System.Windows.Forms.Button()
+        Me.SpriteHeaderBytesLabel = New System.Windows.Forms.Label()
+        Me.SpriteFrameBytesLabel = New System.Windows.Forms.Label()
+        Me.SpriteArtByteLabel = New System.Windows.Forms.Label()
         Me.SetSpriteDataOffsetsGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
         'SetSpriteDataOffsetsGroupBox
         '
+        Me.SetSpriteDataOffsetsGroupBox.Controls.Add(Me.SpriteArtByteLabel)
+        Me.SetSpriteDataOffsetsGroupBox.Controls.Add(Me.SpriteFrameBytesLabel)
+        Me.SetSpriteDataOffsetsGroupBox.Controls.Add(Me.SpriteHeaderBytesLabel)
         Me.SetSpriteDataOffsetsGroupBox.Controls.Add(Me.SpriteArtDataOffsetTextBox)
         Me.SetSpriteDataOffsetsGroupBox.Controls.Add(Me.SpriteArtDataOffsetLabel)
         Me.SetSpriteDataOffsetsGroupBox.Controls.Add(Me.SpriteFrameDataOffsetTextBox)
@@ -123,6 +129,36 @@ Partial Class Form2
         Me.UseTheseOffsetsButton.Text = "Use These Offsets"
         Me.UseTheseOffsetsButton.UseVisualStyleBackColor = True
         '
+        'SpriteHeaderBytesLabel
+        '
+        Me.SpriteHeaderBytesLabel.AutoSize = True
+        Me.SpriteHeaderBytesLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SpriteHeaderBytesLabel.Location = New System.Drawing.Point(267, 23)
+        Me.SpriteHeaderBytesLabel.Name = "SpriteHeaderBytesLabel"
+        Me.SpriteHeaderBytesLabel.Size = New System.Drawing.Size(47, 15)
+        Me.SpriteHeaderBytesLabel.TabIndex = 10
+        Me.SpriteHeaderBytesLabel.Text = "[ Bytes]"
+        '
+        'SpriteFrameBytesLabel
+        '
+        Me.SpriteFrameBytesLabel.AutoSize = True
+        Me.SpriteFrameBytesLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SpriteFrameBytesLabel.Location = New System.Drawing.Point(267, 52)
+        Me.SpriteFrameBytesLabel.Name = "SpriteFrameBytesLabel"
+        Me.SpriteFrameBytesLabel.Size = New System.Drawing.Size(47, 15)
+        Me.SpriteFrameBytesLabel.TabIndex = 11
+        Me.SpriteFrameBytesLabel.Text = "[ Bytes]"
+        '
+        'SpriteArtByteLabel
+        '
+        Me.SpriteArtByteLabel.AutoSize = True
+        Me.SpriteArtByteLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SpriteArtByteLabel.Location = New System.Drawing.Point(267, 81)
+        Me.SpriteArtByteLabel.Name = "SpriteArtByteLabel"
+        Me.SpriteArtByteLabel.Size = New System.Drawing.Size(47, 15)
+        Me.SpriteArtByteLabel.TabIndex = 12
+        Me.SpriteArtByteLabel.Text = "[ Bytes]"
+        '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -146,4 +182,7 @@ Partial Class Form2
     Friend WithEvents SpriteFrameDataOffsetLabel As System.Windows.Forms.Label
     Friend WithEvents SpriteArtDataOffsetTextBox As System.Windows.Forms.TextBox
     Friend WithEvents SpriteArtDataOffsetLabel As System.Windows.Forms.Label
+    Friend WithEvents SpriteArtByteLabel As System.Windows.Forms.Label
+    Friend WithEvents SpriteFrameBytesLabel As System.Windows.Forms.Label
+    Friend WithEvents SpriteHeaderBytesLabel As System.Windows.Forms.Label
 End Class

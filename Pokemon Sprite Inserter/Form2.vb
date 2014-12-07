@@ -35,6 +35,9 @@
         End If
     End Sub
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        SpriteHeaderBytesLabel.Text = "[36 Bytes]"
+        SpriteFrameBytesLabel.Text = "[" + CStr(8 * CInt(Form1.NumberOfFramesTextBox.Text)) + " Bytes]"
+        SpriteArtByteLabel.Text = "[" + CStr((CInt(Form1.WidthTextBox.Text) * CInt(Form1.HeightTextBox.Text) / 2) * CInt(Form1.NumberOfFramesTextBox.Text)) + " Bytes]"
         If Form1.GlobalSpriteHeaderDataOffset <> "" Then
             SpriteFrameDataOffsetTextBox.Text = Form1.GlobalSpriteHeaderDataOffset
         End If
