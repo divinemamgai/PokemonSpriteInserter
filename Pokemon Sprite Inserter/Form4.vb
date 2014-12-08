@@ -1,8 +1,8 @@
 ﻿Public Class Form4
-    Private Sub Form4_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Form4Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CurrentPresetLabel.Text = "Current Preset : " + Form1.CurrentPreset.PresetName
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles DoneButton.Click
+    Private Sub DoneButtonClick(sender As Object, e As EventArgs) Handles DoneButton.Click
         Me.Close()
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -13,7 +13,7 @@
         Form1.WidthTextBox.Tag = "16"
         Form1.HeightTextBox.Text = "32"
         Form1.HeightTextBox.Tag = "32"
-        Form1.NumberOfFramesTextBox.Tag = "9"
+        Form1.NumberOfFramesTextBox.Text = "9"
         Form1.NumberOfFramesTextBox.Tag = "9"
     End Sub
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -24,7 +24,7 @@
         Form1.WidthTextBox.Tag = "32"
         Form1.HeightTextBox.Text = "32"
         Form1.HeightTextBox.Tag = "32"
-        Form1.NumberOfFramesTextBox.Tag = "10"
+        Form1.NumberOfFramesTextBox.Text = "10"
         Form1.NumberOfFramesTextBox.Tag = "10"
     End Sub
 
@@ -36,7 +36,7 @@
         Form1.WidthTextBox.Tag = "16"
         Form1.HeightTextBox.Text = "32"
         Form1.HeightTextBox.Tag = "32"
-        Form1.NumberOfFramesTextBox.Tag = "20"
+        Form1.NumberOfFramesTextBox.Text = "20"
         Form1.NumberOfFramesTextBox.Tag = "20"
     End Sub
 
@@ -48,7 +48,7 @@
         Form1.WidthTextBox.Tag = "16"
         Form1.HeightTextBox.Text = "16"
         Form1.HeightTextBox.Tag = "16"
-        Form1.NumberOfFramesTextBox.Tag = "9"
+        Form1.NumberOfFramesTextBox.Text = "9"
         Form1.NumberOfFramesTextBox.Tag = "9"
     End Sub
 
@@ -60,7 +60,7 @@
         Form1.WidthTextBox.Tag = "16"
         Form1.HeightTextBox.Text = "16"
         Form1.HeightTextBox.Tag = "16"
-        Form1.NumberOfFramesTextBox.Tag = "10"
+        Form1.NumberOfFramesTextBox.Text = "10"
         Form1.NumberOfFramesTextBox.Tag = "10"
     End Sub
 
@@ -72,7 +72,7 @@
         Form1.WidthTextBox.Tag = "16"
         Form1.HeightTextBox.Text = "32"
         Form1.HeightTextBox.Tag = "32"
-        Form1.NumberOfFramesTextBox.Tag = "10"
+        Form1.NumberOfFramesTextBox.Text = "10"
         Form1.NumberOfFramesTextBox.Tag = "10"
     End Sub
 
@@ -84,7 +84,7 @@
         Form1.WidthTextBox.Tag = "16"
         Form1.HeightTextBox.Text = "16"
         Form1.HeightTextBox.Tag = "16"
-        Form1.NumberOfFramesTextBox.Tag = "4"
+        Form1.NumberOfFramesTextBox.Text = "4"
         Form1.NumberOfFramesTextBox.Tag = "4"
     End Sub
 
@@ -96,7 +96,7 @@
         Form1.WidthTextBox.Tag = "16"
         Form1.HeightTextBox.Text = "16"
         Form1.HeightTextBox.Tag = "16"
-        Form1.NumberOfFramesTextBox.Tag = "4"
+        Form1.NumberOfFramesTextBox.Text = "4"
         Form1.NumberOfFramesTextBox.Tag = "4"
     End Sub
 
@@ -108,7 +108,7 @@
         Form1.WidthTextBox.Tag = "16"
         Form1.HeightTextBox.Text = "16"
         Form1.HeightTextBox.Tag = "16"
-        Form1.NumberOfFramesTextBox.Tag = "1"
+        Form1.NumberOfFramesTextBox.Text = "1"
         Form1.NumberOfFramesTextBox.Tag = "1"
     End Sub
 
@@ -120,7 +120,7 @@
         Form1.WidthTextBox.Tag = "64"
         Form1.HeightTextBox.Text = "64"
         Form1.HeightTextBox.Tag = "64"
-        Form1.NumberOfFramesTextBox.Tag = "9"
+        Form1.NumberOfFramesTextBox.Text = "9"
         Form1.NumberOfFramesTextBox.Tag = "9"
     End Sub
 End Class

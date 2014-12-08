@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="11.4" version="11.4" Modules="architect" RootPath="." Language="en" Id="{292023ED-C481-4955-8EA7-B8F3B29EDF22}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="11.4" version="11.4" Modules="enterprise" RootPath="." Language="en" Id="{292023ED-C481-4955-8EA7-B8F3B29EDF22}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="DefaultBuild:aiui"/>
@@ -12,7 +12,7 @@
     <ROW Property="ARPURLUPDATEINFO" Value="https://github.com/divinemamgai/PokemonSpriteInserter"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="Divya Mamgai"/>
-    <ROW Property="ProductCode" Value="1033:{9FB1B089-495C-4BE3-A6EE-0D7B22C2348F} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{8FB452BE-5DB0-4409-856B-F7001B592D23} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Pokemon Sprite Inserter"/>
     <ROW Property="ProductVersion" Value="1.1.1" Type="32"/>

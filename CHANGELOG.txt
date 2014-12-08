@@ -25,4 +25,9 @@
 				a. Upgraded Build Version To 1.1.0
 				b. Some Minor UI Changes
 				c. New Icon!
+8/12/2014 : 1. Build 1.1.1
+				a. Improved Validations
+				b. Improved Source Code
+				c. Reduced Redundancy
+				d. Minor UI Changes
 +-------------------------------------------------------------------------------------------------------------+

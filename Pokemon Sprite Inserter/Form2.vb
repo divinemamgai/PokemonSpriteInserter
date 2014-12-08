@@ -1,5 +1,5 @@
 ﻿Public Class Form2
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles UseTheseOffsetsButton.Click
+    Private Sub UseTheseOffsetsButtonClick(sender As Object, e As EventArgs) Handles UseTheseOffsetsButton.Click
         Dim ErrorFlag As Boolean = False
         If String.Compare(SpriteFrameDataOffsetTextBox.Text, "000000") = 0 Then
             MessageBox.Show("Sprite Header Data Offset cannot be zero!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -20,21 +20,8 @@
             Me.Close()
         End If
     End Sub
-    Private Sub TextBox_Changed(sender As Object, e As EventArgs) Handles SpriteFrameDataOffsetTextBox.Leave, SpriteHeaderDataOffsetTextBox.Leave, SpriteArtDataOffsetTextBox.Leave
-        Dim TextBoxItem As TextBox = CType(sender, TextBox)
-        If TextBoxItem.Text <> "" Then
-            If TextBoxItem.Text.Length <> 6 Then
-                TextBoxItem.Text = "000000"
-                MessageBox.Show("Offset Value can only be of 6 characters.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Else
-                If Not System.Text.RegularExpressions.Regex.IsMatch(TextBoxItem.Text, "\A\b[0-9a-fA-F]+\b\Z") Then
-                    TextBoxItem.Text = "000000"
-                    MessageBox.Show("Enter a valid hexadecimal offset value!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End If
-            End If
-        End If
-    End Sub
-    Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    Private Sub Form2Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SpriteHeaderBytesLabel.Text = "[36 Bytes]"
         SpriteFrameBytesLabel.Text = "[" + CStr(8 * CInt(Form1.NumberOfFramesTextBox.Text)) + " Bytes]"
         SpriteArtByteLabel.Text = "[" + CStr((CInt(Form1.WidthTextBox.Text) * CInt(Form1.HeightTextBox.Text) / 2) * CInt(Form1.NumberOfFramesTextBox.Text)) + " Bytes]"
@@ -48,4 +35,18 @@
             SpriteArtDataOffsetTextBox.Text = Form1.GlobalSpriteArtDataOffset
         End If
     End Sub
+
+#Region "Validation"
+    Private Sub ApplyValidations() Handles Me.Load
+        Dim AllTextBoxControls = SetSpriteDataOffsetsGroupBox.Controls.OfType(Of TextBox)()
+        For Each ControlElement In AllTextBoxControls
+            If CStr(ControlElement.Tag) <> "" Then
+                AddHandler ControlElement.KeyPress, AddressOf SpaceValidator
+                AddHandler ControlElement.Leave, AddressOf NullValidator
+                AddHandler ControlElement.Leave, AddressOf OffsetValidator
+            End If
+        Next
+    End Sub
+#End Region
+
 End Class

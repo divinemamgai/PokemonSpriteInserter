@@ -387,8 +387,6 @@ Public Class Form1
         Log.BringToFront()
         SelectOWSTablePanel.BringToFront()
         SelectOWSTableGroupBox.BringToFront()
-        HistoryButton.Enabled = False
-        ViewTableButton.Enabled = False
     End Sub
 
     Private Sub CustomPresetCheckBoxCheckedChanged(sender As Object, e As EventArgs) Handles CustomPresetCheckBox.CheckedChanged
@@ -683,6 +681,11 @@ Public Class Form1
         StartSpriteInsertionButton.Enabled = True
     End Sub
 
+    Private Sub LogChange(sender As Object, e As EventArgs) Handles Log.TextChanged
+        Log.SelectionStart = Log.Text.Length
+        Log.ScrollToCaret()
+    End Sub
+
     Private Sub CancelSpriteInsertionButtonClick(sender As Object, e As EventArgs) Handles CancelSpriteInsertionButton.Click
         Dim Result As Integer = MessageBox.Show("Do you really want to cancel the sprite insertion process?" & vbCrLf & vbCrLf & "Your rom will be restored to it's original state on cancelation.", "Cancel Sprite Insertion?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If Result = DialogResult.Yes Then
@@ -715,6 +718,10 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles CreateOWSTableButton.Click
+        Form8.Show()
+    End Sub
+
     Private Sub PaletteFixButtonClick(sender As Object, e As EventArgs) Handles PaletteFixButton.Click
         Dim Result As Integer = MessageBox.Show("Do you really want to apply the palette fix?" & vbCrLf & vbCrLf & "Note : After applying this fix the default palettes were no longer compatible with the new OWS Tables. So insert new palettes for the new tables even if you are using a sprite of the original table, make sure to add required palette for that sprite.", "Apply Palette Fix", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If Result = DialogResult.Yes Then
@@ -730,10 +737,6 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub LogChange(sender As Object, e As EventArgs) Handles Log.TextChanged
-        Log.SelectionStart = Log.Text.Length
-        Log.ScrollToCaret()
-    End Sub
 
     Private Sub FreeSpaceOffsetsButtonClick(sender As Object, e As EventArgs) Handles FreeSpaceOffsetsButton.Click
         Form2.Show()
@@ -759,41 +762,5 @@ Public Class Form1
         Form7.Show()
     End Sub
 
-    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles CreateOWSTableButton.Click
-        Form8.Show()
-    End Sub
-
-#Region "Validation"
-    Private Sub ApplyValidations() Handles Me.Load
-        Dim AllTextBoxControlsInSpriteTemplate = SpriteTemplateSettingsGroupBox.Controls.OfType(Of TextBox)()
-        For Each ControlElement In AllTextBoxControlsInSpriteTemplate
-            If CStr(ControlElement.Tag) <> "" Then
-                AddHandler ControlElement.KeyPress, AddressOf SpaceValidator
-                AddHandler ControlElement.Leave, AddressOf NullValidator
-                Select Case ControlElement.Name
-                    Case "StartOffsetTextBox"
-                        AddHandler ControlElement.Leave, AddressOf OffsetValidator
-                    Case "SkipBytesTextBox"
-                        AddHandler ControlElement.TextChanged, AddressOf SetMaxLimitBytes
-                        AddHandler ControlElement.TextChanged, AddressOf MaxLimitValidator
-                    Case Else
-                        If (String.Compare(ControlElement.Name, "PaletteNumberTextBox") <> 0) Then
-                            AddHandler ControlElement.TextChanged, AddressOf NonZeroValidator
-                        End If
-                        AddHandler ControlElement.TextChanged, AddressOf SetMaxLimitDefault
-                        AddHandler ControlElement.TextChanged, AddressOf MaxLimitValidator
-                        AddHandler ControlElement.KeyPress, AddressOf DigitValidator
-                End Select
-            End If
-        Next
-        Dim AllTextBoxControlsInSpriteDataPreset = SpriteDataPresetGroupBox.Controls.OfType(Of TextBox)()
-        For Each ControlElement In AllTextBoxControlsInSpriteDataPreset
-            AddHandler ControlElement.KeyPress, AddressOf SpaceValidator
-            AddHandler ControlElement.Leave, AddressOf NullValidator
-            'AddHandler ControlElement.TextChanged, AddressOf NonZeroValidator
-            AddHandler ControlElement.Leave, AddressOf HexValueValidator
-        Next
-    End Sub
-#End Region
 
 End Class

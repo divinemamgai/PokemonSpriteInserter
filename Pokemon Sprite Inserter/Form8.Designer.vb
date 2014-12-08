@@ -23,7 +23,7 @@ Partial Class Form8
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form8))
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.CreateEmptyOWSTableGroupBox = New System.Windows.Forms.GroupBox()
         Me.Log = New System.Windows.Forms.RichTextBox()
         Me.NumberOfSpritesTextBox = New System.Windows.Forms.TextBox()
         Me.NumberOfSpritesLabel = New System.Windows.Forms.Label()
@@ -36,28 +36,28 @@ Partial Class Form8
         Me.Label1 = New System.Windows.Forms.Label()
         Me.InsertTableButton = New System.Windows.Forms.Button()
         Me.BackButton = New System.Windows.Forms.Button()
-        Me.GroupBox1.SuspendLayout()
+        Me.CreateEmptyOWSTableGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
-        'GroupBox1
+        'CreateEmptyOWSTableGroupBox
         '
-        Me.GroupBox1.Controls.Add(Me.Log)
-        Me.GroupBox1.Controls.Add(Me.NumberOfSpritesTextBox)
-        Me.GroupBox1.Controls.Add(Me.NumberOfSpritesLabel)
-        Me.GroupBox1.Controls.Add(Me.OWSTableOffsetTextBox)
-        Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.StartOffsetTextBox)
-        Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.FreeSpaceCheckBox)
-        Me.GroupBox1.Controls.Add(Me.OWSTableEmptyByteTextBox)
-        Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(13, 13)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(478, 146)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Create Empty OWS Table"
+        Me.CreateEmptyOWSTableGroupBox.Controls.Add(Me.Log)
+        Me.CreateEmptyOWSTableGroupBox.Controls.Add(Me.NumberOfSpritesTextBox)
+        Me.CreateEmptyOWSTableGroupBox.Controls.Add(Me.NumberOfSpritesLabel)
+        Me.CreateEmptyOWSTableGroupBox.Controls.Add(Me.OWSTableOffsetTextBox)
+        Me.CreateEmptyOWSTableGroupBox.Controls.Add(Me.Label2)
+        Me.CreateEmptyOWSTableGroupBox.Controls.Add(Me.StartOffsetTextBox)
+        Me.CreateEmptyOWSTableGroupBox.Controls.Add(Me.Label3)
+        Me.CreateEmptyOWSTableGroupBox.Controls.Add(Me.FreeSpaceCheckBox)
+        Me.CreateEmptyOWSTableGroupBox.Controls.Add(Me.OWSTableEmptyByteTextBox)
+        Me.CreateEmptyOWSTableGroupBox.Controls.Add(Me.Label1)
+        Me.CreateEmptyOWSTableGroupBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CreateEmptyOWSTableGroupBox.Location = New System.Drawing.Point(13, 13)
+        Me.CreateEmptyOWSTableGroupBox.Name = "CreateEmptyOWSTableGroupBox"
+        Me.CreateEmptyOWSTableGroupBox.Size = New System.Drawing.Size(478, 146)
+        Me.CreateEmptyOWSTableGroupBox.TabIndex = 0
+        Me.CreateEmptyOWSTableGroupBox.TabStop = False
+        Me.CreateEmptyOWSTableGroupBox.Text = "Create Empty OWS Table"
         '
         'Log
         '
@@ -192,18 +192,18 @@ Partial Class Form8
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(503, 205)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.CreateEmptyOWSTableGroupBox)
         Me.Controls.Add(Me.BackButton)
         Me.Controls.Add(Me.InsertTableButton)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form8"
         Me.Text = "Pokemon Sprite Inserter - Table Creator"
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.CreateEmptyOWSTableGroupBox.ResumeLayout(False)
+        Me.CreateEmptyOWSTableGroupBox.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents CreateEmptyOWSTableGroupBox As System.Windows.Forms.GroupBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents OWSTableEmptyByteTextBox As System.Windows.Forms.TextBox
     Friend WithEvents FreeSpaceCheckBox As System.Windows.Forms.CheckBox

@@ -28,12 +28,9 @@ Partial Class Form1
         Me.FilePathTextBox = New System.Windows.Forms.TextBox()
         Me.OpenRomButton = New System.Windows.Forms.Button()
         Me.SpriteTemplateSettingsGroupBox = New System.Windows.Forms.GroupBox()
-        Me.SelectOWSTableGroupBox = New System.Windows.Forms.GroupBox()
-        Me.SelectOWSTablePanel = New System.Windows.Forms.Panel()
-        Me.Log = New System.Windows.Forms.RichTextBox()
+        Me.CancelSpriteInsertionButton = New System.Windows.Forms.Button()
         Me.CreateOWSTableButton = New System.Windows.Forms.Button()
         Me.PaletteFixButton = New System.Windows.Forms.Button()
-        Me.CancelSpriteInsertionButton = New System.Windows.Forms.Button()
         Me.BackButton = New System.Windows.Forms.Button()
         Me.PaletteInserterButton = New System.Windows.Forms.Button()
         Me.CustomSpriteArtButton = New System.Windows.Forms.Button()
@@ -71,6 +68,11 @@ Partial Class Form1
         Me.RomStateLabel = New System.Windows.Forms.Label()
         Me.AboutButton = New System.Windows.Forms.Button()
         Me.SettingsButton = New System.Windows.Forms.Button()
+        Me.ViewTableButton = New System.Windows.Forms.Button()
+        Me.HistoryButton = New System.Windows.Forms.Button()
+        Me.Log = New System.Windows.Forms.RichTextBox()
+        Me.SelectOWSTablePanel = New System.Windows.Forms.Panel()
+        Me.SelectOWSTableGroupBox = New System.Windows.Forms.GroupBox()
         Me.PokemonRomGroupBox.SuspendLayout()
         Me.SpriteTemplateSettingsGroupBox.SuspendLayout()
         Me.SpriteDataPresetGroupBox.SuspendLayout()
@@ -121,9 +123,10 @@ Partial Class Form1
         Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.SelectOWSTableGroupBox)
         Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.SelectOWSTablePanel)
         Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.Log)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.ViewTableButton)
+        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.CancelSpriteInsertionButton)
         Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.CreateOWSTableButton)
         Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.PaletteFixButton)
-        Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.CancelSpriteInsertionButton)
         Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.BackButton)
         Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.PaletteInserterButton)
         Me.SpriteTemplateSettingsGroupBox.Controls.Add(Me.CustomSpriteArtButton)
@@ -152,36 +155,20 @@ Partial Class Form1
         Me.SpriteTemplateSettingsGroupBox.TabStop = False
         Me.SpriteTemplateSettingsGroupBox.Text = "Sprite Template Settings"
         '
-        'SelectOWSTableGroupBox
+        'CancelSpriteInsertionButton
         '
-        Me.SelectOWSTableGroupBox.Location = New System.Drawing.Point(6, 16)
-        Me.SelectOWSTableGroupBox.Name = "SelectOWSTableGroupBox"
-        Me.SelectOWSTableGroupBox.Size = New System.Drawing.Size(588, 224)
-        Me.SelectOWSTableGroupBox.TabIndex = 0
-        Me.SelectOWSTableGroupBox.TabStop = False
-        Me.SelectOWSTableGroupBox.Text = "Select OWS Table To Insert Sprite In"
-        '
-        'SelectOWSTablePanel
-        '
-        Me.SelectOWSTablePanel.AutoScroll = True
-        Me.SelectOWSTablePanel.Location = New System.Drawing.Point(6, 16)
-        Me.SelectOWSTablePanel.Name = "SelectOWSTablePanel"
-        Me.SelectOWSTablePanel.Size = New System.Drawing.Size(588, 224)
-        Me.SelectOWSTablePanel.TabIndex = 38
-        '
-        'Log
-        '
-        Me.Log.Location = New System.Drawing.Point(7, 16)
-        Me.Log.Name = "Log"
-        Me.Log.Size = New System.Drawing.Size(587, 224)
-        Me.Log.TabIndex = 37
-        Me.Log.Text = ""
+        Me.CancelSpriteInsertionButton.Location = New System.Drawing.Point(6, 246)
+        Me.CancelSpriteInsertionButton.Name = "CancelSpriteInsertionButton"
+        Me.CancelSpriteInsertionButton.Size = New System.Drawing.Size(588, 26)
+        Me.CancelSpriteInsertionButton.TabIndex = 33
+        Me.CancelSpriteInsertionButton.Text = "Cancel Sprite Insertion"
+        Me.CancelSpriteInsertionButton.UseVisualStyleBackColor = True
         '
         'CreateOWSTableButton
         '
-        Me.CreateOWSTableButton.Location = New System.Drawing.Point(475, 178)
+        Me.CreateOWSTableButton.Location = New System.Drawing.Point(475, 202)
         Me.CreateOWSTableButton.Name = "CreateOWSTableButton"
-        Me.CreateOWSTableButton.Size = New System.Drawing.Size(119, 54)
+        Me.CreateOWSTableButton.Size = New System.Drawing.Size(119, 38)
         Me.CreateOWSTableButton.TabIndex = 30
         Me.CreateOWSTableButton.Text = "Create Empty OWS Table"
         Me.CreateOWSTableButton.UseVisualStyleBackColor = True
@@ -194,15 +181,6 @@ Partial Class Form1
         Me.PaletteFixButton.TabIndex = 36
         Me.PaletteFixButton.Text = "Palette Fix"
         Me.PaletteFixButton.UseVisualStyleBackColor = True
-        '
-        'CancelSpriteInsertionButton
-        '
-        Me.CancelSpriteInsertionButton.Location = New System.Drawing.Point(6, 246)
-        Me.CancelSpriteInsertionButton.Name = "CancelSpriteInsertionButton"
-        Me.CancelSpriteInsertionButton.Size = New System.Drawing.Size(588, 26)
-        Me.CancelSpriteInsertionButton.TabIndex = 33
-        Me.CancelSpriteInsertionButton.Text = "Cancel Sprite Insertion"
-        Me.CancelSpriteInsertionButton.UseVisualStyleBackColor = True
         '
         'BackButton
         '
@@ -572,11 +550,56 @@ Partial Class Form1
         Me.SettingsButton.Text = "Settings"
         Me.SettingsButton.UseVisualStyleBackColor = True
         '
+        'ViewTableButton
+        '
+        Me.ViewTableButton.Location = New System.Drawing.Point(475, 171)
+        Me.ViewTableButton.Name = "ViewTableButton"
+        Me.ViewTableButton.Size = New System.Drawing.Size(119, 25)
+        Me.ViewTableButton.TabIndex = 37
+        Me.ViewTableButton.Text = "View Tables"
+        Me.ViewTableButton.UseVisualStyleBackColor = True
+        '
+        'HistoryButton
+        '
+        Me.HistoryButton.Location = New System.Drawing.Point(405, 369)
+        Me.HistoryButton.Name = "HistoryButton"
+        Me.HistoryButton.Size = New System.Drawing.Size(65, 26)
+        Me.HistoryButton.TabIndex = 27
+        Me.HistoryButton.Text = "History"
+        Me.HistoryButton.UseVisualStyleBackColor = True
+        '
+        'Log
+        '
+        Me.Log.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Log.Location = New System.Drawing.Point(7, 16)
+        Me.Log.Name = "Log"
+        Me.Log.Size = New System.Drawing.Size(587, 224)
+        Me.Log.TabIndex = 38
+        Me.Log.Text = ""
+        '
+        'SelectOWSTablePanel
+        '
+        Me.SelectOWSTablePanel.AutoScroll = True
+        Me.SelectOWSTablePanel.Location = New System.Drawing.Point(7, 16)
+        Me.SelectOWSTablePanel.Name = "SelectOWSTablePanel"
+        Me.SelectOWSTablePanel.Size = New System.Drawing.Size(587, 224)
+        Me.SelectOWSTablePanel.TabIndex = 39
+        '
+        'SelectOWSTableGroupBox
+        '
+        Me.SelectOWSTableGroupBox.Location = New System.Drawing.Point(6, 16)
+        Me.SelectOWSTableGroupBox.Name = "SelectOWSTableGroupBox"
+        Me.SelectOWSTableGroupBox.Size = New System.Drawing.Size(588, 224)
+        Me.SelectOWSTableGroupBox.TabIndex = 0
+        Me.SelectOWSTableGroupBox.TabStop = False
+        Me.SelectOWSTableGroupBox.Text = "Select OWS Table To Insert Created Sprite In"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(625, 405)
+        Me.Controls.Add(Me.HistoryButton)
         Me.Controls.Add(Me.SpriteTemplateSettingsGroupBox)
         Me.Controls.Add(Me.SettingsButton)
         Me.Controls.Add(Me.AboutButton)
@@ -640,6 +663,8 @@ Partial Class Form1
     Friend WithEvents WidthLabel As System.Windows.Forms.Label
     Friend WithEvents CreateOWSTableButton As System.Windows.Forms.Button
     Friend WithEvents PaletteFixButton As System.Windows.Forms.Button
+    Friend WithEvents ViewTableButton As System.Windows.Forms.Button
+    Friend WithEvents HistoryButton As System.Windows.Forms.Button
     Friend WithEvents Log As System.Windows.Forms.RichTextBox
     Friend WithEvents SelectOWSTablePanel As System.Windows.Forms.Panel
     Friend WithEvents SelectOWSTableGroupBox As System.Windows.Forms.GroupBox

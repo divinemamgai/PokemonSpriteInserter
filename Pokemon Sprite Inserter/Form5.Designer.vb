@@ -24,7 +24,6 @@ Partial Class Form5
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form5))
         Me.PaletteAdderGroupBox = New System.Windows.Forms.GroupBox()
-        Me.Log = New System.Windows.Forms.RichTextBox()
         Me.FreeSpaceStartTextBox = New System.Windows.Forms.TextBox()
         Me.FreeSpaceFromLabel = New System.Windows.Forms.Label()
         Me.PaletteOffsetTextBox = New System.Windows.Forms.TextBox()
@@ -35,6 +34,7 @@ Partial Class Form5
         Me.PaletteHexDataLabel = New System.Windows.Forms.Label()
         Me.PaletteNumberTextBox = New System.Windows.Forms.TextBox()
         Me.PaletteNumberLabel = New System.Windows.Forms.Label()
+        Me.Log = New System.Windows.Forms.RichTextBox()
         Me.InsertPaletteButton = New System.Windows.Forms.Button()
         Me.BackButton = New System.Windows.Forms.Button()
         Me.PaletteAdderGroupBox.SuspendLayout()
@@ -61,16 +61,6 @@ Partial Class Form5
         Me.PaletteAdderGroupBox.TabStop = False
         Me.PaletteAdderGroupBox.Text = "Palette Adder"
         '
-        'Log
-        '
-        Me.Log.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Log.Location = New System.Drawing.Point(7, 14)
-        Me.Log.Name = "Log"
-        Me.Log.ReadOnly = True
-        Me.Log.Size = New System.Drawing.Size(467, 154)
-        Me.Log.TabIndex = 27
-        Me.Log.Text = ""
-        '
         'FreeSpaceStartTextBox
         '
         Me.FreeSpaceStartTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
@@ -87,11 +77,11 @@ Partial Class Form5
         '
         Me.FreeSpaceFromLabel.AutoSize = True
         Me.FreeSpaceFromLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FreeSpaceFromLabel.Location = New System.Drawing.Point(241, 140)
+        Me.FreeSpaceFromLabel.Location = New System.Drawing.Point(243, 140)
         Me.FreeSpaceFromLabel.Name = "FreeSpaceFromLabel"
-        Me.FreeSpaceFromLabel.Size = New System.Drawing.Size(142, 15)
+        Me.FreeSpaceFromLabel.Size = New System.Drawing.Size(140, 15)
         Me.FreeSpaceFromLabel.TabIndex = 26
-        Me.FreeSpaceFromLabel.Text = "Search Free Space From :"
+        Me.FreeSpaceFromLabel.Text = "Search Free Space Start :"
         '
         'PaletteOffsetTextBox
         '
@@ -181,6 +171,16 @@ Partial Class Form5
         Me.PaletteNumberLabel.Size = New System.Drawing.Size(153, 15)
         Me.PaletteNumberLabel.TabIndex = 11
         Me.PaletteNumberLabel.Text = "Palette Number [Decimal] :"
+        '
+        'Log
+        '
+        Me.Log.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.Log.Location = New System.Drawing.Point(7, 14)
+        Me.Log.Name = "Log"
+        Me.Log.ReadOnly = True
+        Me.Log.Size = New System.Drawing.Size(467, 154)
+        Me.Log.TabIndex = 27
+        Me.Log.Text = ""
         '
         'InsertPaletteButton
         '

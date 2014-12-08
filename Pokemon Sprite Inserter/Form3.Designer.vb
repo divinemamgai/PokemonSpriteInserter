@@ -23,7 +23,7 @@ Partial Class Form3
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form3))
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.SettingsGroupBox = New System.Windows.Forms.GroupBox()
         Me.PaletteTableEndTextBox = New System.Windows.Forms.TextBox()
         Me.PaletteTableEndLabel = New System.Windows.Forms.Label()
         Me.MaxPaletteTextBox = New System.Windows.Forms.TextBox()
@@ -46,41 +46,41 @@ Partial Class Form3
         Me.OWSTableListOffsetLabel = New System.Windows.Forms.Label()
         Me.SpriteArtDataByteLabel = New System.Windows.Forms.Label()
         Me.FreeSpaceByteLabel = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.GroupBox1.SuspendLayout()
+        Me.SaveSettingsButton = New System.Windows.Forms.Button()
+        Me.SettingsGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
-        'GroupBox1
+        'SettingsGroupBox
         '
-        Me.GroupBox1.Controls.Add(Me.PaletteTableEndTextBox)
-        Me.GroupBox1.Controls.Add(Me.PaletteTableEndLabel)
-        Me.GroupBox1.Controls.Add(Me.MaxPaletteTextBox)
-        Me.GroupBox1.Controls.Add(Me.MaxPaletteLabel)
-        Me.GroupBox1.Controls.Add(Me.PaletteTableOffsetTextBox)
-        Me.GroupBox1.Controls.Add(Me.PaletteTableOffsetLabel)
-        Me.GroupBox1.Controls.Add(Me.RomCheckButton)
-        Me.GroupBox1.Controls.Add(Me.SpriteArtDataByteTextBox)
-        Me.GroupBox1.Controls.Add(Me.DefaultButton)
-        Me.GroupBox1.Controls.Add(Me.TableMaxSpritesTextBox)
-        Me.GroupBox1.Controls.Add(Me.TableMaxSpritesLabel)
-        Me.GroupBox1.Controls.Add(Me.TableListMaxTextBox)
-        Me.GroupBox1.Controls.Add(Me.TableListMaxLabel)
-        Me.GroupBox1.Controls.Add(Me.TableEmptyDataTextBox)
-        Me.GroupBox1.Controls.Add(Me.TableEmptyDataLabel)
-        Me.GroupBox1.Controls.Add(Me.TableListEmptyDataTextBox)
-        Me.GroupBox1.Controls.Add(Me.TableListEmptyDataLabel)
-        Me.GroupBox1.Controls.Add(Me.FreeSpaceByteTextBox)
-        Me.GroupBox1.Controls.Add(Me.OWSTableListOffsetTextBox)
-        Me.GroupBox1.Controls.Add(Me.OWSTableListOffsetLabel)
-        Me.GroupBox1.Controls.Add(Me.SpriteArtDataByteLabel)
-        Me.GroupBox1.Controls.Add(Me.FreeSpaceByteLabel)
-        Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(356, 315)
-        Me.GroupBox1.TabIndex = 1
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Set Sprite Data Offsets"
+        Me.SettingsGroupBox.Controls.Add(Me.PaletteTableEndTextBox)
+        Me.SettingsGroupBox.Controls.Add(Me.PaletteTableEndLabel)
+        Me.SettingsGroupBox.Controls.Add(Me.MaxPaletteTextBox)
+        Me.SettingsGroupBox.Controls.Add(Me.MaxPaletteLabel)
+        Me.SettingsGroupBox.Controls.Add(Me.PaletteTableOffsetTextBox)
+        Me.SettingsGroupBox.Controls.Add(Me.PaletteTableOffsetLabel)
+        Me.SettingsGroupBox.Controls.Add(Me.RomCheckButton)
+        Me.SettingsGroupBox.Controls.Add(Me.SpriteArtDataByteTextBox)
+        Me.SettingsGroupBox.Controls.Add(Me.DefaultButton)
+        Me.SettingsGroupBox.Controls.Add(Me.TableMaxSpritesTextBox)
+        Me.SettingsGroupBox.Controls.Add(Me.TableMaxSpritesLabel)
+        Me.SettingsGroupBox.Controls.Add(Me.TableListMaxTextBox)
+        Me.SettingsGroupBox.Controls.Add(Me.TableListMaxLabel)
+        Me.SettingsGroupBox.Controls.Add(Me.TableEmptyDataTextBox)
+        Me.SettingsGroupBox.Controls.Add(Me.TableEmptyDataLabel)
+        Me.SettingsGroupBox.Controls.Add(Me.TableListEmptyDataTextBox)
+        Me.SettingsGroupBox.Controls.Add(Me.TableListEmptyDataLabel)
+        Me.SettingsGroupBox.Controls.Add(Me.FreeSpaceByteTextBox)
+        Me.SettingsGroupBox.Controls.Add(Me.OWSTableListOffsetTextBox)
+        Me.SettingsGroupBox.Controls.Add(Me.OWSTableListOffsetLabel)
+        Me.SettingsGroupBox.Controls.Add(Me.SpriteArtDataByteLabel)
+        Me.SettingsGroupBox.Controls.Add(Me.FreeSpaceByteLabel)
+        Me.SettingsGroupBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SettingsGroupBox.Location = New System.Drawing.Point(12, 12)
+        Me.SettingsGroupBox.Name = "SettingsGroupBox"
+        Me.SettingsGroupBox.Size = New System.Drawing.Size(356, 315)
+        Me.SettingsGroupBox.TabIndex = 1
+        Me.SettingsGroupBox.TabStop = False
+        Me.SettingsGroupBox.Text = "Settings"
         '
         'PaletteTableEndTextBox
         '
@@ -322,32 +322,32 @@ Partial Class Form3
         Me.FreeSpaceByteLabel.TabIndex = 5
         Me.FreeSpaceByteLabel.Text = "Free Space Byte :"
         '
-        'Button1
+        'SaveSettingsButton
         '
-        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(12, 333)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(356, 29)
-        Me.Button1.TabIndex = 19
-        Me.Button1.Text = "Save Settings"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.SaveSettingsButton.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SaveSettingsButton.Location = New System.Drawing.Point(12, 333)
+        Me.SaveSettingsButton.Name = "SaveSettingsButton"
+        Me.SaveSettingsButton.Size = New System.Drawing.Size(356, 29)
+        Me.SaveSettingsButton.TabIndex = 19
+        Me.SaveSettingsButton.Text = "Save Settings"
+        Me.SaveSettingsButton.UseVisualStyleBackColor = True
         '
         'Form3
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(380, 373)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.SaveSettingsButton)
+        Me.Controls.Add(Me.SettingsGroupBox)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form3"
         Me.Text = "Pokemon Sprite Inserter - Settings"
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.SettingsGroupBox.ResumeLayout(False)
+        Me.SettingsGroupBox.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents SettingsGroupBox As System.Windows.Forms.GroupBox
     Friend WithEvents OWSTableListOffsetTextBox As System.Windows.Forms.TextBox
     Friend WithEvents OWSTableListOffsetLabel As System.Windows.Forms.Label
     Friend WithEvents SpriteArtDataByteLabel As System.Windows.Forms.Label
@@ -362,7 +362,7 @@ Partial Class Form3
     Friend WithEvents TableListMaxLabel As System.Windows.Forms.Label
     Friend WithEvents TableMaxSpritesTextBox As System.Windows.Forms.TextBox
     Friend WithEvents TableMaxSpritesLabel As System.Windows.Forms.Label
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents SaveSettingsButton As System.Windows.Forms.Button
     Friend WithEvents DefaultButton As System.Windows.Forms.Button
     Friend WithEvents RomCheckButton As System.Windows.Forms.Button
     Friend WithEvents PaletteTableOffsetTextBox As System.Windows.Forms.TextBox

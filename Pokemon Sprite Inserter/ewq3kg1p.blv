@@ -387,8 +387,6 @@ Public Class Form1
         Log.BringToFront()
         SelectOWSTablePanel.BringToFront()
         SelectOWSTableGroupBox.BringToFront()
-        HistoryButton.Enabled = False
-        ViewTableButton.Enabled = False
     End Sub
 
     Private Sub CustomPresetCheckBoxCheckedChanged(sender As Object, e As EventArgs) Handles CustomPresetCheckBox.CheckedChanged
@@ -765,33 +763,26 @@ Public Class Form1
 
 #Region "Validation"
     Private Sub ApplyValidations() Handles Me.Load
-        Dim AllTextBoxControlsInSpriteTemplate = SpriteTemplateSettingsGroupBox.Controls.OfType(Of TextBox)()
-        For Each ControlElement In AllTextBoxControlsInSpriteTemplate
-            If CStr(ControlElement.Tag) <> "" Then
+        Dim AllTextBoxControls = SpriteTemplateSettingsGroupBox.Controls.OfType(Of TextBox)()
+        For Each ControlElement In AllTextBoxControls
+            If ControlElement.Tag <> "" Then
                 AddHandler ControlElement.KeyPress, AddressOf SpaceValidator
                 AddHandler ControlElement.Leave, AddressOf NullValidator
+                If (String.Compare(ControlElement.Name, "PaletteNumberTextBox") <> 0) _
+                     Or (String.Compare(ControlElement.Name, "StartOffsetTextBox") <> 0) Then
+                    AddHandler ControlElement.Leave, AddressOf NonZeroValidator
+                    MsgBox(ControlElement.Name, , "Debug")
+                End If
                 Select Case ControlElement.Name
                     Case "StartOffsetTextBox"
                         AddHandler ControlElement.Leave, AddressOf OffsetValidator
                     Case "SkipBytesTextBox"
-                        AddHandler ControlElement.TextChanged, AddressOf SetMaxLimitBytes
-                        AddHandler ControlElement.TextChanged, AddressOf MaxLimitValidator
+                        AddHandler ControlElement.Leave, AddressOf SetMaxLimitBytes
+                        AddHandler ControlElement.KeyPress, AddressOf MaxLimitValidator
                     Case Else
-                        If (String.Compare(ControlElement.Name, "PaletteNumberTextBox") <> 0) Then
-                            AddHandler ControlElement.TextChanged, AddressOf NonZeroValidator
-                        End If
-                        AddHandler ControlElement.TextChanged, AddressOf SetMaxLimitDefault
-                        AddHandler ControlElement.TextChanged, AddressOf MaxLimitValidator
                         AddHandler ControlElement.KeyPress, AddressOf DigitValidator
                 End Select
             End If
-        Next
-        Dim AllTextBoxControlsInSpriteDataPreset = SpriteDataPresetGroupBox.Controls.OfType(Of TextBox)()
-        For Each ControlElement In AllTextBoxControlsInSpriteDataPreset
-            AddHandler ControlElement.KeyPress, AddressOf SpaceValidator
-            AddHandler ControlElement.Leave, AddressOf NullValidator
-            'AddHandler ControlElement.TextChanged, AddressOf NonZeroValidator
-            AddHandler ControlElement.Leave, AddressOf HexValueValidator
         Next
     End Sub
 #End Region
