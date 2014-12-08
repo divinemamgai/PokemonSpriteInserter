@@ -3,11 +3,11 @@
 Public Class Form5
 
     Dim SearchForOffset As Boolean = True
-    Dim PaletteDataSize As Integer = 64
+    Dim PaletteDataSize As Integer = 32
     Dim PaletteDataOffset As String
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles DefaultPaletteButton.Click
-        PaletteHexDataTextBox.Text = "F051F5211F4B5B3A0F210869E73C8E62AD14BD7FD66ABF25F81C7F2F771E00000E53F5211F4B5B3A0F210869E73C8E62AD14BD7FD66ABF25F81C7F2F771E0000"
+        PaletteHexDataTextBox.Text = "F051F5211F4B5B3A0F210869E73C8E62AD14BD7FD66ABF25F81C7F2F771E0000"
     End Sub
 
     Private Sub TextBoxDigitValidation(sender As Object, e As EventArgs) Handles PaletteNumberTextBox.TextChanged
@@ -27,9 +27,9 @@ Public Class Form5
     Private Sub PaletteDataValidator(sender As Object, e As EventArgs) Handles PaletteHexDataTextBox.Leave
         Dim TextBoxItem As TextBox = CType(sender, TextBox)
         If TextBoxItem.Text <> "" Then
-            If TextBoxItem.Text.Length <> 128 Then
+            If TextBoxItem.Text.Length <> 64 Then
                 TextBoxItem.Text = TextBoxItem.Tag
-                MessageBox.Show("Palette Hex Data can only be of 128 characters.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Palette Hex Data can only be of 64 characters.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Else
                 If Not System.Text.RegularExpressions.Regex.IsMatch(TextBoxItem.Text, "\A\b[0-9a-fA-F]+\b\Z") Then
                     TextBoxItem.Text = TextBoxItem.Tag

@@ -140,16 +140,14 @@ Partial Class Form5
         Me.PaletteHexDataTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.PaletteHexDataTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PaletteHexDataTextBox.Location = New System.Drawing.Point(116, 51)
-        Me.PaletteHexDataTextBox.MaxLength = 128
+        Me.PaletteHexDataTextBox.MaxLength = 64
         Me.PaletteHexDataTextBox.Multiline = True
         Me.PaletteHexDataTextBox.Name = "PaletteHexDataTextBox"
         Me.PaletteHexDataTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.PaletteHexDataTextBox.Size = New System.Drawing.Size(326, 55)
         Me.PaletteHexDataTextBox.TabIndex = 18
-        Me.PaletteHexDataTextBox.Tag = "F051F5211F4B5B3A0F210869E73C8E62AD14BD7FD66ABF25F81C7F2F771E00000E53F5211F4B5B3A0" & _
-    "F210869E73C8E62AD14BD7FD66ABF25F81C7F2F771E0000"
-        Me.PaletteHexDataTextBox.Text = "F051F5211F4B5B3A0F210869E73C8E62AD14BD7FD66ABF25F81C7F2F771E00000E53F5211F4B5B3A0" & _
-    "F210869E73C8E62AD14BD7FD66ABF25F81C7F2F771E0000"
+        Me.PaletteHexDataTextBox.Tag = "F051F5211F4B5B3A0F210869E73C8E62AD14BD7FD66ABF25F81C7F2F771E0000"
+        Me.PaletteHexDataTextBox.Text = "F051F5211F4B5B3A0F210869E73C8E62AD14BD7FD66ABF25F81C7F2F771E0000"
         '
         'PaletteHexDataLabel
         '
