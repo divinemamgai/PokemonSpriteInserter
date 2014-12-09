@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.Pokemon_Sprite_Inserter.Form1
+            Me.MainForm = Global.Pokemon_Sprite_Inserter.Main
         End Sub
     End Class
 End Namespace

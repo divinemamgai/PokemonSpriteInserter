@@ -133,7 +133,7 @@ Module FunctionsModule
         Dim Data As String = ""
         Dim Buffer(NumberOfBytes - 1) As Byte
         Dim RomFileReadStream As FileStream
-        RomFileReadStream = File.OpenRead(Form1.RomFilePath)
+        RomFileReadStream = File.OpenRead(Main.RomFilePath)
         RomFileReadStream.Seek(ToDecimal(FromOffset), SeekOrigin.Begin)
         RomFileReadStream.Read(Buffer, 0, NumberOfBytes)
         For x As Integer = 0 To Buffer.Length - 1
@@ -150,7 +150,7 @@ Module FunctionsModule
         Dim RomFileWriteStream As FileStream
 WriteDataTry:
         Try
-            RomFileWriteStream = File.OpenWrite(Form1.RomFilePath)
+            RomFileWriteStream = File.OpenWrite(Main.RomFilePath)
             Dim WriteBuffer As Byte()
             WriteBuffer = New Byte(NumberOfBytes - 1) {}
             Dim i As Integer = 0
@@ -169,14 +169,14 @@ WriteDataTry:
             RomFileWriteStream.Close()
             Return True
         Catch ex As Exception
-            Form1.Log.Text += vbCrLf & "Rom File Is In Use! Prompting User To Try Again..."
+            Main.Log.Text += vbCrLf & "Rom File Is In Use! Prompting User To Try Again..."
             Dim DialogBoxResult As Integer = MessageBox.Show("The Rom File Is In Use. Please Close Any Program Using The File And Click Retry To Try Again." & vbCrLf & "[Exception.Message : " + ex.Message + "]", "Error!", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation)
             If DialogBoxResult = DialogResult.Retry Then
-                Form1.Log.Text += vbCrLf & "Trying Again To Write Data..."
+                Main.Log.Text += vbCrLf & "Trying Again To Write Data..."
                 GoTo WriteDataTry
             Else
-                Form1.Log.Text += vbCrLf & "Error! Aborted By User."
-                Form1.BackButton.Enabled = True
+                Main.Log.Text += vbCrLf & "Error! Aborted By User."
+                Main.BackButton.Enabled = True
             End If
         End Try
         Return False
@@ -184,7 +184,7 @@ WriteDataTry:
 
     Public Function SearchFreeSpace(ByVal FromOffset As Integer, ByVal NumberOfBytes As Integer, ByVal FreeSpaceString As String) As String
         Dim FreeSpaceByte As Byte = Convert.ToByte(FreeSpaceString, 16)
-        Using RomFileBinaryReader As New BinaryReader(File.Open(Form1.RomFilePath, FileMode.Open, FileAccess.Read, FileShare.Read), Encoding.ASCII)
+        Using RomFileBinaryReader As New BinaryReader(File.Open(Main.RomFilePath, FileMode.Open, FileAccess.Read, FileShare.Read), Encoding.ASCII)
             Dim Buffer(MaxHexSize - 1) As Byte
             Dim MaxLoop As Integer = CInt(RomFileBinaryReader.BaseStream.Length) / MaxHexSize
             Dim MaxBuffer As Integer = 0
@@ -231,8 +231,8 @@ WriteDataTry:
     End Sub
 
     Public Sub SetMaxLimitBytes(sender As Object, e As EventArgs)
-        If Form1.RomFileLoaded = True Then
-            MaxLimit = Form1.RomLength / 2
+        If Main.RomFileLoaded = True Then
+            MaxLimit = Main.RomLength / 2
         End If
     End Sub
 
@@ -294,27 +294,27 @@ WriteDataTry:
 
     Public Sub NullValidator(sender As Object, e As EventArgs)
         Dim TextBoxItem As TextBox = CType(sender, TextBox)
-            If TextBoxItem.Text = "" Then
-                TextBoxItem.Text = TextBoxItem.Tag
-                MessageBox.Show("Value cannot be empty!", "Null Value - Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End If
+        If TextBoxItem.Text = "" Then
+            TextBoxItem.Text = TextBoxItem.Tag
+            MessageBox.Show("Value cannot be empty!", "Null Value - Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
     End Sub
 
     Public Sub OffsetValidator(sender As Object, e As EventArgs)
         Dim TextBoxItem As TextBox = CType(sender, TextBox)
-            If TextBoxItem.Text <> "" Then
-                If TextBoxItem.Text.Length < 6 Then
+        If TextBoxItem.Text <> "" Then
+            If TextBoxItem.Text.Length < 6 Then
+                TextBoxItem.Text = TextBoxItem.Tag
+                MessageBox.Show("Offset value should atleast be of 6 characters.", "Offset - Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Else
+                If Not System.Text.RegularExpressions.Regex.IsMatch(TextBoxItem.Text, "\A\b[0-9a-fA-F]+\b\Z") Then
                     TextBoxItem.Text = TextBoxItem.Tag
-                    MessageBox.Show("Offset value should atleast be of 6 characters.", "Offset - Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    MessageBox.Show("Enter a valid hexadecimal offset value!", "Offset - Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Else
-                    If Not System.Text.RegularExpressions.Regex.IsMatch(TextBoxItem.Text, "\A\b[0-9a-fA-F]+\b\Z") Then
+                    If (ToDecimal(TextBoxItem.Text) > Main.RomLength) _
+                        And (Main.RomFileLoaded = True) Then
                         TextBoxItem.Text = TextBoxItem.Tag
-                        MessageBox.Show("Enter a valid hexadecimal offset value!", "Offset - Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Else
-                    If (ToDecimal(TextBoxItem.Text) > Form1.RomLength) _
-                        And (Form1.RomFileLoaded = True) Then
-                        TextBoxItem.Text = TextBoxItem.Tag
-                        MessageBox.Show("Max limit for offset is 0x" + ToHex(Form1.RomLength) + ".", "Offset - Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        MessageBox.Show("Max limit for offset is 0x" + ToHex(Main.RomLength) + ".", "Offset - Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Else
                         If ZeroOffsetCheck = True Then
                             If ToDecimal(TextBoxItem.Text) = 0 Then
@@ -323,9 +323,9 @@ WriteDataTry:
                             End If
                         End If
                     End If
-                    End If
                 End If
             End If
+        End If
         ZeroOffsetCheck = False
     End Sub
 
