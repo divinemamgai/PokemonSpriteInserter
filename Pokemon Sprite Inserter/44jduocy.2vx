@@ -1,0 +1,713 @@
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class Form5
+    Inherits System.Windows.Forms.Form
+
+    'Form overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
+
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
+
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form5))
+        Me.PaletteAdderGroupBox = New System.Windows.Forms.GroupBox()
+        Me.PaletteEditorGroupBox = New System.Windows.Forms.GroupBox()
+        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.PaletteBox008 = New System.Windows.Forms.PictureBox()
+        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.PaletteBox007 = New System.Windows.Forms.PictureBox()
+        Me.TextBox7 = New System.Windows.Forms.TextBox()
+        Me.PaletteBox006 = New System.Windows.Forms.PictureBox()
+        Me.TextBox8 = New System.Windows.Forms.TextBox()
+        Me.PaletteBox005 = New System.Windows.Forms.PictureBox()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.PaletteBox004 = New System.Windows.Forms.PictureBox()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.PaletteBox003 = New System.Windows.Forms.PictureBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.PaletteBox002 = New System.Windows.Forms.PictureBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.PaletteBox001 = New System.Windows.Forms.PictureBox()
+        Me.FreeSpaceStartTextBox = New System.Windows.Forms.TextBox()
+        Me.FreeSpaceFromLabel = New System.Windows.Forms.Label()
+        Me.PaletteOffsetTextBox = New System.Windows.Forms.TextBox()
+        Me.PaletteDataOffsetLabel = New System.Windows.Forms.Label()
+        Me.FreeSpaceCheckBox = New System.Windows.Forms.CheckBox()
+        Me.DefaultPaletteButton = New System.Windows.Forms.Button()
+        Me.PaletteHexDataTextBox = New System.Windows.Forms.TextBox()
+        Me.PaletteHexDataLabel = New System.Windows.Forms.Label()
+        Me.PaletteNumberTextBox = New System.Windows.Forms.TextBox()
+        Me.PaletteNumberLabel = New System.Windows.Forms.Label()
+        Me.Log = New System.Windows.Forms.RichTextBox()
+        Me.InsertPaletteButton = New System.Windows.Forms.Button()
+        Me.BackButton = New System.Windows.Forms.Button()
+        Me.TextBox9 = New System.Windows.Forms.TextBox()
+        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
+        Me.TextBox10 = New System.Windows.Forms.TextBox()
+        Me.PictureBox10 = New System.Windows.Forms.PictureBox()
+        Me.TextBox11 = New System.Windows.Forms.TextBox()
+        Me.PictureBox11 = New System.Windows.Forms.PictureBox()
+        Me.TextBox12 = New System.Windows.Forms.TextBox()
+        Me.PictureBox12 = New System.Windows.Forms.PictureBox()
+        Me.TextBox13 = New System.Windows.Forms.TextBox()
+        Me.PictureBox13 = New System.Windows.Forms.PictureBox()
+        Me.TextBox14 = New System.Windows.Forms.TextBox()
+        Me.PictureBox14 = New System.Windows.Forms.PictureBox()
+        Me.TextBox15 = New System.Windows.Forms.TextBox()
+        Me.PictureBox15 = New System.Windows.Forms.PictureBox()
+        Me.TextBox16 = New System.Windows.Forms.TextBox()
+        Me.PaletteBox009 = New System.Windows.Forms.PictureBox()
+        Me.PaletteAdderGroupBox.SuspendLayout()
+        Me.PaletteEditorGroupBox.SuspendLayout()
+        CType(Me.PaletteBox008, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PaletteBox007, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PaletteBox006, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PaletteBox005, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PaletteBox004, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PaletteBox003, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PaletteBox002, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PaletteBox001, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PaletteBox009, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'PaletteAdderGroupBox
+        '
+        Me.PaletteAdderGroupBox.Controls.Add(Me.PaletteEditorGroupBox)
+        Me.PaletteAdderGroupBox.Controls.Add(Me.FreeSpaceStartTextBox)
+        Me.PaletteAdderGroupBox.Controls.Add(Me.FreeSpaceFromLabel)
+        Me.PaletteAdderGroupBox.Controls.Add(Me.PaletteOffsetTextBox)
+        Me.PaletteAdderGroupBox.Controls.Add(Me.PaletteDataOffsetLabel)
+        Me.PaletteAdderGroupBox.Controls.Add(Me.FreeSpaceCheckBox)
+        Me.PaletteAdderGroupBox.Controls.Add(Me.DefaultPaletteButton)
+        Me.PaletteAdderGroupBox.Controls.Add(Me.PaletteHexDataTextBox)
+        Me.PaletteAdderGroupBox.Controls.Add(Me.PaletteHexDataLabel)
+        Me.PaletteAdderGroupBox.Controls.Add(Me.PaletteNumberTextBox)
+        Me.PaletteAdderGroupBox.Controls.Add(Me.PaletteNumberLabel)
+        Me.PaletteAdderGroupBox.Controls.Add(Me.Log)
+        Me.PaletteAdderGroupBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PaletteAdderGroupBox.Location = New System.Drawing.Point(13, 13)
+        Me.PaletteAdderGroupBox.Name = "PaletteAdderGroupBox"
+        Me.PaletteAdderGroupBox.Size = New System.Drawing.Size(549, 268)
+        Me.PaletteAdderGroupBox.TabIndex = 0
+        Me.PaletteAdderGroupBox.TabStop = False
+        Me.PaletteAdderGroupBox.Text = "Palette Adder"
+        '
+        'PaletteEditorGroupBox
+        '
+        Me.PaletteEditorGroupBox.Controls.Add(Me.TextBox9)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.PictureBox9)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.TextBox10)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.PictureBox10)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.TextBox11)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.PictureBox11)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.TextBox12)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.PictureBox12)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.TextBox13)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.PictureBox13)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.TextBox14)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.PictureBox14)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.TextBox15)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.PictureBox15)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.TextBox16)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.PaletteBox009)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.TextBox5)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.PaletteBox008)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.TextBox6)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.PaletteBox007)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.TextBox7)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.PaletteBox006)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.TextBox8)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.PaletteBox005)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.TextBox4)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.PaletteBox004)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.TextBox3)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.PaletteBox003)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.TextBox2)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.PaletteBox002)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.TextBox1)
+        Me.PaletteEditorGroupBox.Controls.Add(Me.PaletteBox001)
+        Me.PaletteEditorGroupBox.Location = New System.Drawing.Point(9, 80)
+        Me.PaletteEditorGroupBox.Name = "PaletteEditorGroupBox"
+        Me.PaletteEditorGroupBox.Size = New System.Drawing.Size(534, 128)
+        Me.PaletteEditorGroupBox.TabIndex = 28
+        Me.PaletteEditorGroupBox.TabStop = False
+        Me.PaletteEditorGroupBox.Text = "Palette Editor"
+        '
+        'TextBox5
+        '
+        Me.TextBox5.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox5.Location = New System.Drawing.Point(468, 22)
+        Me.TextBox5.MaxLength = 3
+        Me.TextBox5.Name = "TextBox5"
+        Me.TextBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox5.Size = New System.Drawing.Size(60, 23)
+        Me.TextBox5.TabIndex = 43
+        Me.TextBox5.Tag = "0"
+        Me.TextBox5.Text = "0"
+        '
+        'PaletteBox008
+        '
+        Me.PaletteBox008.Location = New System.Drawing.Point(468, 45)
+        Me.PaletteBox008.Name = "PaletteBox008"
+        Me.PaletteBox008.Size = New System.Drawing.Size(60, 23)
+        Me.PaletteBox008.TabIndex = 42
+        Me.PaletteBox008.TabStop = False
+        '
+        'TextBox6
+        '
+        Me.TextBox6.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox6.Location = New System.Drawing.Point(402, 22)
+        Me.TextBox6.MaxLength = 3
+        Me.TextBox6.Name = "TextBox6"
+        Me.TextBox6.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox6.Size = New System.Drawing.Size(60, 23)
+        Me.TextBox6.TabIndex = 41
+        Me.TextBox6.Tag = "0"
+        Me.TextBox6.Text = "0"
+        '
+        'PaletteBox007
+        '
+        Me.PaletteBox007.Location = New System.Drawing.Point(402, 45)
+        Me.PaletteBox007.Name = "PaletteBox007"
+        Me.PaletteBox007.Size = New System.Drawing.Size(60, 23)
+        Me.PaletteBox007.TabIndex = 40
+        Me.PaletteBox007.TabStop = False
+        '
+        'TextBox7
+        '
+        Me.TextBox7.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox7.Location = New System.Drawing.Point(336, 22)
+        Me.TextBox7.MaxLength = 3
+        Me.TextBox7.Name = "TextBox7"
+        Me.TextBox7.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox7.Size = New System.Drawing.Size(60, 23)
+        Me.TextBox7.TabIndex = 39
+        Me.TextBox7.Tag = "0"
+        Me.TextBox7.Text = "0"
+        '
+        'PaletteBox006
+        '
+        Me.PaletteBox006.Location = New System.Drawing.Point(336, 45)
+        Me.PaletteBox006.Name = "PaletteBox006"
+        Me.PaletteBox006.Size = New System.Drawing.Size(60, 23)
+        Me.PaletteBox006.TabIndex = 38
+        Me.PaletteBox006.TabStop = False
+        '
+        'TextBox8
+        '
+        Me.TextBox8.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox8.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox8.Location = New System.Drawing.Point(270, 22)
+        Me.TextBox8.MaxLength = 3
+        Me.TextBox8.Name = "TextBox8"
+        Me.TextBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox8.Size = New System.Drawing.Size(60, 23)
+        Me.TextBox8.TabIndex = 37
+        Me.TextBox8.Tag = "0"
+        Me.TextBox8.Text = "0"
+        '
+        'PaletteBox005
+        '
+        Me.PaletteBox005.Location = New System.Drawing.Point(270, 45)
+        Me.PaletteBox005.Name = "PaletteBox005"
+        Me.PaletteBox005.Size = New System.Drawing.Size(60, 23)
+        Me.PaletteBox005.TabIndex = 36
+        Me.PaletteBox005.TabStop = False
+        '
+        'TextBox4
+        '
+        Me.TextBox4.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox4.Location = New System.Drawing.Point(204, 22)
+        Me.TextBox4.MaxLength = 3
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox4.Size = New System.Drawing.Size(60, 23)
+        Me.TextBox4.TabIndex = 35
+        Me.TextBox4.Tag = "0"
+        Me.TextBox4.Text = "0"
+        '
+        'PaletteBox004
+        '
+        Me.PaletteBox004.Location = New System.Drawing.Point(204, 45)
+        Me.PaletteBox004.Name = "PaletteBox004"
+        Me.PaletteBox004.Size = New System.Drawing.Size(60, 23)
+        Me.PaletteBox004.TabIndex = 34
+        Me.PaletteBox004.TabStop = False
+        '
+        'TextBox3
+        '
+        Me.TextBox3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox3.Location = New System.Drawing.Point(138, 22)
+        Me.TextBox3.MaxLength = 3
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox3.Size = New System.Drawing.Size(60, 23)
+        Me.TextBox3.TabIndex = 33
+        Me.TextBox3.Tag = "0"
+        Me.TextBox3.Text = "0"
+        '
+        'PaletteBox003
+        '
+        Me.PaletteBox003.Location = New System.Drawing.Point(138, 45)
+        Me.PaletteBox003.Name = "PaletteBox003"
+        Me.PaletteBox003.Size = New System.Drawing.Size(60, 23)
+        Me.PaletteBox003.TabIndex = 32
+        Me.PaletteBox003.TabStop = False
+        '
+        'TextBox2
+        '
+        Me.TextBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox2.Location = New System.Drawing.Point(72, 22)
+        Me.TextBox2.MaxLength = 3
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox2.Size = New System.Drawing.Size(60, 23)
+        Me.TextBox2.TabIndex = 31
+        Me.TextBox2.Tag = "0"
+        Me.TextBox2.Text = "0"
+        '
+        'PaletteBox002
+        '
+        Me.PaletteBox002.Location = New System.Drawing.Point(72, 45)
+        Me.PaletteBox002.Name = "PaletteBox002"
+        Me.PaletteBox002.Size = New System.Drawing.Size(60, 23)
+        Me.PaletteBox002.TabIndex = 30
+        Me.PaletteBox002.TabStop = False
+        '
+        'TextBox1
+        '
+        Me.TextBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(6, 22)
+        Me.TextBox1.MaxLength = 3
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox1.Size = New System.Drawing.Size(60, 23)
+        Me.TextBox1.TabIndex = 29
+        Me.TextBox1.Tag = "0"
+        Me.TextBox1.Text = "0"
+        '
+        'PaletteBox001
+        '
+        Me.PaletteBox001.Location = New System.Drawing.Point(6, 45)
+        Me.PaletteBox001.Name = "PaletteBox001"
+        Me.PaletteBox001.Size = New System.Drawing.Size(60, 23)
+        Me.PaletteBox001.TabIndex = 0
+        Me.PaletteBox001.TabStop = False
+        '
+        'FreeSpaceStartTextBox
+        '
+        Me.FreeSpaceStartTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.FreeSpaceStartTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FreeSpaceStartTextBox.Location = New System.Drawing.Point(418, 238)
+        Me.FreeSpaceStartTextBox.MaxLength = 6
+        Me.FreeSpaceStartTextBox.Name = "FreeSpaceStartTextBox"
+        Me.FreeSpaceStartTextBox.Size = New System.Drawing.Size(83, 23)
+        Me.FreeSpaceStartTextBox.TabIndex = 25
+        Me.FreeSpaceStartTextBox.Tag = "800000"
+        Me.FreeSpaceStartTextBox.Text = "800000"
+        '
+        'FreeSpaceFromLabel
+        '
+        Me.FreeSpaceFromLabel.AutoSize = True
+        Me.FreeSpaceFromLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FreeSpaceFromLabel.Location = New System.Drawing.Point(278, 241)
+        Me.FreeSpaceFromLabel.Name = "FreeSpaceFromLabel"
+        Me.FreeSpaceFromLabel.Size = New System.Drawing.Size(140, 15)
+        Me.FreeSpaceFromLabel.TabIndex = 26
+        Me.FreeSpaceFromLabel.Text = "Search Free Space Start :"
+        '
+        'PaletteOffsetTextBox
+        '
+        Me.PaletteOffsetTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.PaletteOffsetTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PaletteOffsetTextBox.Location = New System.Drawing.Point(165, 238)
+        Me.PaletteOffsetTextBox.MaxLength = 6
+        Me.PaletteOffsetTextBox.Name = "PaletteOffsetTextBox"
+        Me.PaletteOffsetTextBox.Size = New System.Drawing.Size(83, 23)
+        Me.PaletteOffsetTextBox.TabIndex = 23
+        Me.PaletteOffsetTextBox.Tag = "000000"
+        Me.PaletteOffsetTextBox.Text = "000000"
+        '
+        'PaletteDataOffsetLabel
+        '
+        Me.PaletteDataOffsetLabel.AutoSize = True
+        Me.PaletteDataOffsetLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PaletteDataOffsetLabel.Location = New System.Drawing.Point(50, 242)
+        Me.PaletteDataOffsetLabel.Name = "PaletteDataOffsetLabel"
+        Me.PaletteDataOffsetLabel.Size = New System.Drawing.Size(116, 15)
+        Me.PaletteDataOffsetLabel.TabIndex = 24
+        Me.PaletteDataOffsetLabel.Text = "Palette Data Offset :"
+        '
+        'FreeSpaceCheckBox
+        '
+        Me.FreeSpaceCheckBox.AutoSize = True
+        Me.FreeSpaceCheckBox.Location = New System.Drawing.Point(86, 214)
+        Me.FreeSpaceCheckBox.Name = "FreeSpaceCheckBox"
+        Me.FreeSpaceCheckBox.Size = New System.Drawing.Size(381, 19)
+        Me.FreeSpaceCheckBox.TabIndex = 22
+        Me.FreeSpaceCheckBox.Text = "Use Built-In Free Space Finder For Palette Data Offset Generation"
+        Me.FreeSpaceCheckBox.UseVisualStyleBackColor = True
+        '
+        'DefaultPaletteButton
+        '
+        Me.DefaultPaletteButton.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DefaultPaletteButton.Location = New System.Drawing.Point(357, 14)
+        Me.DefaultPaletteButton.Name = "DefaultPaletteButton"
+        Me.DefaultPaletteButton.Size = New System.Drawing.Size(186, 29)
+        Me.DefaultPaletteButton.TabIndex = 21
+        Me.DefaultPaletteButton.Text = "Default Hero Palette Hex Data"
+        Me.DefaultPaletteButton.UseVisualStyleBackColor = True
+        '
+        'PaletteHexDataTextBox
+        '
+        Me.PaletteHexDataTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.PaletteHexDataTextBox.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PaletteHexDataTextBox.Location = New System.Drawing.Point(109, 52)
+        Me.PaletteHexDataTextBox.MaxLength = 64
+        Me.PaletteHexDataTextBox.Name = "PaletteHexDataTextBox"
+        Me.PaletteHexDataTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.PaletteHexDataTextBox.Size = New System.Drawing.Size(433, 22)
+        Me.PaletteHexDataTextBox.TabIndex = 18
+        Me.PaletteHexDataTextBox.Tag = "F051F5211F4B5B3A0F210869E73C8E62AD14BD7FD66ABF25F81C7F2F771E0000"
+        Me.PaletteHexDataTextBox.Text = "F051F5211F4B5B3A0F210869E73C8E62AD14BD7FD66ABF25F81C7F2F771E0000"
+        '
+        'PaletteHexDataLabel
+        '
+        Me.PaletteHexDataLabel.AutoSize = True
+        Me.PaletteHexDataLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PaletteHexDataLabel.Location = New System.Drawing.Point(6, 54)
+        Me.PaletteHexDataLabel.Name = "PaletteHexDataLabel"
+        Me.PaletteHexDataLabel.Size = New System.Drawing.Size(103, 15)
+        Me.PaletteHexDataLabel.TabIndex = 17
+        Me.PaletteHexDataLabel.Text = "Palette Hex Data :"
+        '
+        'PaletteNumberTextBox
+        '
+        Me.PaletteNumberTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.PaletteNumberTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PaletteNumberTextBox.Location = New System.Drawing.Point(158, 22)
+        Me.PaletteNumberTextBox.MaxLength = 3
+        Me.PaletteNumberTextBox.Name = "PaletteNumberTextBox"
+        Me.PaletteNumberTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.PaletteNumberTextBox.Size = New System.Drawing.Size(70, 23)
+        Me.PaletteNumberTextBox.TabIndex = 16
+        Me.PaletteNumberTextBox.Tag = "0"
+        Me.PaletteNumberTextBox.Text = "0"
+        '
+        'PaletteNumberLabel
+        '
+        Me.PaletteNumberLabel.AutoSize = True
+        Me.PaletteNumberLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PaletteNumberLabel.Location = New System.Drawing.Point(6, 25)
+        Me.PaletteNumberLabel.Name = "PaletteNumberLabel"
+        Me.PaletteNumberLabel.Size = New System.Drawing.Size(153, 15)
+        Me.PaletteNumberLabel.TabIndex = 11
+        Me.PaletteNumberLabel.Text = "Palette Number [Decimal] :"
+        '
+        'Log
+        '
+        Me.Log.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.Log.Location = New System.Drawing.Point(7, 14)
+        Me.Log.Name = "Log"
+        Me.Log.ReadOnly = True
+        Me.Log.Size = New System.Drawing.Size(535, 248)
+        Me.Log.TabIndex = 27
+        Me.Log.Text = ""
+        '
+        'InsertPaletteButton
+        '
+        Me.InsertPaletteButton.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.InsertPaletteButton.Location = New System.Drawing.Point(12, 287)
+        Me.InsertPaletteButton.Name = "InsertPaletteButton"
+        Me.InsertPaletteButton.Size = New System.Drawing.Size(550, 29)
+        Me.InsertPaletteButton.TabIndex = 20
+        Me.InsertPaletteButton.Text = "Insert Palette"
+        Me.InsertPaletteButton.UseVisualStyleBackColor = True
+        '
+        'BackButton
+        '
+        Me.BackButton.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BackButton.Location = New System.Drawing.Point(13, 287)
+        Me.BackButton.Name = "BackButton"
+        Me.BackButton.Size = New System.Drawing.Size(549, 29)
+        Me.BackButton.TabIndex = 21
+        Me.BackButton.Text = "Back"
+        Me.BackButton.UseVisualStyleBackColor = True
+        '
+        'TextBox9
+        '
+        Me.TextBox9.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox9.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox9.Location = New System.Drawing.Point(468, 74)
+        Me.TextBox9.MaxLength = 3
+        Me.TextBox9.Name = "TextBox9"
+        Me.TextBox9.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox9.Size = New System.Drawing.Size(60, 23)
+        Me.TextBox9.TabIndex = 59
+        Me.TextBox9.Tag = "0"
+        Me.TextBox9.Text = "0"
+        '
+        'PictureBox9
+        '
+        Me.PictureBox9.Location = New System.Drawing.Point(468, 97)
+        Me.PictureBox9.Name = "PictureBox9"
+        Me.PictureBox9.Size = New System.Drawing.Size(60, 23)
+        Me.PictureBox9.TabIndex = 58
+        Me.PictureBox9.TabStop = False
+        '
+        'TextBox10
+        '
+        Me.TextBox10.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox10.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox10.Location = New System.Drawing.Point(402, 74)
+        Me.TextBox10.MaxLength = 3
+        Me.TextBox10.Name = "TextBox10"
+        Me.TextBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox10.Size = New System.Drawing.Size(60, 23)
+        Me.TextBox10.TabIndex = 57
+        Me.TextBox10.Tag = "0"
+        Me.TextBox10.Text = "0"
+        '
+        'PictureBox10
+        '
+        Me.PictureBox10.Location = New System.Drawing.Point(402, 97)
+        Me.PictureBox10.Name = "PictureBox10"
+        Me.PictureBox10.Size = New System.Drawing.Size(60, 23)
+        Me.PictureBox10.TabIndex = 56
+        Me.PictureBox10.TabStop = False
+        '
+        'TextBox11
+        '
+        Me.TextBox11.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox11.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox11.Location = New System.Drawing.Point(336, 74)
+        Me.TextBox11.MaxLength = 3
+        Me.TextBox11.Name = "TextBox11"
+        Me.TextBox11.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox11.Size = New System.Drawing.Size(60, 23)
+        Me.TextBox11.TabIndex = 55
+        Me.TextBox11.Tag = "0"
+        Me.TextBox11.Text = "0"
+        '
+        'PictureBox11
+        '
+        Me.PictureBox11.Location = New System.Drawing.Point(336, 97)
+        Me.PictureBox11.Name = "PictureBox11"
+        Me.PictureBox11.Size = New System.Drawing.Size(60, 23)
+        Me.PictureBox11.TabIndex = 54
+        Me.PictureBox11.TabStop = False
+        '
+        'TextBox12
+        '
+        Me.TextBox12.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox12.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox12.Location = New System.Drawing.Point(270, 74)
+        Me.TextBox12.MaxLength = 3
+        Me.TextBox12.Name = "TextBox12"
+        Me.TextBox12.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox12.Size = New System.Drawing.Size(60, 23)
+        Me.TextBox12.TabIndex = 53
+        Me.TextBox12.Tag = "0"
+        Me.TextBox12.Text = "0"
+        '
+        'PictureBox12
+        '
+        Me.PictureBox12.Location = New System.Drawing.Point(270, 97)
+        Me.PictureBox12.Name = "PictureBox12"
+        Me.PictureBox12.Size = New System.Drawing.Size(60, 23)
+        Me.PictureBox12.TabIndex = 52
+        Me.PictureBox12.TabStop = False
+        '
+        'TextBox13
+        '
+        Me.TextBox13.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox13.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox13.Location = New System.Drawing.Point(204, 74)
+        Me.TextBox13.MaxLength = 3
+        Me.TextBox13.Name = "TextBox13"
+        Me.TextBox13.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox13.Size = New System.Drawing.Size(60, 23)
+        Me.TextBox13.TabIndex = 51
+        Me.TextBox13.Tag = "0"
+        Me.TextBox13.Text = "0"
+        '
+        'PictureBox13
+        '
+        Me.PictureBox13.Location = New System.Drawing.Point(204, 97)
+        Me.PictureBox13.Name = "PictureBox13"
+        Me.PictureBox13.Size = New System.Drawing.Size(60, 23)
+        Me.PictureBox13.TabIndex = 50
+        Me.PictureBox13.TabStop = False
+        '
+        'TextBox14
+        '
+        Me.TextBox14.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox14.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox14.Location = New System.Drawing.Point(138, 74)
+        Me.TextBox14.MaxLength = 3
+        Me.TextBox14.Name = "TextBox14"
+        Me.TextBox14.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox14.Size = New System.Drawing.Size(60, 23)
+        Me.TextBox14.TabIndex = 49
+        Me.TextBox14.Tag = "0"
+        Me.TextBox14.Text = "0"
+        '
+        'PictureBox14
+        '
+        Me.PictureBox14.Location = New System.Drawing.Point(138, 97)
+        Me.PictureBox14.Name = "PictureBox14"
+        Me.PictureBox14.Size = New System.Drawing.Size(60, 23)
+        Me.PictureBox14.TabIndex = 48
+        Me.PictureBox14.TabStop = False
+        '
+        'TextBox15
+        '
+        Me.TextBox15.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox15.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox15.Location = New System.Drawing.Point(72, 74)
+        Me.TextBox15.MaxLength = 3
+        Me.TextBox15.Name = "TextBox15"
+        Me.TextBox15.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox15.Size = New System.Drawing.Size(60, 23)
+        Me.TextBox15.TabIndex = 47
+        Me.TextBox15.Tag = "0"
+        Me.TextBox15.Text = "0"
+        '
+        'PictureBox15
+        '
+        Me.PictureBox15.Location = New System.Drawing.Point(72, 97)
+        Me.PictureBox15.Name = "PictureBox15"
+        Me.PictureBox15.Size = New System.Drawing.Size(60, 23)
+        Me.PictureBox15.TabIndex = 46
+        Me.PictureBox15.TabStop = False
+        '
+        'TextBox16
+        '
+        Me.TextBox16.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox16.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox16.Location = New System.Drawing.Point(6, 74)
+        Me.TextBox16.MaxLength = 3
+        Me.TextBox16.Name = "TextBox16"
+        Me.TextBox16.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox16.Size = New System.Drawing.Size(60, 23)
+        Me.TextBox16.TabIndex = 45
+        Me.TextBox16.Tag = "0"
+        Me.TextBox16.Text = "0"
+        '
+        'PaletteBox009
+        '
+        Me.PaletteBox009.Location = New System.Drawing.Point(6, 97)
+        Me.PaletteBox009.Name = "PaletteBox009"
+        Me.PaletteBox009.Size = New System.Drawing.Size(60, 23)
+        Me.PaletteBox009.TabIndex = 44
+        Me.PaletteBox009.TabStop = False
+        '
+        'Form5
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(574, 328)
+        Me.Controls.Add(Me.PaletteAdderGroupBox)
+        Me.Controls.Add(Me.BackButton)
+        Me.Controls.Add(Me.InsertPaletteButton)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Name = "Form5"
+        Me.Text = "Pokemon Sprite Inserter - Palette"
+        Me.PaletteAdderGroupBox.ResumeLayout(False)
+        Me.PaletteAdderGroupBox.PerformLayout()
+        Me.PaletteEditorGroupBox.ResumeLayout(False)
+        Me.PaletteEditorGroupBox.PerformLayout()
+        CType(Me.PaletteBox008, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PaletteBox007, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PaletteBox006, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PaletteBox005, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PaletteBox004, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PaletteBox003, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PaletteBox002, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PaletteBox001, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PaletteBox009, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+
+    End Sub
+    Friend WithEvents PaletteAdderGroupBox As System.Windows.Forms.GroupBox
+    Friend WithEvents PaletteNumberLabel As System.Windows.Forms.Label
+    Friend WithEvents PaletteNumberTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents InsertPaletteButton As System.Windows.Forms.Button
+    Friend WithEvents PaletteHexDataLabel As System.Windows.Forms.Label
+    Friend WithEvents PaletteHexDataTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents DefaultPaletteButton As System.Windows.Forms.Button
+    Friend WithEvents FreeSpaceCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents PaletteOffsetTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents PaletteDataOffsetLabel As System.Windows.Forms.Label
+    Friend WithEvents FreeSpaceStartTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents FreeSpaceFromLabel As System.Windows.Forms.Label
+    Friend WithEvents Log As System.Windows.Forms.RichTextBox
+    Friend WithEvents BackButton As System.Windows.Forms.Button
+    Friend WithEvents PaletteEditorGroupBox As System.Windows.Forms.GroupBox
+    Friend WithEvents PaletteBox001 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox5 As System.Windows.Forms.TextBox
+    Friend WithEvents PaletteBox008 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox6 As System.Windows.Forms.TextBox
+    Friend WithEvents PaletteBox007 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox7 As System.Windows.Forms.TextBox
+    Friend WithEvents PaletteBox006 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox8 As System.Windows.Forms.TextBox
+    Friend WithEvents PaletteBox005 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
+    Friend WithEvents PaletteBox004 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
+    Friend WithEvents PaletteBox003 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Friend WithEvents PaletteBox002 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox9 As System.Windows.Forms.TextBox
+    Friend WithEvents PictureBox9 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox10 As System.Windows.Forms.TextBox
+    Friend WithEvents PictureBox10 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox11 As System.Windows.Forms.TextBox
+    Friend WithEvents PictureBox11 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox12 As System.Windows.Forms.TextBox
+    Friend WithEvents PictureBox12 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox13 As System.Windows.Forms.TextBox
+    Friend WithEvents PictureBox13 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox14 As System.Windows.Forms.TextBox
+    Friend WithEvents PictureBox14 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox15 As System.Windows.Forms.TextBox
+    Friend WithEvents PictureBox15 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox16 As System.Windows.Forms.TextBox
+    Friend WithEvents PaletteBox009 As System.Windows.Forms.PictureBox
+End Class

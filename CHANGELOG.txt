@@ -30,4 +30,8 @@
 				b. Improved Source Code
 				c. Reduced Redundancy
 				d. Minor UI Changes
+9/12/2014 : 1. Build 1.1.2
+				a. Added Palette Editor, Importer, Exporter, And Viewer! [GBA Color Converter]
+				b. Improved Validations
+				c. Minor UI Changes
 +-------------------------------------------------------------------------------------------------------------+

@@ -5,6 +5,221 @@ Public Class Form5
     Public SearchForOffset As Boolean = True
     Public PaletteDataSize As Integer = 32
     Public PaletteDataOffset As String
+    Dim PaletteObject As New PaletteConvert
+
+    Private Function GetPaletteBox(ByVal Index As Integer) As PaletteBox
+        Dim PaletteBoxContorls = PaletteEditorGroupBox.Controls.OfType(Of PaletteBox)()
+        For Each PaletteBoxControl In PaletteBoxContorls
+            If CInt(PaletteBoxControl.Tag) = Index Then
+                Return PaletteBoxControl
+            End If
+        Next
+        Return Nothing
+    End Function
+
+    Private Function GetPaletteTextBox(ByVal Index As Integer) As PaletteTextBox
+        Dim PaletteTextBoxContorls = PaletteEditorGroupBox.Controls.OfType(Of PaletteTextBox)()
+        For Each PaletteTextBoxContorl In PaletteTextBoxContorls
+            If CInt(PaletteTextBoxContorl.Tag) = Index Then
+                Return PaletteTextBoxContorl
+            End If
+        Next
+        Return Nothing
+    End Function
+
+    Private Function GetColor16Code(ByVal Index As Integer) As String
+        Dim Result = ""
+        If Index < PaletteHexDataTextBox.MaxLength / 4 Then
+            Result = PaletteHexDataTextBox.Text.Substring(Index * 4, 4)
+        End If
+        Return Result
+    End Function
+
+    Private Sub SetPaletteBox(sender As Object, ByVal e As EventArgs)
+        Dim TextBoxElement As PaletteTextBox = DirectCast(sender, PaletteTextBox)
+        If TextBoxElement.Text <> "" Then
+            If IsNothing(GetPaletteBox(CInt(TextBoxElement.Tag))) = False Then
+                GetPaletteBox(CInt(TextBoxElement.Tag)).BackColor = PaletteObject.ReturnColor(TextBoxElement.Text, True)
+            End If
+        End If
+    End Sub
+
+    Private Sub PaletteNullValidator(sender As Object, ByVal e As EventArgs)
+        Dim TextBoxElement As PaletteTextBox = DirectCast(sender, PaletteTextBox)
+        If TextBoxElement.Text = "" Then
+            If IsNothing(GetPaletteBox(CInt(TextBoxElement.Tag))) = False Then
+                TextBoxElement.Text = GetColor16Code(CInt(TextBoxElement.Tag))
+                GetPaletteBox(CInt(TextBoxElement.Tag)).BackColor = PaletteObject.ReturnColor(TextBoxElement.Text, True)
+            End If
+        End If
+    End Sub
+
+    Private Sub SetPaletteColor(sender As Object, ByVal e As EventArgs)
+        Dim PictureBoxElement As PaletteBox = DirectCast(sender, PaletteBox)
+        PaletteColorDialog.Color = PictureBoxElement.BackColor
+        If PaletteColorDialog.ShowDialog() <> Windows.Forms.DialogResult.Cancel Then
+            PictureBoxElement.BackColor = PaletteColorDialog.Color
+            GetPaletteTextBox(CInt(PictureBoxElement.Tag)).Text = PaletteObject.ConvertColor16(ToHex(PaletteColorDialog.Color.R, 2) + ToHex(PaletteColorDialog.Color.G, 2) + ToHex(PaletteColorDialog.Color.B, 2))
+        End If
+    End Sub
+
+    Private Sub GeneratePaletteBox()
+        PaletteEditorGroupBox.Controls.Clear()
+        Dim PaletteData As String = PaletteHexDataTextBox.Text
+        Dim CountRow As Integer = 0
+        Dim CountCol As Integer = 0
+        For Count As Integer = 0 To 15
+            If Count = 8 Then
+                CountRow = CountRow + 1
+                CountCol = 0
+            ElseIf Count <> 0 Then
+                CountCol = CountCol + 1
+            End If
+            Dim TextBoxElement As New PaletteTextBox
+            Dim PictureBoxElement As New PaletteBox
+            With TextBoxElement
+                .Text = PaletteData.Substring(Count * 4, 4)
+                .Location = New Point(6 + CountCol * 66, 32 + CountRow * 52)
+                .Width = 60
+                .BorderStyle = BorderStyle.None
+                .Font = New Font("Calibri", 9, FontStyle.Bold)
+                .MaxLength = 4
+                .BackColor = Control.DefaultBackColor
+                .CharacterCasing = CharacterCasing.Upper
+                .TextAlign = HorizontalAlignment.Center
+                .Tag = Count
+            End With
+            With PictureBoxElement
+                .BackColor = PaletteObject.ReturnColor(PaletteData.Substring(Count * 4, 4))
+                .Location = New Point(6 + CountCol * 66, 46 + CountRow * 52)
+                .Width = 60
+                .Height = 23
+                .Cursor = Cursors.Hand
+                .Tag = Count
+                .BringToFront()
+            End With
+            AddHandler TextBoxElement.TextChanged, AddressOf SetPaletteBox
+            AddHandler TextBoxElement.KeyPress, AddressOf HexInputValidator
+            AddHandler TextBoxElement.Leave, AddressOf PaletteNullValidator
+            PaletteEditorGroupBox.Controls.Add(TextBoxElement)
+            AddHandler PictureBoxElement.Click, AddressOf SetPaletteColor
+            PaletteEditorGroupBox.Controls.Add(PictureBoxElement)
+        Next
+        Dim ApplyButton As New Button
+        Dim ResetButton As New Button
+        Dim ImportButton As New Button
+        Dim ExportButton As New Button
+        With ApplyButton
+            .Text = "Apply"
+            .Width = 85
+            .Height = 26
+            .Location = New Point(443, 140)
+        End With
+        AddHandler ApplyButton.Click, Sub()
+                                          PaletteHexDataTextBox.Text = ""
+                                          For i As Integer = 0 To CountRow * 8 + CountCol
+                                              PaletteHexDataTextBox.Text += GetPaletteTextBox(i).Text
+                                          Next
+                                      End Sub
+        With ResetButton
+            .Text = "Reset"
+            .Width = 85
+            .Height = 26
+            .Location = New Point(352, 140)
+        End With
+        AddHandler ResetButton.Click, Sub()
+                                          GeneratePaletteBox()
+                                      End Sub
+        With ImportButton
+            .Text = "Import"
+            .Width = 85
+            .Height = 26
+            .Location = New Point(6, 140)
+        End With
+        AddHandler ImportButton.Click, Sub()
+                                           PaletteImportDialog.FileName = "Palette_" + PaletteNumberTextBox.Text
+                                           PaletteImportDialog.Filter = "PAL Files (*.pal*)|*.pal"
+                                           If PaletteImportDialog.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                                               Dim PaletteImportData() As String = My.Computer.FileSystem.ReadAllText(PaletteImportDialog.FileName, System.Text.Encoding.ASCII).Split(New String() {vbCrLf}, StringSplitOptions.None)
+                                               Dim LineCount As Integer = 0
+                                               Dim CompatibleFileFlag As Boolean = True
+                                               If PaletteImportData.LongCount() < 19 Then
+                                                   CompatibleFileFlag = False
+                                               Else
+                                                   For Each PaletteImportDataLine In PaletteImportData
+                                                       LineCount = LineCount + 1
+                                                       Select Case LineCount
+                                                           Case 1
+                                                               If String.Compare(PaletteImportDataLine, "JASC-PAL") = 0 Then
+                                                                   CompatibleFileFlag = True
+                                                               Else
+                                                                   CompatibleFileFlag = False
+                                                                   Exit For
+                                                               End If
+                                                           Case 2
+                                                               If String.Compare(PaletteImportDataLine, "0100") = 0 Then
+                                                                   CompatibleFileFlag = True
+                                                               Else
+                                                                   CompatibleFileFlag = False
+                                                                   Exit For
+                                                               End If
+                                                           Case 3
+                                                               If String.Compare(PaletteImportDataLine, "16") = 0 Then
+                                                                   CompatibleFileFlag = True
+                                                               Else
+                                                                   CompatibleFileFlag = False
+                                                                   Exit For
+                                                               End If
+                                                           Case Else
+                                                               Dim RGBColor() As String = PaletteImportDataLine.Split(" ")
+                                                               If RGBColor.Length = 3 Then
+                                                                   Dim HexColor As String = ""
+                                                                   For Each IndividualColor In RGBColor
+                                                                       HexColor += ToHex(CInt(IndividualColor), 2)
+                                                                   Next
+                                                                   GetPaletteBox(LineCount - 4).BackColor = PaletteObject.ReturnColor(HexColor, False)
+                                                                   GetPaletteTextBox(LineCount - 4).Text = PaletteObject.ConvertColor16(HexColor)
+                                                                   If (LineCount - 4) = 15 Then
+                                                                       CompatibleFileFlag = True
+                                                                       Exit For
+                                                                   End If
+                                                               Else
+                                                                   CompatibleFileFlag = False
+                                                                   Exit For
+                                                               End If
+                                                       End Select
+                                                   Next
+                                               End If
+                                               If CompatibleFileFlag = False Then
+                                                   MessageBox.Show("The Palette file you provided seems to be corrupted or incompatible!" & vbCrLf & vbCrLf & " Please select a palette which has been genereated by this program or by program like Irfan View.", "Palette Import - Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                               End If
+                                           End If
+                                       End Sub
+        With ExportButton
+            .Text = "Export"
+            .Width = 85
+            .Height = 26
+            .Location = New Point(97, 140)
+        End With
+        AddHandler ExportButton.Click, Sub()
+                                           Dim PaletteFileData As String = ""
+                                           PaletteFileData += "JASC-PAL" & vbCrLf
+                                           PaletteFileData += "0100" & vbCrLf
+                                           PaletteFileData += "16" & vbCrLf
+                                           For i As Integer = 0 To CountRow * 8 + CountCol
+                                               PaletteFileData += CStr(GetPaletteBox(i).BackColor.R) + " " + CStr(GetPaletteBox(i).BackColor.G) + " " + CStr(GetPaletteBox(i).BackColor.B) + "" & vbCrLf
+                                           Next
+                                           PaletteExportDialog.FileName = "Palette_" + PaletteNumberTextBox.Text
+                                           PaletteExportDialog.Filter = "PAL Files (*.pal*)|*.pal"
+                                           If PaletteExportDialog.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                                               My.Computer.FileSystem.WriteAllText(PaletteExportDialog.FileName, PaletteFileData, False)
+                                           End If
+                                       End Sub
+        PaletteEditorGroupBox.Controls.Add(ApplyButton)
+        PaletteEditorGroupBox.Controls.Add(ResetButton)
+        PaletteEditorGroupBox.Controls.Add(ImportButton)
+        PaletteEditorGroupBox.Controls.Add(ExportButton)
+    End Sub
 
     Private Sub DefaultPaletteButtonClick(sender As Object, e As EventArgs) Handles DefaultPaletteButton.Click
         PaletteHexDataTextBox.Text = "F051F5211F4B5B3A0F210869E73C8E62AD14BD7FD66ABF25F81C7F2F771E0000"
@@ -32,6 +247,9 @@ Public Class Form5
         BackButton.Hide()
         PaletteOffsetTextBox.MaxLength = ToHex(Form1.RomLength).Length
         FreeSpaceStartTextBox.MaxLength = ToHex(Form1.RomLength).Length
+        PaletteHexDataTextBox.AutoSize = False
+        PaletteHexDataTextBox.Height = 20
+        GeneratePaletteBox()
     End Sub
 
     Private Sub InsertPaletteButtonClick(sender As Object, e As EventArgs) Handles InsertPaletteButton.Click
@@ -103,10 +321,7 @@ Public Class Form5
                         Log.Text += vbCrLf & "     Found At Offset => 0x" + PaletteOffset
                         Log.Text += vbCrLf & "Generating Palette Header Data..."
                         Dim PaletteData As String = OffsetToPointer(PaletteDataOffset)
-                        If ToHex(CInt(PaletteNumberTextBox.Text)).Length = 1 Then
-                            PaletteData += "0"
-                        End If
-                        PaletteData += ToHex(CInt(PaletteNumberTextBox.Text))
+                        PaletteData += ToHex(CInt(PaletteNumberTextBox.Text), 2)
                         PaletteData += "110000"
                         PaletteData += Form1.PaletteTableEndHex
                         Log.Text += vbCrLf & "     Done..."
@@ -148,6 +363,12 @@ Public Class Form5
         Log.ScrollToCaret()
     End Sub
 
+    Private Sub PaletteHexDataTextBoxTextChanged(sender As Object, e As EventArgs) Handles PaletteHexDataTextBox.TextChanged
+        If PaletteHexDataTextBox.Text.Length = PaletteHexDataTextBox.MaxLength Then
+            GeneratePaletteBox()
+        End If
+    End Sub
+
 #Region "Validation"
     Private Sub ApplyValidations() Handles Me.Load
         Dim AllTextBoxControls = PaletteAdderGroupBox.Controls.OfType(Of TextBox)()
@@ -158,8 +379,10 @@ Public Class Form5
                 Select Case ControlElement.Name
                     Case "PaletteOffsetTextBox", "FreeSpaceStartTextBox"
                         AddHandler ControlElement.Leave, AddressOf OffsetValidator
+                        AddHandler ControlElement.KeyPress, AddressOf HexInputValidator
                     Case "PaletteHexDataTextBox"
                         AddHandler ControlElement.Leave, AddressOf HexValueValidator
+                        AddHandler ControlElement.KeyPress, AddressOf HexInputValidator
                     Case Else
                         AddHandler ControlElement.TextChanged, AddressOf SetMaxLimitDefault
                         AddHandler ControlElement.TextChanged, AddressOf MaxLimitValidator

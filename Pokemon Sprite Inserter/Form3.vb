@@ -265,10 +265,13 @@ Public Class Form3
                     Case "OWSTableListOffsetTextBox", "PaletteTableOffsetTextBox"
                         AddHandler ControlElement.Leave, AddressOf SetZeroOffsetCheckTrue
                         AddHandler ControlElement.Leave, AddressOf OffsetValidator
+                        AddHandler ControlElement.KeyPress, AddressOf HexInputValidator
                     Case "FreeSpaceByteTextBox", "SpriteArtDataByteTextBox"
                         AddHandler ControlElement.Leave, AddressOf ByteValidator
+                        AddHandler ControlElement.KeyPress, AddressOf HexInputValidator
                     Case "TableListEmptyDataTextBox", "TableEmptyDataTextBox", "PaletteTableEndTextBox"
                         AddHandler ControlElement.Leave, AddressOf HexValueValidator
+                        AddHandler ControlElement.KeyPress, AddressOf HexInputValidator
                     Case Else
                         AddHandler ControlElement.TextChanged, AddressOf SetMaxLimitDefault
                         AddHandler ControlElement.TextChanged, AddressOf MaxLimitValidator

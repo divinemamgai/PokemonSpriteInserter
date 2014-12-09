@@ -546,21 +546,12 @@ Public Class Form1
                 Log.Text += vbCrLf & "Generating Sprite Header Data [" + CStr(SpriteHeaderDataSize) + " Bytes]..."
                 Dim SpriteHeaderData As String = ""
                 SpriteHeaderData += CurrentPreset.StarterByte
-                If ToHex(PaletteNumber).Length = 1 Then
-                    SpriteHeaderData += "0"
-                End If
-                SpriteHeaderData += ToHex(PaletteNumber)
+                SpriteHeaderData += ToHex(PaletteNumber, 2)
                 SpriteHeaderData += CurrentPreset.UnknownFunction1
                 SpriteHeaderData += CurrentPreset.Unknown1
-                If ToHex(Width).Length = 1 Then
-                    SpriteHeaderData += "0"
-                End If
-                SpriteHeaderData += ToHex(Width)
+                SpriteHeaderData += ToHex(Width, 2)
                 SpriteHeaderData += CurrentPreset.UnknownFunction2
-                If ToHex(Height).Length = 1 Then
-                    SpriteHeaderData += "0"
-                End If
-                SpriteHeaderData += ToHex(Height)
+                SpriteHeaderData += ToHex(Height, 2)
                 SpriteHeaderData += CurrentPreset.UnknownFunction3
                 SpriteHeaderData += CurrentPreset.PalRegisters
                 SpriteHeaderData += CurrentPreset.Pointer1
@@ -568,17 +559,11 @@ Public Class Form1
                 SpriteHeaderData += CurrentPreset.AnimPointer
                 SpriteHeaderData += OffsetToPointer(SpriteFrameDataOffset)
                 SpriteHeaderData += CurrentPreset.Pointer4
-                'RichTextBox1.Text += vbCrLf & "[" + SpriteHeaderData + "]"
                 Log.Text += vbCrLf & "     Done!"
                 Log.Text += vbCrLf & "Generating Sprite Frame Data [" + CStr(SpriteFrameDataSize) + " Bytes]..."
                 Dim SpriteFrameData As String = ""
                 Dim SpriteFrameDataAdditional As String = "00"
-                Dim j As Integer = 1
-                While j <= 4 - ToHex(FrameSize).Length
-                    SpriteFrameDataAdditional += "0"
-                    j = j + 1
-                End While
-                SpriteFrameDataAdditional += ToHex(FrameSize) + "00"
+                SpriteFrameDataAdditional += ToHex(FrameSize, 4) + "00"
                 Dim i As Integer = 1
                 While i <= NumberOfFrames
                     Dim CurrentFrameArtPointer As String = OffsetToPointer(ToHex(ToDecimal(SpriteArtDataOffset) + (i - 1) * FrameSize))
@@ -773,6 +758,7 @@ Public Class Form1
                 Select Case ControlElement.Name
                     Case "StartOffsetTextBox"
                         AddHandler ControlElement.Leave, AddressOf OffsetValidator
+                        AddHandler ControlElement.KeyPress, AddressOf HexInputValidator
                     Case "SkipBytesTextBox"
                         AddHandler ControlElement.TextChanged, AddressOf SetMaxLimitBytes
                         AddHandler ControlElement.TextChanged, AddressOf MaxLimitValidator
@@ -790,8 +776,8 @@ Public Class Form1
         For Each ControlElement In AllTextBoxControlsInSpriteDataPreset
             AddHandler ControlElement.KeyPress, AddressOf SpaceValidator
             AddHandler ControlElement.Leave, AddressOf NullValidator
-            'AddHandler ControlElement.TextChanged, AddressOf NonZeroValidator
             AddHandler ControlElement.Leave, AddressOf HexValueValidator
+            AddHandler ControlElement.KeyPress, AddressOf HexInputValidator
         Next
     End Sub
 #End Region

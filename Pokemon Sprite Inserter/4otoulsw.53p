@@ -8,7 +8,7 @@ Public Class PaletteBox
 
     Protected Overrides Sub OnPaint(ByVal pe As System.Windows.Forms.PaintEventArgs)
         ControlPaint.DrawBorder(pe.Graphics, pe.ClipRectangle, Color.Black, ButtonBorderStyle.Solid)
-        ControlPaint.DrawStringDisabled(pe.Graphics, ToHex(Me.Tag, 2), System.Drawing.SystemFonts.CaptionFont, Color.Black, pe.ClipRectangle, StringFormat.GenericDefault)
+        ControlPaint.DrawStringDisabled(pe.Graphics, ToHex(Me.Tag, 2), System.Drawing.SystemFonts.CaptionFont, Color.Black, pe.ClipRectangle, StringFormat.GenericTypographic)
         MyBase.OnPaint(pe)
     End Sub
 
@@ -16,6 +16,11 @@ End Class
 
 Public Class PaletteTextBox
     Inherits TextBox
+
+    Protected Overrides Sub OnPaint(ByVal pe As System.Windows.Forms.PaintEventArgs)
+        ControlPaint.DrawBorder(pe.Graphics, pe.ClipRectangle, Color.Black, ButtonBorderStyle.Solid)
+        MyBase.OnPaint(pe)
+    End Sub
 
 End Class
 

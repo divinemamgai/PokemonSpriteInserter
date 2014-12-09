@@ -44,6 +44,7 @@
                 AddHandler ControlElement.KeyPress, AddressOf SpaceValidator
                 AddHandler ControlElement.Leave, AddressOf NullValidator
                 AddHandler ControlElement.Leave, AddressOf OffsetValidator
+                AddHandler ControlElement.KeyPress, AddressOf HexInputValidator
             End If
         Next
     End Sub
