@@ -49,11 +49,15 @@ Partial Class Settings
         Me.SpriteArtDataByteLabel = New System.Windows.Forms.Label()
         Me.FreeSpaceByteLabel = New System.Windows.Forms.Label()
         Me.SaveSettingsButton = New System.Windows.Forms.Button()
+        Me.UpdateCheckBox = New System.Windows.Forms.CheckBox()
+        Me.CheckForUpdateButton = New System.Windows.Forms.Button()
         Me.SettingsGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
         'SettingsGroupBox
         '
+        Me.SettingsGroupBox.Controls.Add(Me.CheckForUpdateButton)
+        Me.SettingsGroupBox.Controls.Add(Me.UpdateCheckBox)
         Me.SettingsGroupBox.Controls.Add(Me.PaletteTableEmptyDataHexTextBox)
         Me.SettingsGroupBox.Controls.Add(Me.PaletteTableEmptyDataHexLabel)
         Me.SettingsGroupBox.Controls.Add(Me.PaletteTableEndTextBox)
@@ -81,7 +85,7 @@ Partial Class Settings
         Me.SettingsGroupBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SettingsGroupBox.Location = New System.Drawing.Point(12, 12)
         Me.SettingsGroupBox.Name = "SettingsGroupBox"
-        Me.SettingsGroupBox.Size = New System.Drawing.Size(356, 342)
+        Me.SettingsGroupBox.Size = New System.Drawing.Size(356, 376)
         Me.SettingsGroupBox.TabIndex = 1
         Me.SettingsGroupBox.TabStop = False
         Me.SettingsGroupBox.Text = "Settings"
@@ -351,18 +355,38 @@ Partial Class Settings
         'SaveSettingsButton
         '
         Me.SaveSettingsButton.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SaveSettingsButton.Location = New System.Drawing.Point(12, 360)
+        Me.SaveSettingsButton.Location = New System.Drawing.Point(12, 394)
         Me.SaveSettingsButton.Name = "SaveSettingsButton"
         Me.SaveSettingsButton.Size = New System.Drawing.Size(356, 29)
         Me.SaveSettingsButton.TabIndex = 19
         Me.SaveSettingsButton.Text = "Save Settings"
         Me.SaveSettingsButton.UseVisualStyleBackColor = True
         '
+        'UpdateCheckBox
+        '
+        Me.UpdateCheckBox.AutoSize = True
+        Me.UpdateCheckBox.Location = New System.Drawing.Point(13, 349)
+        Me.UpdateCheckBox.Name = "UpdateCheckBox"
+        Me.UpdateCheckBox.Size = New System.Drawing.Size(171, 19)
+        Me.UpdateCheckBox.TabIndex = 30
+        Me.UpdateCheckBox.Text = "Check For Update On Start"
+        Me.UpdateCheckBox.UseVisualStyleBackColor = True
+        '
+        'CheckForUpdateButton
+        '
+        Me.CheckForUpdateButton.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckForUpdateButton.Location = New System.Drawing.Point(186, 344)
+        Me.CheckForUpdateButton.Name = "CheckForUpdateButton"
+        Me.CheckForUpdateButton.Size = New System.Drawing.Size(164, 26)
+        Me.CheckForUpdateButton.TabIndex = 31
+        Me.CheckForUpdateButton.Text = "Check For Update Now"
+        Me.CheckForUpdateButton.UseVisualStyleBackColor = True
+        '
         'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(380, 401)
+        Me.ClientSize = New System.Drawing.Size(380, 435)
         Me.Controls.Add(Me.SaveSettingsButton)
         Me.Controls.Add(Me.SettingsGroupBox)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -399,4 +423,6 @@ Partial Class Settings
     Friend WithEvents PaletteTableEndLabel As System.Windows.Forms.Label
     Friend WithEvents PaletteTableEmptyDataHexTextBox As System.Windows.Forms.TextBox
     Friend WithEvents PaletteTableEmptyDataHexLabel As System.Windows.Forms.Label
+    Friend WithEvents UpdateCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents CheckForUpdateButton As System.Windows.Forms.Button
 End Class

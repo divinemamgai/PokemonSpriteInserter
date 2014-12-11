@@ -171,6 +171,7 @@ Public Class Main
     Public MaxPalette As Integer = 0
     Public PaletteTableEndHex As String = ""
     Public PaletteTableEmptyDataHex As String = ""
+    Public CheckForUpdateOnStart As Boolean = False
 
     Public GlobalSpriteHeaderDataOffset As String = ""
     Public GlobalSpriteFrameDataOffset As String = ""
@@ -392,7 +393,9 @@ Public Class Main
         SelectOWSTableGroupBox.BringToFront()
         HistoryButton.Enabled = False
         ViewTableButton.Enabled = True
-        UpdateChecker.RunWorkerAsync()
+        If CheckForUpdateOnStart = True Then
+            UpdateChecker.RunWorkerAsync()
+        End If
     End Sub
 
     Private Sub UpdateCheckerDoWork(sender As Object, e As EventArgs) Handles UpdateChecker.DoWork

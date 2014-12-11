@@ -17,6 +17,7 @@ Public Class Settings
         Dim MaxPalette As Integer
         Dim PaletteTableEndHex As String
         Dim PaletteTableEmptyDataHex As String
+        Dim CheckForUpdateOnStart As Boolean
     End Structure
 
     Public RomLock As Boolean = Main.RomLock
@@ -47,6 +48,7 @@ Public Class Settings
         PaletteTableEmptyDataHexTextBox.Tag = "0000000000000000"
         RomLock = True
         RomCheckButton.Text = "Rom Check - On"
+        Main.CheckForUpdateOnStart = True
         If Force = True Then
             SettingsDataVar.FreeSpaceByteValue = "FF"
             SettingsDataVar.SpriteArtDataValue = "BB"
@@ -60,6 +62,7 @@ Public Class Settings
             SettingsDataVar.PaletteTableEndHex = "00000000FF110000"
             SettingsDataVar.PaletteTableEmptyDataHex = "0000000000000000"
             SettingsDataVar.RomLock = True
+            SettingsDataVar.CheckForUpdateOnStart = True
         End If
     End Sub
 
@@ -137,6 +140,9 @@ Public Class Settings
         If IsNothing(SettingsDataVar.PaletteTableEmptyDataHex) = True Then
             ErrorFlag = True
         End If
+        If IsNothing(SettingsDataVar.CheckForUpdateOnStart) = True Then
+            ErrorFlag = True
+        End If
         If ErrorFlag = True Then
             MessageBox.Show("It seems that the Settings values are corrupted or the older version settings are no longer compatible." & vbCrLf & vbCrLf & "Loading default settings to ensure that program continues to function properly.", "Pokemon Sprite Inserter - Settings Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
             File.Delete(SettingsFilePath)
@@ -154,6 +160,7 @@ Public Class Settings
             Main.MaxPalette = SettingsDataVar.MaxPalette
             Main.PaletteTableEndHex = SettingsDataVar.PaletteTableEndHex
             Main.PaletteTableEmptyDataHex = SettingsDataVar.PaletteTableEmptyDataHex
+            Main.CheckForUpdateOnStart = SettingsDataVar.CheckForUpdateOnStart
         End If
     End Sub
 
@@ -173,7 +180,8 @@ Public Class Settings
             .PaletteTableOffset = PaletteTableOffsetTextBox.Text,
             .MaxPalette = CInt(MaxPaletteTextBox.Text),
             .PaletteTableEndHex = PaletteTableEndTextBox.Text,
-            .PaletteTableEmptyDataHex = PaletteTableEmptyDataHexTextBox.Text
+            .PaletteTableEmptyDataHex = PaletteTableEmptyDataHexTextBox.Text,
+            .CheckForUpdateOnStart = UpdateCheckBox.Checked
         }
         Dim UpdateFormatter As BinaryFormatter = New BinaryFormatter()
         Try
@@ -226,6 +234,7 @@ Public Class Settings
         PaletteTableEmptyDataHexTextBox.Text = SettingsDataVar.PaletteTableEmptyDataHex
         PaletteTableEmptyDataHexTextBox.Tag = SettingsDataVar.PaletteTableEmptyDataHex
         RomLock = SettingsDataVar.RomLock
+        UpdateCheckBox.Checked = SettingsDataVar.CheckForUpdateOnStart
         If RomLock = True Then
             RomCheckButton.Text = "Rom Check - On"
         Else
@@ -250,6 +259,7 @@ Public Class Settings
         Main.MaxPalette = CInt(MaxPaletteTextBox.Text)
         Main.PaletteTableEndHex = PaletteTableEndTextBox.Text
         Main.PaletteTableEmptyDataHex = PaletteTableEmptyDataHexTextBox.Text
+        Main.CheckForUpdateOnStart = UpdateCheckBox.Checked
         UpdateSettingsFile()
         If Main.RomLock = False Then
             Main.RomStateLabel.Text = "Load a Pokemon Rom."
@@ -278,6 +288,10 @@ Public Class Settings
             RomLock = True
             RomCheckButton.Text = "Rom Check - On"
         End If
+    End Sub
+
+    Private Sub CheckForUpdateButtonClick(sender As Object, e As EventArgs) Handles CheckForUpdateButton.Click
+        CheckForUpdate()
     End Sub
 
 #Region "Validation"
