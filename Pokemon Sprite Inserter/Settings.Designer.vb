@@ -24,6 +24,8 @@ Partial Class Settings
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Settings))
         Me.SettingsGroupBox = New System.Windows.Forms.GroupBox()
+        Me.PaletteTableEmptyDataHexTextBox = New System.Windows.Forms.TextBox()
+        Me.PaletteTableEmptyDataHexLabel = New System.Windows.Forms.Label()
         Me.PaletteTableEndTextBox = New System.Windows.Forms.TextBox()
         Me.PaletteTableEndLabel = New System.Windows.Forms.Label()
         Me.MaxPaletteTextBox = New System.Windows.Forms.TextBox()
@@ -52,6 +54,8 @@ Partial Class Settings
         '
         'SettingsGroupBox
         '
+        Me.SettingsGroupBox.Controls.Add(Me.PaletteTableEmptyDataHexTextBox)
+        Me.SettingsGroupBox.Controls.Add(Me.PaletteTableEmptyDataHexLabel)
         Me.SettingsGroupBox.Controls.Add(Me.PaletteTableEndTextBox)
         Me.SettingsGroupBox.Controls.Add(Me.PaletteTableEndLabel)
         Me.SettingsGroupBox.Controls.Add(Me.MaxPaletteTextBox)
@@ -77,22 +81,44 @@ Partial Class Settings
         Me.SettingsGroupBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SettingsGroupBox.Location = New System.Drawing.Point(12, 12)
         Me.SettingsGroupBox.Name = "SettingsGroupBox"
-        Me.SettingsGroupBox.Size = New System.Drawing.Size(356, 315)
+        Me.SettingsGroupBox.Size = New System.Drawing.Size(356, 342)
         Me.SettingsGroupBox.TabIndex = 1
         Me.SettingsGroupBox.TabStop = False
         Me.SettingsGroupBox.Text = "Settings"
+        '
+        'PaletteTableEmptyDataHexTextBox
+        '
+        Me.PaletteTableEmptyDataHexTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.PaletteTableEmptyDataHexTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PaletteTableEmptyDataHexTextBox.Location = New System.Drawing.Point(177, 310)
+        Me.PaletteTableEmptyDataHexTextBox.MaxLength = 16
+        Me.PaletteTableEmptyDataHexTextBox.Name = "PaletteTableEmptyDataHexTextBox"
+        Me.PaletteTableEmptyDataHexTextBox.Size = New System.Drawing.Size(126, 23)
+        Me.PaletteTableEmptyDataHexTextBox.TabIndex = 28
+        Me.PaletteTableEmptyDataHexTextBox.Tag = "0000000000000000"
+        Me.PaletteTableEmptyDataHexTextBox.Text = "0000000000000000"
+        '
+        'PaletteTableEmptyDataHexLabel
+        '
+        Me.PaletteTableEmptyDataHexLabel.AutoSize = True
+        Me.PaletteTableEmptyDataHexLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PaletteTableEmptyDataHexLabel.Location = New System.Drawing.Point(6, 313)
+        Me.PaletteTableEmptyDataHexLabel.Name = "PaletteTableEmptyDataHexLabel"
+        Me.PaletteTableEmptyDataHexLabel.Size = New System.Drawing.Size(171, 15)
+        Me.PaletteTableEmptyDataHexLabel.TabIndex = 29
+        Me.PaletteTableEmptyDataHexLabel.Text = "Palette Table Empty Data Hex :"
         '
         'PaletteTableEndTextBox
         '
         Me.PaletteTableEndTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.PaletteTableEndTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PaletteTableEndTextBox.Location = New System.Drawing.Point(135, 281)
-        Me.PaletteTableEndTextBox.MaxLength = 12
+        Me.PaletteTableEndTextBox.MaxLength = 16
         Me.PaletteTableEndTextBox.Name = "PaletteTableEndTextBox"
         Me.PaletteTableEndTextBox.Size = New System.Drawing.Size(126, 23)
         Me.PaletteTableEndTextBox.TabIndex = 26
-        Me.PaletteTableEndTextBox.Tag = "00000000FF11"
-        Me.PaletteTableEndTextBox.Text = "00000000FF11"
+        Me.PaletteTableEndTextBox.Tag = "00000000FF110000"
+        Me.PaletteTableEndTextBox.Text = "00000000FF110000"
         '
         'PaletteTableEndLabel
         '
@@ -325,22 +351,22 @@ Partial Class Settings
         'SaveSettingsButton
         '
         Me.SaveSettingsButton.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SaveSettingsButton.Location = New System.Drawing.Point(12, 333)
+        Me.SaveSettingsButton.Location = New System.Drawing.Point(12, 360)
         Me.SaveSettingsButton.Name = "SaveSettingsButton"
         Me.SaveSettingsButton.Size = New System.Drawing.Size(356, 29)
         Me.SaveSettingsButton.TabIndex = 19
         Me.SaveSettingsButton.Text = "Save Settings"
         Me.SaveSettingsButton.UseVisualStyleBackColor = True
         '
-        'Form3
+        'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(380, 373)
+        Me.ClientSize = New System.Drawing.Size(380, 401)
         Me.Controls.Add(Me.SaveSettingsButton)
         Me.Controls.Add(Me.SettingsGroupBox)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "Form3"
+        Me.Name = "Settings"
         Me.Text = "Pokemon Sprite Inserter - Settings"
         Me.SettingsGroupBox.ResumeLayout(False)
         Me.SettingsGroupBox.PerformLayout()
@@ -371,4 +397,6 @@ Partial Class Settings
     Friend WithEvents MaxPaletteLabel As System.Windows.Forms.Label
     Friend WithEvents PaletteTableEndTextBox As System.Windows.Forms.TextBox
     Friend WithEvents PaletteTableEndLabel As System.Windows.Forms.Label
+    Friend WithEvents PaletteTableEmptyDataHexTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents PaletteTableEmptyDataHexLabel As System.Windows.Forms.Label
 End Class

@@ -184,9 +184,7 @@ WriteDataTry:
                     Exit While
                 Else
                     If PaletteDataCount = MaxPalette Then
-                        If Warning = True Then
-                            MessageBox.Show("It seems like you have more palettes in your table than the program let's you process! Program will be ignoring the rest." & vbCrLf & vbCrLf & "To increase this limit just head over to the settings and increase the value of Max Palettes.", "Palette Limit Breach!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        End If
+                        MessageBox.Show("It seems like you have more palettes in your table than the program let's you process! Program will be ignoring the rest." & vbCrLf & vbCrLf & "To increase this limit just head over to the settings and increase the value of Max Palettes.", "Palette Limit Breach!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                         PaletteDataEndFlag = True
                         Exit While
                     Else
@@ -206,7 +204,7 @@ WriteDataTry:
     End Function
 
     Public Function CheckPaletteNumberAvailability(ByVal PaletteNumber As Integer, ByVal PaletteTableOffset As String, ByVal PaletteTableEndHex As String, ByVal MaxPalette As Integer)
-        For Each PaletteData In GetPalettes(PaletteTableOffset, PaletteTableEndHex, MaxPalette, False)
+        For Each PaletteData In GetPalettes(PaletteTableOffset, PaletteTableEndHex, MaxPalette)
             If PaletteData.PaletteNumber = PaletteNumber Then
                 Return False
             End If

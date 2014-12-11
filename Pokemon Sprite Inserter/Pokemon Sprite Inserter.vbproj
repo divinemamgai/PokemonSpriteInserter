@@ -86,6 +86,14 @@
     <Compile Include="FreeSpaceOffsetsDialog.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="PaletteBrowser.vb" />
+    <Compile Include="PaletteBrowserForm.Designer.vb">
+      <DependentUpon>PaletteBrowserForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PaletteBrowserForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaletteConverter.vb" />
     <Compile Include="Settings.Designer.vb">
       <DependentUpon>Settings.vb</DependentUpon>
     </Compile>
@@ -140,10 +148,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="PaletteBrowser.Designer.vb">
-      <DependentUpon>PaletteBrowser.vb</DependentUpon>
+    <Compile Include="ViewTables.Designer.vb">
+      <DependentUpon>ViewTables.vb</DependentUpon>
     </Compile>
-    <Compile Include="PaletteBrowser.vb">
+    <Compile Include="ViewTables.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -153,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FreeSpaceOffsetsDialog.resx">
       <DependentUpon>FreeSpaceOffsetsDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaletteBrowserForm.resx">
+      <DependentUpon>PaletteBrowserForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.vb</DependentUpon>
@@ -178,8 +189,8 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PaletteBrowser.resx">
-      <DependentUpon>PaletteBrowser.vb</DependentUpon>
+    <EmbeddedResource Include="ViewTables.resx">
+      <DependentUpon>ViewTables.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

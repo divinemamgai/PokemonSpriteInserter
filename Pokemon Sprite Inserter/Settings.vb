@@ -16,6 +16,7 @@ Public Class Settings
         Dim PaletteTableOffset As String
         Dim MaxPalette As Integer
         Dim PaletteTableEndHex As String
+        Dim PaletteTableEmptyDataHex As String
     End Structure
 
     Public RomLock As Boolean = Main.RomLock
@@ -23,7 +24,7 @@ Public Class Settings
     Public SettingsFilePath As String = ProgramDataPath + "\settings.bin"
     Public SettingsDataVar As SettingsData
 
-    Private Sub DefaultSettings()
+    Private Sub DefaultSettings(Optional ByVal Force As Boolean = False)
         FreeSpaceByteTextBox.Text = "FF"
         FreeSpaceByteTextBox.Tag = "FF"
         SpriteArtDataByteTextBox.Text = "BB"
@@ -42,10 +43,26 @@ Public Class Settings
         PaletteTableOffsetTextBox.Tag = "1A2400"
         MaxPaletteTextBox.Text = 100
         MaxPaletteTextBox.Tag = 100
-        PaletteTableEndTextBox.Text = "00000000FF11"
-        PaletteTableEndTextBox.Tag = "00000000FF11"
+        PaletteTableEndTextBox.Text = "00000000FF110000"
+        PaletteTableEndTextBox.Tag = "00000000FF110000"
+        PaletteTableEmptyDataHexTextBox.Text = "0000000000000000"
+        PaletteTableEmptyDataHexTextBox.Tag = "0000000000000000"
         RomLock = True
         RomCheckButton.Text = "Rom Check - On"
+        If Force = True Then
+            SettingsDataVar.FreeSpaceByteValue = "FF"
+            SettingsDataVar.SpriteArtDataValue = "BB"
+            SettingsDataVar.OWSTableListOffset = "1A2000"
+            SettingsDataVar.OWSTableListEmptyDataHex = "00000000"
+            SettingsDataVar.OWSTableEmptyDataHex = "00000000"
+            SettingsDataVar.OWSTableListMaxTables = 100
+            SettingsDataVar.OWSTableMaxSprites = 152
+            SettingsDataVar.PaletteTableOffset = "1A2400"
+            SettingsDataVar.MaxPalette = 100
+            SettingsDataVar.PaletteTableEndHex = "00000000FF110000"
+            SettingsDataVar.PaletteTableEmptyDataHex = "0000000000000000"
+            SettingsDataVar.RomLock = True
+        End If
     End Sub
 
     Public Sub LoadSettings()
@@ -82,20 +99,64 @@ Public Class Settings
                 End If
             End Try
         Else
-            DefaultSettings()
+            DefaultSettings(True)
             UpdateSettingsFile()
         End If
-        Main.FreeSpaceByteValue = SettingsDataVar.FreeSpaceByteValue
-        Main.SpriteArtDataValue = SettingsDataVar.SpriteArtDataValue
-        Main.OWSTableListOffset = SettingsDataVar.OWSTableListOffset
-        Main.OWSTableListEmptyDataHex = SettingsDataVar.OWSTableListEmptyDataHex
-        Main.OWSTableEmptyDataHex = SettingsDataVar.OWSTableEmptyDataHex
-        Main.OWSTableListMaxTables = SettingsDataVar.OWSTableListMaxTables
-        Main.OWSTableMaxSprites = SettingsDataVar.OWSTableMaxSprites
-        Main.RomLock = SettingsDataVar.RomLock
-        Main.PaletteTableOffset = SettingsDataVar.PaletteTableOffset
-        Main.MaxPalette = SettingsDataVar.MaxPalette
-        Main.PaletteTableEndHex = SettingsDataVar.PaletteTableEndHex
+        Dim ErrorFlag As Boolean = False
+        If IsNothing(SettingsDataVar.FreeSpaceByteValue) = True Then
+            ErrorFlag = True
+        End If
+        If IsNothing(SettingsDataVar.SpriteArtDataValue) = True Then
+            ErrorFlag = True
+        End If
+        If IsNothing(SettingsDataVar.OWSTableListOffset) = True Then
+            ErrorFlag = True
+        End If
+        If IsNothing(SettingsDataVar.OWSTableListEmptyDataHex) = True Then
+            ErrorFlag = True
+        End If
+        If IsNothing(SettingsDataVar.OWSTableEmptyDataHex) = True Then
+            ErrorFlag = True
+        End If
+        If IsNothing(SettingsDataVar.OWSTableListMaxTables) = True Then
+            ErrorFlag = True
+        End If
+        If IsNothing(SettingsDataVar.OWSTableMaxSprites) = True Then
+            ErrorFlag = True
+        End If
+        If IsNothing(SettingsDataVar.RomLock) = True Then
+            ErrorFlag = True
+        End If
+        If IsNothing(SettingsDataVar.PaletteTableOffset) = True Then
+            ErrorFlag = True
+        End If
+        If IsNothing(SettingsDataVar.MaxPalette) = True Then
+            ErrorFlag = True
+        End If
+        If IsNothing(SettingsDataVar.PaletteTableEndHex) = True Then
+            ErrorFlag = True
+        End If
+        If IsNothing(SettingsDataVar.PaletteTableEmptyDataHex) = True Then
+            ErrorFlag = True
+        End If
+        If ErrorFlag = True Then
+            MessageBox.Show("It seems that the Settings values are corrupted or the older version settings are no longer compatible." & vbCrLf & vbCrLf & "Loading default settings to ensure that program continues to function properly.", "Pokemon Sprite Inserter - Settings Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            File.Delete(SettingsFilePath)
+            LoadSettings()
+        Else
+            Main.FreeSpaceByteValue = SettingsDataVar.FreeSpaceByteValue
+            Main.SpriteArtDataValue = SettingsDataVar.SpriteArtDataValue
+            Main.OWSTableListOffset = SettingsDataVar.OWSTableListOffset
+            Main.OWSTableListEmptyDataHex = SettingsDataVar.OWSTableListEmptyDataHex
+            Main.OWSTableEmptyDataHex = SettingsDataVar.OWSTableEmptyDataHex
+            Main.OWSTableListMaxTables = SettingsDataVar.OWSTableListMaxTables
+            Main.OWSTableMaxSprites = SettingsDataVar.OWSTableMaxSprites
+            Main.RomLock = SettingsDataVar.RomLock
+            Main.PaletteTableOffset = SettingsDataVar.PaletteTableOffset
+            Main.MaxPalette = SettingsDataVar.MaxPalette
+            Main.PaletteTableEndHex = SettingsDataVar.PaletteTableEndHex
+            Main.PaletteTableEmptyDataHex = SettingsDataVar.PaletteTableEmptyDataHex
+        End If
     End Sub
 
     Public Sub UpdateSettingsFile()
@@ -113,7 +174,8 @@ Public Class Settings
             .RomLock = RomLock,
             .PaletteTableOffset = PaletteTableOffsetTextBox.Text,
             .MaxPalette = CInt(MaxPaletteTextBox.Text),
-            .PaletteTableEndHex = PaletteTableEndTextBox.Text
+            .PaletteTableEndHex = PaletteTableEndTextBox.Text,
+            .PaletteTableEmptyDataHex = PaletteTableEmptyDataHexTextBox.Text
         }
         Dim UpdateFormatter As BinaryFormatter = New BinaryFormatter()
         Try
@@ -163,6 +225,8 @@ Public Class Settings
         MaxPaletteTextBox.Tag = SettingsDataVar.MaxPalette
         PaletteTableEndTextBox.Text = SettingsDataVar.PaletteTableEndHex
         PaletteTableEndTextBox.Tag = SettingsDataVar.PaletteTableEndHex
+        PaletteTableEmptyDataHexTextBox.Text = SettingsDataVar.PaletteTableEmptyDataHex
+        PaletteTableEmptyDataHexTextBox.Tag = SettingsDataVar.PaletteTableEmptyDataHex
         RomLock = SettingsDataVar.RomLock
         If RomLock = True Then
             RomCheckButton.Text = "Rom Check - On"
@@ -170,8 +234,8 @@ Public Class Settings
             RomCheckButton.Text = "Rom Check - Off"
         End If
         If Main.RomFileLoaded = True Then
-            OWSTableListOffsetTextBox.MaxLength = ToHex(Main.RomLength).Length
-            PaletteTableOffsetTextBox.MaxLength = ToHex(Main.RomLength).Length
+            OWSTableListOffsetTextBox.MaxLength = 6
+            PaletteTableOffsetTextBox.MaxLength = 6
         End If
     End Sub
 
@@ -187,6 +251,7 @@ Public Class Settings
         Main.PaletteTableOffset = PaletteTableOffsetTextBox.Text
         Main.MaxPalette = CInt(MaxPaletteTextBox.Text)
         Main.PaletteTableEndHex = PaletteTableEndTextBox.Text
+        Main.PaletteTableEmptyDataHex = PaletteTableEmptyDataHexTextBox.Text
         UpdateSettingsFile()
         If Main.RomLock = False Then
             Main.RomStateLabel.Text = "Load a Pokemon Rom."
@@ -219,7 +284,7 @@ Public Class Settings
 
 #Region "Validation"
 
-    Private Sub EmptySpaceVerification(sender As Object, e As EventArgs) Handles TableEmptyDataTextBox.Leave, TableListEmptyDataTextBox.Leave, SpriteArtDataByteTextBox.Leave
+    Private Sub EmptySpaceVerification(sender As Object, e As EventArgs) Handles TableEmptyDataTextBox.Leave, TableListEmptyDataTextBox.Leave, PaletteTableEmptyDataHexTextBox.Leave, SpriteArtDataByteTextBox.Leave
         Dim TextBoxItem As TextBox = CType(sender, TextBox)
         If TextBoxItem.Text <> "" Then
             Dim FreeSpaceString As String = ""
@@ -244,6 +309,10 @@ Public Class Settings
             For i As Integer = 1 To TableListEmptyDataTextBox.MaxLength / 2
                 TableListEmptyDataString += TextBoxItem.Text
             Next
+            Dim PaletteTableEmptyDataString As String = ""
+            For i As Integer = 1 To PaletteTableEmptyDataHexTextBox.MaxLength / 2
+                PaletteTableEmptyDataString += TextBoxItem.Text
+            Next
             Dim SpriteArtDataByteString As String = ""
             For i As Integer = 1 To SpriteArtDataByteTextBox.MaxLength / 2
                 SpriteArtDataByteString += TextBoxItem.Text
@@ -255,6 +324,10 @@ Public Class Settings
             If String.Compare(TableListEmptyDataString, TableListEmptyDataTextBox.Text) = 0 Then
                 TextBoxItem.Text = TextBoxItem.Tag
                 MessageBox.Show("The value of free space byte is interfering with the value of Table List Empty Data.", "Hex Value - Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+            If String.Compare(PaletteTableEmptyDataString, PaletteTableEmptyDataHexTextBox.Text) = 0 Then
+                TextBoxItem.Text = TextBoxItem.Tag
+                MessageBox.Show("The value of free space byte is interfering with the value of Palette Table Empty Data.", "Hex Value - Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
             If String.Compare(SpriteArtDataByteString, SpriteArtDataByteTextBox.Text) = 0 Then
                 TextBoxItem.Text = TextBoxItem.Tag

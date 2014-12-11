@@ -7,17 +7,15 @@ Public Class PaletteBox
     Inherits PictureBox
 
     Protected Overrides Sub OnPaint(ByVal pe As System.Windows.Forms.PaintEventArgs)
-        ControlPaint.DrawBorder(pe.Graphics, pe.ClipRectangle,
-                                Color.Black, 1, ButtonBorderStyle.Solid,
-                                Color.Black, 1, ButtonBorderStyle.Solid,
-                                Color.Black, 1, ButtonBorderStyle.Solid,
-                                Color.Black, 1, ButtonBorderStyle.Solid)
-        If PaletteBoxIndexDisplayFlag = True Then
-            ControlPaint.DrawStringDisabled(pe.Graphics, ToHex(Me.Tag, 2), System.Drawing.SystemFonts.CaptionFont, Color.Black, pe.ClipRectangle, StringFormat.GenericDefault)
-        End If
+        ControlPaint.DrawBorder(pe.Graphics, pe.ClipRectangle, Color.Black, ButtonBorderStyle.Solid)
+        ControlPaint.DrawStringDisabled(pe.Graphics, ToHex(Me.Tag, 2), System.Drawing.SystemFonts.CaptionFont, Color.Black, pe.ClipRectangle, StringFormat.GenericDefault)
         MyBase.OnPaint(pe)
     End Sub
 
+End Class
+
+Public Class TableLabel
+    Inherits Label
 End Class
 
 Public Structure PaletteData
@@ -30,7 +28,6 @@ End Structure
 
 Module FunctionsModule
 
-    Public PaletteBoxIndexDisplayFlag As Boolean = True
     Dim RomIdentifierOffset As String = "0000A0"
     Dim RomIdentifierHexValue As String = "504F4B454D4F4E204649524542505245"
     Dim RomIdentifierBytes As Integer = 16
@@ -168,7 +165,7 @@ WriteDataTry:
         Return "Null"
     End Function
 
-    Public Function GetPalettes(ByVal PaletteTableOffset As String, ByVal PaletteTableEndHex As String, ByVal MaxPalette As Integer, Optional ByVal Warning As Boolean = True) As PaletteData()
+    Public Function GetPalettes(ByVal PaletteTableOffset As String, ByVal PaletteTableEndHex As String) As PaletteData()
         Dim PaletteDataArray As PaletteData() = Nothing
         Dim PaletteDataCount As Integer = 0
         Dim PaletteDataEndFlag As Boolean = False
@@ -183,35 +180,18 @@ WriteDataTry:
                     PaletteDataEndFlag = True
                     Exit While
                 Else
-                    If PaletteDataCount = MaxPalette Then
-                        If Warning = True Then
-                            MessageBox.Show("It seems like you have more palettes in your table than the program let's you process! Program will be ignoring the rest." & vbCrLf & vbCrLf & "To increase this limit just head over to the settings and increase the value of Max Palettes.", "Palette Limit Breach!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        End If
-                        PaletteDataEndFlag = True
-                        Exit While
-                    Else
-                        ReDim Preserve PaletteDataArray(PaletteDataCount)
-                        PaletteDataArray(PaletteDataCount).PaletteIndex = PaletteDataCount + 1
-                        PaletteDataArray(PaletteDataCount).PaletteOffset = ToHex(CurrentOffset)
-                        PaletteDataArray(PaletteDataCount).PaletteNumber = ToDecimal(CurrentPaletteData.Substring(8, 2))
-                        PaletteDataArray(PaletteDataCount).PaletteDataOffset = PointerToOffset(CurrentPaletteData.Substring(0, 8))
-                        PaletteDataArray(PaletteDataCount).PaletteHexData = ReadData(PaletteDataArray(PaletteDataCount).PaletteDataOffset, PaletteDataSize)
-                        PaletteDataCount = PaletteDataCount + 1
-                        CurrentOffset = CurrentOffset + PaletteTableDataSize
-                    End If
+                    ReDim Preserve PaletteDataArray(PaletteDataCount)
+                    PaletteDataArray(PaletteDataCount).PaletteIndex = PaletteDataCount + 1
+                    PaletteDataArray(PaletteDataCount).PaletteOffset = ToHex(CurrentOffset)
+                    PaletteDataArray(PaletteDataCount).PaletteNumber = ToDecimal(CurrentPaletteData.Substring(8, 2))
+                    PaletteDataArray(PaletteDataCount).PaletteDataOffset = PointerToOffset(CurrentPaletteData.Substring(0, 8))
+                    PaletteDataArray(PaletteDataCount).PaletteHexData = ReadData(PaletteDataArray(PaletteDataCount).PaletteDataOffset, PaletteDataSize)
+                    PaletteDataCount = PaletteDataCount + 1
+                    CurrentOffset = CurrentOffset + PaletteTableDataSize
                 End If
             End If
         End While
         Return PaletteDataArray
-    End Function
-
-    Public Function CheckPaletteNumberAvailability(ByVal PaletteNumber As Integer, ByVal PaletteTableOffset As String, ByVal PaletteTableEndHex As String, ByVal MaxPalette As Integer)
-        For Each PaletteData In GetPalettes(PaletteTableOffset, PaletteTableEndHex, MaxPalette, False)
-            If PaletteData.PaletteNumber = PaletteNumber Then
-                Return False
-            End If
-        Next
-        Return True
     End Function
 
 #Region "Validators"
@@ -334,15 +314,11 @@ WriteDataTry:
     Public Sub MaxLimitValidator(sender As Object, e As EventArgs)
         Dim TextBoxItem As TextBox = CType(sender, TextBox)
         If TextBoxItem.Text <> "" Then
-            Try
-                Dim TextBoxValue = Integer.Parse(TextBoxItem.Text.Replace(" ", ""))
-                If TextBoxValue > MaxLimit Then
-                    TextBoxItem.Text = TextBoxItem.Tag
-                    MessageBox.Show("Max Limit is " + CStr(MaxLimit) + "!", "Max Limit - Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End If
-            Catch ex As Exception
-                MsgBox(ex.Message, , "Error")
-            End Try
+            Dim TextBoxValue = Integer.Parse(TextBoxItem.Text)
+            If TextBoxValue > MaxLimit Then
+                TextBoxItem.Text = TextBoxItem.Tag
+                MessageBox.Show("Max Limit is " + CStr(MaxLimit) + "!", "Max Limit - Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
         End If
     End Sub
 

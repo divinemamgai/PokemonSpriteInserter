@@ -124,8 +124,8 @@ Public Class CreateOWSTable
         Log.Hide()
         BackButton.Enabled = False
         BackButton.Hide()
-        StartOffsetTextBox.MaxLength = ToHex(Main.RomLength).Length
-        OWSTableOffsetTextBox.MaxLength = ToHex(Main.RomLength).Length
+        StartOffsetTextBox.MaxLength = 6
+        OWSTableOffsetTextBox.MaxLength = 6
     End Sub
 
     Private Sub BakcButtonClick(sender As Object, e As EventArgs) Handles BackButton.Click

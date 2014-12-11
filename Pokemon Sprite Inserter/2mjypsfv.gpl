@@ -280,8 +280,9 @@ Public Class Main
     End Sub
 
     Private Sub OpenRomButtonClick(sender As Object, e As EventArgs) Handles OpenRomButton.Click
-        RomFile.Filter = "GBA Files (*.gba*)|*.gba"
-        RomFile.Title = "Load GBA Rom"
+        PaletteImportDialog.FileName = "Palette_" + PaletteNumberTextBox.Text
+        PaletteImportDialog.Filter = "PAL Files (*.pal*)|*.pal"
+        PaletteImportDialog.Title = "Import Palette"
         Try
             If RomFile.ShowDialog <> Windows.Forms.DialogResult.Cancel Then
                 RomFilePath = RomFile.FileName

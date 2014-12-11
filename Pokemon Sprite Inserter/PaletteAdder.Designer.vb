@@ -24,6 +24,7 @@ Partial Class PaletteAdder
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PaletteAdder))
         Me.PaletteAdderGroupBox = New System.Windows.Forms.GroupBox()
+        Me.LoadPalette = New System.Windows.Forms.Button()
         Me.PaletteEditorGroupBox = New System.Windows.Forms.GroupBox()
         Me.FreeSpaceStartTextBox = New System.Windows.Forms.TextBox()
         Me.FreeSpaceFromLabel = New System.Windows.Forms.Label()
@@ -38,17 +39,12 @@ Partial Class PaletteAdder
         Me.Log = New System.Windows.Forms.RichTextBox()
         Me.InsertPaletteButton = New System.Windows.Forms.Button()
         Me.BackButton = New System.Windows.Forms.Button()
-        Me.PaletteColorDialog = New System.Windows.Forms.ColorDialog()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.PaletteExportDialog = New System.Windows.Forms.SaveFileDialog()
-        Me.PaletteImportDialog = New System.Windows.Forms.OpenFileDialog()
         Me.PaletteAdderGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
         'PaletteAdderGroupBox
         '
-        Me.PaletteAdderGroupBox.Controls.Add(Me.Log)
-        Me.PaletteAdderGroupBox.Controls.Add(Me.Button2)
+        Me.PaletteAdderGroupBox.Controls.Add(Me.LoadPalette)
         Me.PaletteAdderGroupBox.Controls.Add(Me.PaletteEditorGroupBox)
         Me.PaletteAdderGroupBox.Controls.Add(Me.FreeSpaceStartTextBox)
         Me.PaletteAdderGroupBox.Controls.Add(Me.FreeSpaceFromLabel)
@@ -60,6 +56,7 @@ Partial Class PaletteAdder
         Me.PaletteAdderGroupBox.Controls.Add(Me.PaletteHexDataLabel)
         Me.PaletteAdderGroupBox.Controls.Add(Me.PaletteNumberTextBox)
         Me.PaletteAdderGroupBox.Controls.Add(Me.PaletteNumberLabel)
+        Me.PaletteAdderGroupBox.Controls.Add(Me.Log)
         Me.PaletteAdderGroupBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PaletteAdderGroupBox.Location = New System.Drawing.Point(13, 13)
         Me.PaletteAdderGroupBox.Name = "PaletteAdderGroupBox"
@@ -67,6 +64,16 @@ Partial Class PaletteAdder
         Me.PaletteAdderGroupBox.TabIndex = 0
         Me.PaletteAdderGroupBox.TabStop = False
         Me.PaletteAdderGroupBox.Text = "Palette Adder"
+        '
+        'LoadPalette
+        '
+        Me.LoadPalette.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LoadPalette.Location = New System.Drawing.Point(252, 20)
+        Me.LoadPalette.Name = "LoadPalette"
+        Me.LoadPalette.Size = New System.Drawing.Size(140, 27)
+        Me.LoadPalette.TabIndex = 29
+        Me.LoadPalette.Text = "Load Existing Palette"
+        Me.LoadPalette.UseVisualStyleBackColor = True
         '
         'PaletteEditorGroupBox
         '
@@ -217,36 +224,16 @@ Partial Class PaletteAdder
         Me.BackButton.Text = "Back"
         Me.BackButton.UseVisualStyleBackColor = True
         '
-        'PaletteColorDialog
-        '
-        Me.PaletteColorDialog.AnyColor = True
-        Me.PaletteColorDialog.FullOpen = True
-        '
-        'Button2
-        '
-        Me.Button2.Enabled = False
-        Me.Button2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(252, 20)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(140, 27)
-        Me.Button2.TabIndex = 29
-        Me.Button2.Text = "Load Existing Palette"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'PaletteExportDialog
-        '
-        Me.PaletteExportDialog.DefaultExt = "pal"
-        '
-        'Form5
+        'PaletteAdder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(574, 372)
         Me.Controls.Add(Me.PaletteAdderGroupBox)
-        Me.Controls.Add(Me.BackButton)
         Me.Controls.Add(Me.InsertPaletteButton)
+        Me.Controls.Add(Me.BackButton)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "Form5"
+        Me.Name = "PaletteAdder"
         Me.Text = "Pokemon Sprite Inserter - Palette"
         Me.PaletteAdderGroupBox.ResumeLayout(False)
         Me.PaletteAdderGroupBox.PerformLayout()
@@ -268,8 +255,5 @@ Partial Class PaletteAdder
     Friend WithEvents Log As System.Windows.Forms.RichTextBox
     Friend WithEvents BackButton As System.Windows.Forms.Button
     Friend WithEvents PaletteEditorGroupBox As System.Windows.Forms.GroupBox
-    Friend WithEvents PaletteColorDialog As System.Windows.Forms.ColorDialog
-    Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents PaletteExportDialog As System.Windows.Forms.SaveFileDialog
-    Friend WithEvents PaletteImportDialog As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents LoadPalette As System.Windows.Forms.Button
 End Class
