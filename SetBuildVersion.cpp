@@ -252,6 +252,11 @@ int SetBuildVersion(string FilePath){
 	VersionFileWrite.close();
 	if(remove(FilePath.c_str())==0){
 		if(rename(FileWritePath.c_str(),FilePath.c_str())==0){
+			fstream CurrentVersionFile("CURRENT.VER",ios::trunc|ios::out);
+			if(CurrentVersionFile.is_open()){
+				CurrentVersionFile<<_GetVersion();	
+			}
+			CurrentVersionFile.close();
 			cout<<" Done!\n Do not forget to update version of setup too!";
 			return 1;
 		}else{

@@ -38,6 +38,11 @@ End Structure
 
 Module FunctionsModule
 
+    Public ProgramDataPath As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\Pokemon Sprite Inserter"
+    Public SettingsFilePath As String = ProgramDataPath + "\settings.bin"
+    Public UpdateFilePath As String = ProgramDataPath + "\CURRENT.VER"
+    Public UpdateRequest As String = "https://raw.githubusercontent.com/divinemamgai/PokemonSpriteInserter/master/CURRENT.VER"
+
     Public PaletteBoxIndexDisplayFlag As Boolean = True
     Dim RomIdentifierOffset As String = "0000A0"
     Dim RomIdentifierHexValue As String = "504F4B454D4F4E204649524542505245"
@@ -48,6 +53,43 @@ Module FunctionsModule
         Right = 1
         Left = 2
     End Enum
+
+    Public Sub CheckForUpdate()
+        If File.Exists(UpdateFilePath) = True Then
+            File.Delete(UpdateFilePath)
+        End If
+        Try
+            My.Computer.Network.DownloadFile(UpdateRequest, UpdateFilePath, False, 500)
+            If File.Exists(UpdateFilePath) = True Then
+                Dim CurrentVersion() As String = My.Computer.FileSystem.ReadAllText(UpdateFilePath, System.Text.Encoding.ASCII).Split(New String() {vbCrLf}, StringSplitOptions.None)
+                If String.Compare(CurrentVersion(0), Application.ProductVersion) <> 0 Then
+                    Dim CurrentVersions() As String = CurrentVersion(0).Split(New [Char]() {"."c})
+                    Dim ExistVersions() As String = Application.ProductVersion.Split(New [Char]() {"."c})
+                    Dim NewVersionFlag As Boolean = False
+                    If CurrentVersion(0) > ExistVersions(0) Then
+                        NewVersionFlag = True
+                    Else
+                        If CurrentVersion(1) > ExistVersions(1) Then
+                            NewVersionFlag = True
+                        Else
+                            If CurrentVersion(2) > ExistVersions(2) Then
+                                NewVersionFlag = True
+                            Else
+                                NewVersionFlag = False
+                            End If
+                        End If
+                    End If
+                    If NewVersionFlag = True Then
+                        MessageBox.Show("A new update is available for Pokemon Sprite Inserter!" & vbCrLf & vbCrLf & "Current Version - " + Application.ProductVersion & vbCrLf & "New Version - " + CurrentVersion(0) + "" & vbCrLf & vbCrLf & "Do you want to download the latest build now?", "New Update To " + CurrentVersion(0), MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                    End If
+                Else
+                    Console.WriteLine("Latest Version Already Installed.")
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Update Check Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 
     Public Function ExtendString(ByVal Input As String, ByVal ExtendChar As String, ByVal Length As Integer, Optional ByVal ExtendToType As Integer = ExtendTo.Left) As String
         Dim Result As String = ""

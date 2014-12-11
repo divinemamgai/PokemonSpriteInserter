@@ -34,4 +34,14 @@
 				a. Added Palette Editor, Importer, Exporter, And Viewer! [GBA Color Converter]
 				b. Improved Validations
 				c. Minor UI Changes
+11/12/2014 : 1. Build 1.1.3
+				a. Added Palette Loader
+				b. Minor UI Changes
+			 2. Build 1.2.0
+				a. Added Palette Browser
+				b. Minor UI Changes
+				c. Table Offset Bug Fixed
+				d. Some Internal Bug Fixes
+			3. Build 1.2.1
+				a. Added Update Checker
 +-------------------------------------------------------------------------------------------------------------+

@@ -20,8 +20,6 @@ Public Class Settings
     End Structure
 
     Public RomLock As Boolean = Main.RomLock
-    Public ProgramDataPath As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\Pokemon Sprite Inserter"
-    Public SettingsFilePath As String = ProgramDataPath + "\settings.bin"
     Public SettingsDataVar As SettingsData
 
     Private Sub DefaultSettings(Optional ByVal Force As Boolean = False)

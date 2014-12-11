@@ -392,6 +392,11 @@ Public Class Main
         SelectOWSTableGroupBox.BringToFront()
         HistoryButton.Enabled = False
         ViewTableButton.Enabled = True
+        UpdateChecker.RunWorkerAsync()
+    End Sub
+
+    Private Sub UpdateCheckerDoWork(sender As Object, e As EventArgs) Handles UpdateChecker.DoWork
+        CheckForUpdate()
     End Sub
 
     Private Sub CustomPresetCheckBoxCheckedChanged(sender As Object, e As EventArgs) Handles CustomPresetCheckBox.CheckedChanged
@@ -805,4 +810,5 @@ Public Class Main
     Private Sub ViewTableButtonClick(sender As Object, e As EventArgs) Handles ViewTableButton.Click
         ViewTables.Show()
     End Sub
+
 End Class

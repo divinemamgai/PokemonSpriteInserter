@@ -73,6 +73,7 @@ Partial Class Main
         Me.AboutButton = New System.Windows.Forms.Button()
         Me.SettingsButton = New System.Windows.Forms.Button()
         Me.HistoryButton = New System.Windows.Forms.Button()
+        Me.UpdateChecker = New System.ComponentModel.BackgroundWorker()
         Me.PokemonRomGroupBox.SuspendLayout()
         Me.SpriteTemplateSettingsGroupBox.SuspendLayout()
         Me.SpriteDataPresetGroupBox.SuspendLayout()
@@ -668,5 +669,6 @@ Partial Class Main
     Friend WithEvents Log As System.Windows.Forms.RichTextBox
     Friend WithEvents SelectOWSTablePanel As System.Windows.Forms.Panel
     Friend WithEvents SelectOWSTableGroupBox As System.Windows.Forms.GroupBox
+    Friend WithEvents UpdateChecker As System.ComponentModel.BackgroundWorker
 
 End Class
