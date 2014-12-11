@@ -39,7 +39,9 @@ Public Class PaletteAdder
         PaletteHexDataTextBox.Height = 20
         PaletteConvertObject = New PaletteConvert(PaletteEditorGroupBox,
                                                   PaletteNumberTextBox,
-                                                  PaletteHexDataTextBox)
+                                                  PaletteHexDataTextBox,
+                                                  Control.DefaultBackColor)
+        PaletteConvertObject.PaletteEditing = True
         PaletteConvertObject.GeneratePaletteBox()
     End Sub
 
@@ -195,7 +197,7 @@ Public Class PaletteAdder
     End Sub
 
     Private Sub LoadPaletteButton(sender As Object, e As EventArgs) Handles LoadPalette.Click
-        PaletteBrowserForm.Show()
+        PaletteBrowserForm.ShowDialog()
     End Sub
 
 #Region "Validation"

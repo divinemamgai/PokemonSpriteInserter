@@ -21,7 +21,6 @@
     Public CancelButton As New Button
     Public SaveChangesButton As New Button
     Public PaletteEditorGroupBox As New GroupBox
-    Public PaletteLabelColor As Color = Color.White
 
     Public PaletteDataArray As PaletteData()
     Public PaletteConvertObject As PaletteConvert
@@ -32,11 +31,7 @@
 
     Public Sub New(Optional ByVal DefaultForm As Form = Nothing,
                    Optional ByVal DefaultTabPage As TabPage = Nothing,
-                   Optional ByVal DefaultLoadPaletteFlag As Boolean = Nothing,
-                   Optional ByVal DefaultPaletteLabelColor As Color = Nothing)
-        If IsNothing(DefaultPaletteLabelColor) = False Then
-            PaletteLabelColor = DefaultPaletteLabelColor
-        End If
+                   Optional ByVal DefaultLoadPaletteFlag As Boolean = Nothing)
         If IsNothing(DefaultLoadPaletteFlag) = False Then
             LoadPaletteFlag = DefaultLoadPaletteFlag
         End If
@@ -97,7 +92,7 @@
             LoadPaletteButton.Enabled = True
             CurrentPaletteRow = CInt(LabelItem.Tag)
             If PreviousPaletteRow <> CurrentPaletteRow Then
-                SetLabelProp(PreviousPaletteRow, ColorTranslator.FromHtml("#eeeeee"), New Font("Calibri", 9, FontStyle.Regular))
+                SetLabelProp(PreviousPaletteRow, ColorTranslator.FromHtml("#eeeeff"), New Font("Calibri", 9, FontStyle.Regular))
             End If
             PreviousPaletteRow = CurrentPaletteRow
         End If
@@ -107,7 +102,7 @@
         Dim LabelItem As Label = DirectCast(sender, Label)
         If IsNothing(LabelItem) = False Then
             If CInt(LabelItem.Tag) <> CurrentPaletteRow Then
-                SetLabelProp(CInt(LabelItem.Tag), ColorTranslator.FromHtml("#eeeeee"), New Font("Calibri", 9, FontStyle.Regular))
+                SetLabelProp(CInt(LabelItem.Tag), ColorTranslator.FromHtml("#eeeeff"), New Font("Calibri", 9, FontStyle.Regular))
                 PaletteTablePanel.Focus()
             End If
         End If
@@ -139,7 +134,7 @@
                 .BorderStyle = BorderStyle.FixedSingle
                 .Margin = New Padding(0, 0, 0, 0)
                 .Padding = New Padding(3, 3, 2, 2)
-                .BackColor = ColorTranslator.FromHtml("#eeeeee")
+                .BackColor = ColorTranslator.FromHtml("#eeeeff")
                 .Tag = i + 1
                 .Font = New Font("Calibri", 9, FontStyle.Regular)
             End With
@@ -153,7 +148,7 @@
                 .BorderStyle = BorderStyle.FixedSingle
                 .Margin = New Padding(0, 0, 0, 0)
                 .Padding = New Padding(3, 3, 2, 2)
-                .BackColor = ColorTranslator.FromHtml("#eeeeee")
+                .BackColor = ColorTranslator.FromHtml("#eeeeff")
                 .Tag = i + 1
                 .Font = New Font("Calibri", 9, FontStyle.Regular)
             End With
@@ -167,7 +162,7 @@
                 .BorderStyle = BorderStyle.FixedSingle
                 .Margin = New Padding(0, 0, 0, 0)
                 .Padding = New Padding(3, 3, 2, 2)
-                .BackColor = ColorTranslator.FromHtml("#eeeeee")
+                .BackColor = ColorTranslator.FromHtml("#eeeeff")
                 .Tag = i + 1
                 .Font = New Font("Calibri", 9, FontStyle.Regular)
             End With
@@ -181,7 +176,7 @@
                 .BorderStyle = BorderStyle.FixedSingle
                 .Margin = New Padding(0, 0, 0, 0)
                 .Padding = New Padding(3, 3, 2, 2)
-                .BackColor = ColorTranslator.FromHtml("#eeeeee")
+                .BackColor = ColorTranslator.FromHtml("#eeeeff")
                 .Tag = i + 1
                 .Font = New Font("Calibri", 9, FontStyle.Regular)
             End With
@@ -195,7 +190,7 @@
                 .BorderStyle = BorderStyle.FixedSingle
                 .Margin = New Padding(0, 0, 0, 0)
                 .Padding = New Padding(3, 3, 2, 2)
-                .BackColor = ColorTranslator.FromHtml("#eeeeee")
+                .BackColor = ColorTranslator.FromHtml("#eeeeff")
                 .Tag = i + 1
                 .Font = New Font("Calibri", 9, FontStyle.Regular)
             End With
@@ -296,7 +291,7 @@
                 .Width = 70
                 .Height = 20
                 .AutoSize = False
-                .ReadOnly = Not PaletteEditorFlag
+                .ReadOnly = PaletteEditorFlag
             End With
             With PaletteHexDataLabel
                 .Name = "PaletteHexDataLabel"
@@ -318,7 +313,7 @@
                 .Width = 434
                 .Height = 20
                 .AutoSize = False
-                .ReadOnly = Not PaletteEditorFlag
+                .ReadOnly = PaletteEditorFlag
             End With
             AddHandler PaletteHexDataTextBox.TextChanged, AddressOf PaletteHexDataTextBoxTextChanged
             With PaletteDataOffsetLabel
@@ -341,7 +336,7 @@
                 .Width = 83
                 .Height = 20
                 .AutoSize = False
-                .ReadOnly = Not PaletteEditorFlag
+                .ReadOnly = PaletteEditorFlag
             End With
             With SaveChangesButton
                 .Name = "SaveChangesButton"
@@ -351,9 +346,8 @@
                 .Location = New Point(441, 15)
                 .Size = New Point(102, 25)
                 .Text = "Save Changes"
-                .Enabled = False 'PaletteEditorFlag
+                .Enabled = PaletteEditorFlag
             End With
-            AddHandler SaveChangesButton.Click, AddressOf SaveButtonClick
             With PaletteViewGroupBox
                 .Name = "PaletteViewGroupBox"
                 .Font = New Font("Calibri", 9.75, FontStyle.Bold)
@@ -426,9 +420,8 @@
                 PaletteViewGroupBox.Enabled = True
                 PaletteConvertObject = New PaletteConvert(PaletteEditorGroupBox,
                                                           PaletteNumberTextBox,
-                                                          PaletteHexDataTextBox,
-                                                          PaletteLabelColor)
-                PaletteConvertObject.PaletteEditing = PaletteEditorFlag
+                                                          PaletteHexDataTextBox)
+                PaletteConvertObject.PaletteEditing = Not LoadPaletteFlag
                 If LoadPaletteFlag = False Then
                     LoadPaletteButton.Hide()
                     CancelButton.Text = "Done"
@@ -469,38 +462,13 @@
             EditorButton.Text = "Enable Editor"
             PaletteEditorFlag = False
             PaletteNumberTextBox.ReadOnly = True
-            PaletteHexDataTextBox.ReadOnly = True
-            PaletteDataOffsetTextBox.ReadOnly = True
             PaletteConvertObject.PaletteEditing = False
-            SaveChangesButton.Enabled = False
             PaletteConvertObject.GeneratePaletteBox()
         Else
             EditorButton.Text = "Disable Editor"
             PaletteEditorFlag = True
-            PaletteNumberTextBox.ReadOnly = False
-            PaletteHexDataTextBox.ReadOnly = False
-            PaletteDataOffsetTextBox.ReadOnly = False
             PaletteConvertObject.PaletteEditing = True
-            SaveChangesButton.Enabled = True
             PaletteConvertObject.GeneratePaletteBox()
-        End If
-    End Sub
-
-    Public Sub SaveButtonClick(sender As Object, e As EventArgs)
-        Dim ChangeFlag As Boolean = False
-        If String.Compare(PaletteDataArray(CurrentPaletteRow - 1).PaletteNumber, PaletteNumberTextBox.Text) <> 0 Then
-            ChangeFlag = True
-        End If
-        If String.Compare(PaletteDataArray(CurrentPaletteRow - 1).PaletteDataOffset, PaletteDataOffsetTextBox.Text) <> 0 Then
-            ChangeFlag = True
-        End If
-        If String.Compare(PaletteDataArray(CurrentPaletteRow - 1).PaletteHexData, PaletteHexDataTextBox.Text) <> 0 Then
-            ChangeFlag = True
-        End If
-        If ChangeFlag = True Then
-
-        Else
-            MessageBox.Show("No palette data was changed. Please alter palette data to perform this operation.", "Palette Save Changes - No Changes Detected", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 

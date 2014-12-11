@@ -23,57 +23,57 @@ Partial Class ViewTables
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ViewTables))
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.TabControl1.SuspendLayout()
+        Me.TableTabControl = New System.Windows.Forms.TabControl()
+        Me.OWSTablePage = New System.Windows.Forms.TabPage()
+        Me.PaletteTablePage = New System.Windows.Forms.TabPage()
+        Me.TableTabControl.SuspendLayout()
         Me.SuspendLayout()
         '
-        'TabControl1
+        'TableTabControl
         '
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TabControl1.Location = New System.Drawing.Point(13, 13)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(561, 236)
-        Me.TabControl1.TabIndex = 0
+        Me.TableTabControl.Controls.Add(Me.OWSTablePage)
+        Me.TableTabControl.Controls.Add(Me.PaletteTablePage)
+        Me.TableTabControl.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TableTabControl.Location = New System.Drawing.Point(13, 13)
+        Me.TableTabControl.Name = "TableTabControl"
+        Me.TableTabControl.SelectedIndex = 0
+        Me.TableTabControl.Size = New System.Drawing.Size(586, 540)
+        Me.TableTabControl.TabIndex = 0
         '
-        'TabPage1
+        'OWSTablePage
         '
-        Me.TabPage1.Location = New System.Drawing.Point(4, 24)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(553, 208)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "OWS Table Browser"
-        Me.TabPage1.UseVisualStyleBackColor = True
+        Me.OWSTablePage.Location = New System.Drawing.Point(4, 24)
+        Me.OWSTablePage.Name = "OWSTablePage"
+        Me.OWSTablePage.Padding = New System.Windows.Forms.Padding(3)
+        Me.OWSTablePage.Size = New System.Drawing.Size(578, 512)
+        Me.OWSTablePage.TabIndex = 0
+        Me.OWSTablePage.Text = "OWS Table Browser"
+        Me.OWSTablePage.UseVisualStyleBackColor = True
         '
-        'TabPage2
+        'PaletteTablePage
         '
-        Me.TabPage2.Location = New System.Drawing.Point(4, 24)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(553, 208)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Palette Table Browser"
-        Me.TabPage2.UseVisualStyleBackColor = True
+        Me.PaletteTablePage.Location = New System.Drawing.Point(4, 24)
+        Me.PaletteTablePage.Name = "PaletteTablePage"
+        Me.PaletteTablePage.Padding = New System.Windows.Forms.Padding(3)
+        Me.PaletteTablePage.Size = New System.Drawing.Size(553, 208)
+        Me.PaletteTablePage.TabIndex = 1
+        Me.PaletteTablePage.Text = "Palette Table Browser"
+        Me.PaletteTablePage.UseVisualStyleBackColor = True
         '
         'ViewTables
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(586, 261)
-        Me.Controls.Add(Me.TabControl1)
+        Me.ClientSize = New System.Drawing.Size(611, 565)
+        Me.Controls.Add(Me.TableTabControl)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "ViewTables"
         Me.Text = "Pokemon Sprite Inserter - View Tables"
-        Me.TabControl1.ResumeLayout(False)
+        Me.TableTabControl.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
-    Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
-    Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
+    Friend WithEvents TableTabControl As System.Windows.Forms.TabControl
+    Friend WithEvents OWSTablePage As System.Windows.Forms.TabPage
+    Friend WithEvents PaletteTablePage As System.Windows.Forms.TabPage
 End Class

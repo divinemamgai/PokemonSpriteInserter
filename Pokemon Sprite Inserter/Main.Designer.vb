@@ -28,6 +28,10 @@ Partial Class Main
         Me.FilePathTextBox = New System.Windows.Forms.TextBox()
         Me.OpenRomButton = New System.Windows.Forms.Button()
         Me.SpriteTemplateSettingsGroupBox = New System.Windows.Forms.GroupBox()
+        Me.SelectOWSTableGroupBox = New System.Windows.Forms.GroupBox()
+        Me.SelectOWSTablePanel = New System.Windows.Forms.Panel()
+        Me.Log = New System.Windows.Forms.RichTextBox()
+        Me.ViewTableButton = New System.Windows.Forms.Button()
         Me.CancelSpriteInsertionButton = New System.Windows.Forms.Button()
         Me.CreateOWSTableButton = New System.Windows.Forms.Button()
         Me.PaletteFixButton = New System.Windows.Forms.Button()
@@ -68,11 +72,7 @@ Partial Class Main
         Me.RomStateLabel = New System.Windows.Forms.Label()
         Me.AboutButton = New System.Windows.Forms.Button()
         Me.SettingsButton = New System.Windows.Forms.Button()
-        Me.ViewTableButton = New System.Windows.Forms.Button()
         Me.HistoryButton = New System.Windows.Forms.Button()
-        Me.Log = New System.Windows.Forms.RichTextBox()
-        Me.SelectOWSTablePanel = New System.Windows.Forms.Panel()
-        Me.SelectOWSTableGroupBox = New System.Windows.Forms.GroupBox()
         Me.PokemonRomGroupBox.SuspendLayout()
         Me.SpriteTemplateSettingsGroupBox.SuspendLayout()
         Me.SpriteDataPresetGroupBox.SuspendLayout()
@@ -111,9 +111,9 @@ Partial Class Main
         '
         'OpenRomButton
         '
-        Me.OpenRomButton.Location = New System.Drawing.Point(519, 34)
+        Me.OpenRomButton.Location = New System.Drawing.Point(519, 35)
         Me.OpenRomButton.Name = "OpenRomButton"
-        Me.OpenRomButton.Size = New System.Drawing.Size(75, 26)
+        Me.OpenRomButton.Size = New System.Drawing.Size(75, 25)
         Me.OpenRomButton.TabIndex = 0
         Me.OpenRomButton.Text = "Open Rom"
         Me.OpenRomButton.UseVisualStyleBackColor = True
@@ -154,6 +154,41 @@ Partial Class Main
         Me.SpriteTemplateSettingsGroupBox.TabIndex = 1
         Me.SpriteTemplateSettingsGroupBox.TabStop = False
         Me.SpriteTemplateSettingsGroupBox.Text = "Sprite Template Settings"
+        '
+        'SelectOWSTableGroupBox
+        '
+        Me.SelectOWSTableGroupBox.Location = New System.Drawing.Point(6, 16)
+        Me.SelectOWSTableGroupBox.Name = "SelectOWSTableGroupBox"
+        Me.SelectOWSTableGroupBox.Size = New System.Drawing.Size(588, 224)
+        Me.SelectOWSTableGroupBox.TabIndex = 0
+        Me.SelectOWSTableGroupBox.TabStop = False
+        Me.SelectOWSTableGroupBox.Text = "Select OWS Table To Insert Created Sprite In"
+        '
+        'SelectOWSTablePanel
+        '
+        Me.SelectOWSTablePanel.AutoScroll = True
+        Me.SelectOWSTablePanel.Location = New System.Drawing.Point(7, 16)
+        Me.SelectOWSTablePanel.Name = "SelectOWSTablePanel"
+        Me.SelectOWSTablePanel.Size = New System.Drawing.Size(587, 224)
+        Me.SelectOWSTablePanel.TabIndex = 39
+        '
+        'Log
+        '
+        Me.Log.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Log.Location = New System.Drawing.Point(7, 16)
+        Me.Log.Name = "Log"
+        Me.Log.Size = New System.Drawing.Size(587, 224)
+        Me.Log.TabIndex = 38
+        Me.Log.Text = ""
+        '
+        'ViewTableButton
+        '
+        Me.ViewTableButton.Location = New System.Drawing.Point(475, 171)
+        Me.ViewTableButton.Name = "ViewTableButton"
+        Me.ViewTableButton.Size = New System.Drawing.Size(119, 25)
+        Me.ViewTableButton.TabIndex = 37
+        Me.ViewTableButton.Text = "View Tables"
+        Me.ViewTableButton.UseVisualStyleBackColor = True
         '
         'CancelSpriteInsertionButton
         '
@@ -550,15 +585,6 @@ Partial Class Main
         Me.SettingsButton.Text = "Settings"
         Me.SettingsButton.UseVisualStyleBackColor = True
         '
-        'ViewTableButton
-        '
-        Me.ViewTableButton.Location = New System.Drawing.Point(475, 171)
-        Me.ViewTableButton.Name = "ViewTableButton"
-        Me.ViewTableButton.Size = New System.Drawing.Size(119, 25)
-        Me.ViewTableButton.TabIndex = 37
-        Me.ViewTableButton.Text = "View Tables"
-        Me.ViewTableButton.UseVisualStyleBackColor = True
-        '
         'HistoryButton
         '
         Me.HistoryButton.Location = New System.Drawing.Point(405, 369)
@@ -568,33 +594,7 @@ Partial Class Main
         Me.HistoryButton.Text = "History"
         Me.HistoryButton.UseVisualStyleBackColor = True
         '
-        'Log
-        '
-        Me.Log.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Log.Location = New System.Drawing.Point(7, 16)
-        Me.Log.Name = "Log"
-        Me.Log.Size = New System.Drawing.Size(587, 224)
-        Me.Log.TabIndex = 38
-        Me.Log.Text = ""
-        '
-        'SelectOWSTablePanel
-        '
-        Me.SelectOWSTablePanel.AutoScroll = True
-        Me.SelectOWSTablePanel.Location = New System.Drawing.Point(7, 16)
-        Me.SelectOWSTablePanel.Name = "SelectOWSTablePanel"
-        Me.SelectOWSTablePanel.Size = New System.Drawing.Size(587, 224)
-        Me.SelectOWSTablePanel.TabIndex = 39
-        '
-        'SelectOWSTableGroupBox
-        '
-        Me.SelectOWSTableGroupBox.Location = New System.Drawing.Point(6, 16)
-        Me.SelectOWSTableGroupBox.Name = "SelectOWSTableGroupBox"
-        Me.SelectOWSTableGroupBox.Size = New System.Drawing.Size(588, 224)
-        Me.SelectOWSTableGroupBox.TabIndex = 0
-        Me.SelectOWSTableGroupBox.TabStop = False
-        Me.SelectOWSTableGroupBox.Text = "Select OWS Table To Insert Created Sprite In"
-        '
-        'Form1
+        'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -606,7 +606,7 @@ Partial Class Main
         Me.Controls.Add(Me.RomStateLabel)
         Me.Controls.Add(Me.PokemonRomGroupBox)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "Form1"
+        Me.Name = "Main"
         Me.Text = "Pokemon Sprite Inserter"
         Me.PokemonRomGroupBox.ResumeLayout(False)
         Me.PokemonRomGroupBox.PerformLayout()

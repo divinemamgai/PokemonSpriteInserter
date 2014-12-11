@@ -14,12 +14,12 @@ Public Class PaletteBox
                                 Color.Black, 1, ButtonBorderStyle.Solid)
         If PaletteBoxIndexDisplayFlag = True Then
             Dim IndexRectangle As Rectangle = pe.ClipRectangle
-            IndexRectangle.Location = New Point(1, 1)
+            IndexRectangle.Location = New Point(1, 2)
             Dim IndexFormat As StringFormat = New StringFormat
             IndexFormat.LineAlignment = StringAlignment.Center
             IndexFormat.Alignment = StringAlignment.Near
             ControlPaint.DrawStringDisabled(pe.Graphics, ToHex(Me.Tag, 2),
-                                            New Font("Arial", 10, FontStyle.Bold),
+                                            New Font("Arial", 12, FontStyle.Bold),
                                             Color.Black, IndexRectangle,
                                             IndexFormat)
         End If
@@ -44,29 +44,6 @@ Module FunctionsModule
     Dim RomIdentifierBytes As Integer = 16
     Dim MaxHexSize As Integer = 65536 ' 0xFFFF + 0x1 in Decimal
 
-    Enum ExtendTo
-        Right = 1
-        Left = 2
-    End Enum
-
-    Public Function ExtendString(ByVal Input As String, ByVal ExtendChar As String, ByVal Length As Integer, Optional ByVal ExtendToType As Integer = ExtendTo.Left) As String
-        Dim Result As String = ""
-        If Input.Length >= Length Then
-            Return Input
-        Else
-            If ExtendToType = ExtendTo.Right Then
-                Result += Input
-            End If
-            For Count As Integer = 1 To Length - Input.Length
-                Result += ExtendChar
-            Next
-            If ExtendToType = ExtendTo.Left Then
-                Result += Input
-            End If
-            Return Result
-        End If
-    End Function
-
     Public Function ToDecimal(ByVal HexValue As String) As Integer
         ToDecimal = Convert.ToInt32(HexValue, 16)
     End Function
@@ -74,39 +51,27 @@ Module FunctionsModule
     Public Function ToHex(ByVal DecimalValue As Integer, Optional ByVal DesiredLength As Integer = 0, Optional ByVal DesiredChar As String = "0") As String
         Dim Result As String = Hex(DecimalValue)
         If DesiredLength <> 0 Then
-            Result = ExtendString(Result, DesiredChar, DesiredLength)
+            If Result.Length < DesiredLength Then
+                For i As Integer = 1 To DesiredLength - Result.Length
+                    Result = DesiredChar + Result
+                Next
+            End If
         End If
         Return Result
     End Function
 
-    Public Function OffsetToPointer(ByVal Offset As String, Optional ByVal SafeMode As Boolean = True) As String
-        Dim Pointer As String = ""
-        Dim ExtendedOffset As String = ""
-        If SafeMode = True Then
-            If Offset.Length <= 6 Then
-                ExtendedOffset = ExtendString(Offset, "0", 6)
-            Else
-                Return Nothing
-            End If
-        Else
-            ExtendedOffset = ExtendString(Offset, "0", 8)
+    Public Function OffsetToPointer(ByVal Offset As String) As String
+        Dim Pointer As String = Nothing
+        If Offset.Length = 6 Then
+            Pointer = Offset(4) + Offset(5) + Offset(2) + Offset(3) + Offset(0) + Offset(1) + "08"
         End If
-        For Count As Integer = ExtendedOffset.Length - 1 To 0 Step -2
-            Pointer += ExtendedOffset(Count - 1) & ExtendedOffset(Count)
-        Next
-        Pointer += "08"
         Return Pointer
     End Function
 
     Public Function PointerToOffset(ByVal Pointer As String) As String
         Dim Offset As String = Nothing
-        If IsNothing(Pointer) = False Then
-            Pointer = Pointer.Substring(0, Pointer.Length - 2)
-            For Count As Integer = Pointer.Length - 1 To 0 Step -2
-                Offset += Pointer(Count - 1) & Pointer(Count)
-            Next
-        Else
-            Return Nothing
+        If Pointer.Length = 8 Then
+            Offset = Pointer(4) + Pointer(5) + Pointer(2) + Pointer(3) + Pointer(0) + Pointer(1)
         End If
         Return Offset
     End Function

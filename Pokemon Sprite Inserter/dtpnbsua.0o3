@@ -5,24 +5,13 @@
     Public PaletteNumberTextBox As TextBox = Nothing
     Public PaletteHexDataTextBox As TextBox = Nothing
     Public PaletteEditing As Boolean = True
-    Public PaletteLabelColor As Color = Color.White
 
     Public Sub New(Optional ByVal DefaultGroupBox As GroupBox = Nothing,
                    Optional ByVal DefaultNumberTextBox As TextBox = Nothing,
-                   Optional ByVal DefaultHexTextBox As TextBox = Nothing,
-                   Optional ByVal DefaultPaletteLabelColor As Color = Nothing)
-        If IsNothing(DefaultGroupBox) = False Then
-            PaletteEditorGroupBox = DefaultGroupBox
-        End If
-        If IsNothing(DefaultNumberTextBox) = False Then
-            PaletteNumberTextBox = DefaultNumberTextBox
-        End If
-        If IsNothing(DefaultHexTextBox) = False Then
-            PaletteHexDataTextBox = DefaultHexTextBox
-        End If
-        If IsNothing(DefaultPaletteLabelColor) = False Then
-            PaletteLabelColor = DefaultPaletteLabelColor
-        End If
+                   Optional ByVal DefaultHexTextBox As TextBox = Nothing)
+        PaletteEditorGroupBox = DefaultGroupBox
+        PaletteNumberTextBox = DefaultNumberTextBox
+        PaletteHexDataTextBox = DefaultHexTextBox
         AddHandler PaletteHexDataTextBox.TextChanged, AddressOf PaletteHexDataTextBoxTextChanged
     End Sub
 
@@ -39,18 +28,27 @@
         Return False
     End Function
 
-    Public Function ConvertDecimalToBinary(ByVal Number As Long, ByVal Length As Integer) As String
+    Public Function ConvertDecimalToBinary(ByVal Number As Long, Optional ByVal Type As Integer = 0) As String
         Dim Result As String = ""
         Dim LeadingZero As String = ""
-        Result = Convert.ToString(Number, 2)
-        If Result.Length >= Length Then
-            Return Result
-        Else
-            For i As Integer = 1 To Length - Result.Length
+        Do
+            If Number Mod 2 = 0 Then
+                Result = "0" + Result
+            Else
+                Result = "1" + Result
+            End If
+            Number = Math.Floor(Number / 2)
+        Loop While Number > 0
+        If Type = 0 Then
+            For i As Integer = 1 To 15 - Result.Length
                 LeadingZero += "0"
             Next
-            Return LeadingZero + Result
+        Else
+            For i As Integer = 1 To 5 - Result.Length
+                LeadingZero += "0"
+            Next
         End If
+        Return LeadingZero + Result
     End Function
 
     Public Function ConvertBinaryToDecimal(ByVal Binary As String) As Integer
@@ -66,20 +64,20 @@
     Public Function ConvertColorHex(ByVal Color16 As String) As String
         Color16 = Right(Color16, 2) + Left(Color16, 2)
         Dim Result As String = ""
-        Dim Red As String = Right(ConvertDecimalToBinary(ToDecimal(Color16), 15), 5)
-        Dim Green As String = Left(Right(ConvertDecimalToBinary(ToDecimal(Color16), 15), 10), 5)
-        Dim Blue As String = Left(ConvertDecimalToBinary(ToDecimal(Color16), 15), 5)
-        Result += ToHex(Math.Round(ConvertBinaryToDecimal(Red) * 255 / 31), 2)
-        Result += ToHex(Math.Round(ConvertBinaryToDecimal(Green) * 255 / 31), 2)
-        Result += ToHex(Math.Round(ConvertBinaryToDecimal(Blue) * 255 / 31), 2)
+        Dim Red As String = Right(ConvertDecimalToBinary(ToDecimal(Color16)), 5)
+        Dim Green As String = Left(Right(ConvertDecimalToBinary(ToDecimal(Color16)), 10), 5)
+        Dim Blue As String = Left(ConvertDecimalToBinary(ToDecimal(Color16)), 5)
+        Result += ToHex(Math.Round(ConvertBinaryToDecimal(Red) * 255 / 31))
+        Result += ToHex(Math.Round(ConvertBinaryToDecimal(Green) * 255 / 31))
+        Result += ToHex(Math.Round(ConvertBinaryToDecimal(Blue) * 255 / 31))
         Return Result
     End Function
 
     Public Function ConvertColor16(ByVal ColorHex As String) As String
         Dim Result As String = ""
-        Dim Red As String = ConvertDecimalToBinary(Math.Round(ToDecimal(Left(ColorHex, 2)) * 31 / 255), 2)
-        Dim Green As String = ConvertDecimalToBinary(Math.Round(ToDecimal(Right(Left(ColorHex, 4), 2)) * 31 / 255), 2)
-        Dim Blue As String = ConvertDecimalToBinary(Math.Round(ToDecimal(Right(ColorHex, 2)) * 31 / 255), 2)
+        Dim Red As String = ConvertDecimalToBinary(Math.Round(ToDecimal(Left(ColorHex, 2)) * 31 / 255), 1)
+        Dim Green As String = ConvertDecimalToBinary(Math.Round(ToDecimal(Right(Left(ColorHex, 4), 2)) * 31 / 255), 1)
+        Dim Blue As String = ConvertDecimalToBinary(Math.Round(ToDecimal(Right(ColorHex, 2)) * 31 / 255), 1)
         Result = ToHex(ConvertBinaryToDecimal(Blue + Green + Red), 4)
         Result = Right(Result, 2) + Left(Result, 2)
         Return Result
@@ -211,7 +209,7 @@
                     .BorderStyle = BorderStyle.None
                     .Font = New Font("Calibri", 9, FontStyle.Bold)
                     .MaxLength = 4
-                    .BackColor = PaletteLabelColor
+                    .BackColor = Color.Transparent
                     .CharacterCasing = CharacterCasing.Upper
                     .TextAlign = HorizontalAlignment.Center
                     .Tag = Count
@@ -221,7 +219,7 @@
                     .Location = New Point(6 + CountCol * 66, 46 + CountRow * 52)
                     .Width = 60
                     .Height = 23
-                    .Cursor = If(PaletteEditing = True, Cursors.Hand, Cursors.Arrow)
+                    .Cursor = Cursors.Hand
                     .Tag = Count
                     .BringToFront()
                 End With

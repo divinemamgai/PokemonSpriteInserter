@@ -391,7 +391,7 @@ Public Class Main
         SelectOWSTablePanel.BringToFront()
         SelectOWSTableGroupBox.BringToFront()
         HistoryButton.Enabled = False
-        ViewTableButton.Enabled = False
+        ViewTableButton.Enabled = True
     End Sub
 
     Private Sub CustomPresetCheckBoxCheckedChanged(sender As Object, e As EventArgs) Handles CustomPresetCheckBox.CheckedChanged
@@ -562,6 +562,12 @@ Public Class Main
                 SpriteHeaderData += CurrentPreset.AnimPointer
                 SpriteHeaderData += OffsetToPointer(SpriteFrameDataOffset)
                 SpriteHeaderData += CurrentPreset.Pointer4
+                If SpriteHeaderData.Length / 2 <> SpriteHeaderDataSize Then
+                    Log.Text += vbCrLf & "     Internal Error Occurred! Aborting..." + CStr(SpriteHeaderData.Length / 2) & vbCrLf & ToHex(PaletteNumber, 2)
+                    BackButton.Enabled = True
+                    StartSpriteInsertionButton.Enabled = True
+                    Return
+                End If
                 Log.Text += vbCrLf & "     Done!"
                 Log.Text += vbCrLf & "Generating Sprite Frame Data [" + CStr(SpriteFrameDataSize) + " Bytes]..."
                 Dim SpriteFrameData As String = ""
@@ -618,15 +624,17 @@ Public Class Main
                                 .Text = "Table - " + CStr(NumberOfOWSButtonRow * 4 + NumberOfOWSButton) + " [" + PointerToOffset(Data) + "]"
                                 .Location = New Point(5 + NumberOfOWSButton * 149, 21 + NumberOfOWSButtonRow * 35)
                                 .Width = 131
+                                .Tag = PointerToOffset(Data)
                             End With
-                            AddHandler OWSTablePointerButton.Click, Sub()
+                            AddHandler OWSTablePointerButton.Click, Sub(senderbutton As Object, ebutton As EventArgs)
+                                                                        Dim ButtonElement As Button = DirectCast(senderbutton, Button)
                                                                         Log.Text += vbCrLf & "Prompting User To Proceed Sprite Insertion Process..."
-                                                                        Dim PromptTableWriteResult As Integer = MessageBox.Show("Do you want to proceed inserting sprite to Table - " + CStr(NumberOfOWSButtonRow * 4 + NumberOfOWSButton - 1) + " [" + PointerToOffset(Data) + "]?", "Proceed With Sprite Table Insertion?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                                                                        Dim PromptTableWriteResult As Integer = MessageBox.Show("Do you want to proceed inserting sprite to " + ButtonElement.Text + "?", "Proceed With Sprite Table Insertion?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                                                                         If PromptTableWriteResult = DialogResult.Yes Then
                                                                             Log.Text += vbCrLf & "     Proceeding With Sprite Insertion Process..."
                                                                             CancelSpriteInsertionButton.Hide()
                                                                             CancelSpriteInsertionButton.Enabled = False
-                                                                            OWSTableOffset = PointerToOffset(Data)
+                                                                            OWSTableOffset = ButtonElement.Tag
                                                                             PerformSpriteTableInsertion(OffsetToPointer(SpriteHeaderDataOffset))
                                                                         Else
                                                                             Log.Text += vbCrLf & "     Prompting User Again To Select OWS Table To Insert Sprite In..."
@@ -671,8 +679,13 @@ Public Class Main
         StartSpriteInsertionButton.Enabled = True
     End Sub
 
-    Private Sub CancelSpriteInsertionButtonClick(sender As Object, e As EventArgs) Handles CancelSpriteInsertionButton.Click
-        Dim Result As Integer = MessageBox.Show("Do you really want to cancel the sprite insertion process?" & vbCrLf & vbCrLf & "Your rom will be restored to it's original state on cancelation.", "Cancel Sprite Insertion?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+    Private Sub CancelSpriteInsertion(Optional ByVal Prompt As Boolean = True)
+        Dim Result As Integer
+        If Prompt = True Then
+            Result = MessageBox.Show("Do you really want to cancel the sprite insertion process?" & vbCrLf & vbCrLf & "Your rom will be restored to it's original state on cancelation.", "Cancel Sprite Insertion?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Else
+            Return
+        End If
         If Result = DialogResult.Yes Then
             SelectOWSTableGroupBox.Controls.Clear()
             SelectOWSTableGroupBox.Hide()
@@ -701,6 +714,10 @@ Public Class Main
             BackButton.Enabled = True
             StartSpriteInsertionButton.Enabled = True
         End If
+    End Sub
+
+    Private Sub CancelSpriteInsertionButtonClick(sender As Object, e As EventArgs) Handles CancelSpriteInsertionButton.Click
+        CancelSpriteInsertion(True)
     End Sub
 
     Private Sub PaletteFixButtonClick(sender As Object, e As EventArgs) Handles PaletteFixButton.Click
@@ -785,4 +802,7 @@ Public Class Main
     End Sub
 #End Region
 
+    Private Sub ViewTableButtonClick(sender As Object, e As EventArgs) Handles ViewTableButton.Click
+        ViewTables.Show()
+    End Sub
 End Class
