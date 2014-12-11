@@ -1,19 +1,1 @@
 E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\bin\Release\Pokemon Sprite Inserter.exe.config
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\bin\Release\Pokemon Sprite Inserter.exe
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\bin\Release\Pokemon Sprite Inserter.pdb
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\bin\Release\Pokemon Sprite Inserter.xml
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\obj\Release\Pokemon_Sprite_Inserter.Main.resources
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\obj\Release\Pokemon_Sprite_Inserter.FreeSpaceOffsetsDialog.resources
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\obj\Release\Pokemon_Sprite_Inserter.PaletteBrowserForm.resources
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\obj\Release\Pokemon_Sprite_Inserter.Settings.resources
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\obj\Release\Pokemon_Sprite_Inserter.SpritePresets.resources
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\obj\Release\Pokemon_Sprite_Inserter.PaletteAdder.resources
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\obj\Release\Pokemon_Sprite_Inserter.About.resources
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\obj\Release\Pokemon_Sprite_Inserter.CustomArtData.resources
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\obj\Release\Pokemon_Sprite_Inserter.CreateOWSTable.resources
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\obj\Release\Pokemon_Sprite_Inserter.Resources.resources
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\obj\Release\Pokemon_Sprite_Inserter.ViewTables.resources
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\obj\Release\Pokemon Sprite Inserter.vbproj.GenerateResource.Cache
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\obj\Release\Pokemon Sprite Inserter.exe
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\obj\Release\Pokemon Sprite Inserter.xml
-E:\My Works\Pokemon Sprite Inserter\PSI\Pokemon Sprite Inserter\obj\Release\Pokemon Sprite Inserter.pdb
