@@ -179,7 +179,7 @@ Partial Class SpritePresets
         Me.DoneButton.Text = "Done"
         Me.DoneButton.UseVisualStyleBackColor = True
         '
-        'Form4
+        'SpritePresets
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -187,7 +187,8 @@ Partial Class SpritePresets
         Me.Controls.Add(Me.DoneButton)
         Me.Controls.Add(Me.SelectSpriteGroupBox)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "Form4"
+        Me.Name = "SpritePresets"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pokemon Sprite Inserter - Presets"
         Me.SelectSpriteGroupBox.ResumeLayout(False)
         Me.ResumeLayout(False)

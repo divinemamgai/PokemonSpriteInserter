@@ -162,7 +162,7 @@ Partial Class FreeSpaceOffsetsDialog
         Me.UseTheseOffsetsButton.Text = "Use These Offsets"
         Me.UseTheseOffsetsButton.UseVisualStyleBackColor = True
         '
-        'Form2
+        'FreeSpaceOffsetsDialog
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -170,7 +170,8 @@ Partial Class FreeSpaceOffsetsDialog
         Me.Controls.Add(Me.UseTheseOffsetsButton)
         Me.Controls.Add(Me.SetSpriteDataOffsetsGroupBox)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "Form2"
+        Me.Name = "FreeSpaceOffsetsDialog"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pokemon Sprite Inserter - Offsets"
         Me.SetSpriteDataOffsetsGroupBox.ResumeLayout(False)
         Me.SetSpriteDataOffsetsGroupBox.PerformLayout()

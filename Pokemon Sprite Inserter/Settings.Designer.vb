@@ -24,6 +24,8 @@ Partial Class Settings
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Settings))
         Me.SettingsGroupBox = New System.Windows.Forms.GroupBox()
+        Me.CheckForUpdateButton = New System.Windows.Forms.Button()
+        Me.UpdateCheckBox = New System.Windows.Forms.CheckBox()
         Me.PaletteTableEmptyDataHexTextBox = New System.Windows.Forms.TextBox()
         Me.PaletteTableEmptyDataHexLabel = New System.Windows.Forms.Label()
         Me.PaletteTableEndTextBox = New System.Windows.Forms.TextBox()
@@ -49,8 +51,6 @@ Partial Class Settings
         Me.SpriteArtDataByteLabel = New System.Windows.Forms.Label()
         Me.FreeSpaceByteLabel = New System.Windows.Forms.Label()
         Me.SaveSettingsButton = New System.Windows.Forms.Button()
-        Me.UpdateCheckBox = New System.Windows.Forms.CheckBox()
-        Me.CheckForUpdateButton = New System.Windows.Forms.Button()
         Me.SettingsGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -89,6 +89,26 @@ Partial Class Settings
         Me.SettingsGroupBox.TabIndex = 1
         Me.SettingsGroupBox.TabStop = False
         Me.SettingsGroupBox.Text = "Settings"
+        '
+        'CheckForUpdateButton
+        '
+        Me.CheckForUpdateButton.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckForUpdateButton.Location = New System.Drawing.Point(186, 344)
+        Me.CheckForUpdateButton.Name = "CheckForUpdateButton"
+        Me.CheckForUpdateButton.Size = New System.Drawing.Size(164, 26)
+        Me.CheckForUpdateButton.TabIndex = 31
+        Me.CheckForUpdateButton.Text = "Check For Update Now"
+        Me.CheckForUpdateButton.UseVisualStyleBackColor = True
+        '
+        'UpdateCheckBox
+        '
+        Me.UpdateCheckBox.AutoSize = True
+        Me.UpdateCheckBox.Location = New System.Drawing.Point(13, 349)
+        Me.UpdateCheckBox.Name = "UpdateCheckBox"
+        Me.UpdateCheckBox.Size = New System.Drawing.Size(171, 19)
+        Me.UpdateCheckBox.TabIndex = 30
+        Me.UpdateCheckBox.Text = "Check For Update On Start"
+        Me.UpdateCheckBox.UseVisualStyleBackColor = True
         '
         'PaletteTableEmptyDataHexTextBox
         '
@@ -362,26 +382,6 @@ Partial Class Settings
         Me.SaveSettingsButton.Text = "Save Settings"
         Me.SaveSettingsButton.UseVisualStyleBackColor = True
         '
-        'UpdateCheckBox
-        '
-        Me.UpdateCheckBox.AutoSize = True
-        Me.UpdateCheckBox.Location = New System.Drawing.Point(13, 349)
-        Me.UpdateCheckBox.Name = "UpdateCheckBox"
-        Me.UpdateCheckBox.Size = New System.Drawing.Size(171, 19)
-        Me.UpdateCheckBox.TabIndex = 30
-        Me.UpdateCheckBox.Text = "Check For Update On Start"
-        Me.UpdateCheckBox.UseVisualStyleBackColor = True
-        '
-        'CheckForUpdateButton
-        '
-        Me.CheckForUpdateButton.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckForUpdateButton.Location = New System.Drawing.Point(186, 344)
-        Me.CheckForUpdateButton.Name = "CheckForUpdateButton"
-        Me.CheckForUpdateButton.Size = New System.Drawing.Size(164, 26)
-        Me.CheckForUpdateButton.TabIndex = 31
-        Me.CheckForUpdateButton.Text = "Check For Update Now"
-        Me.CheckForUpdateButton.UseVisualStyleBackColor = True
-        '
         'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -391,6 +391,7 @@ Partial Class Settings
         Me.Controls.Add(Me.SettingsGroupBox)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Settings"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pokemon Sprite Inserter - Settings"
         Me.SettingsGroupBox.ResumeLayout(False)
         Me.SettingsGroupBox.PerformLayout()

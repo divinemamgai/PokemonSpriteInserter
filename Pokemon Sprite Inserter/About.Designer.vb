@@ -74,7 +74,7 @@ Partial Class About
         Me.AboutRichTextBox.TabIndex = 0
         Me.AboutRichTextBox.Text = resources.GetString("AboutRichTextBox.Text")
         '
-        'Form6
+        'About
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -83,7 +83,8 @@ Partial Class About
         Me.Controls.Add(Me.MyLogo)
         Me.Controls.Add(Me.DoneButton)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "Form6"
+        Me.Name = "About"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pokemon Sprite Inserter - About"
         CType(Me.MyLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.AboutGroupBox.ResumeLayout(False)

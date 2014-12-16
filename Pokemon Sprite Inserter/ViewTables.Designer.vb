@@ -55,7 +55,7 @@ Partial Class ViewTables
         Me.PaletteTablePage.Location = New System.Drawing.Point(4, 24)
         Me.PaletteTablePage.Name = "PaletteTablePage"
         Me.PaletteTablePage.Padding = New System.Windows.Forms.Padding(3)
-        Me.PaletteTablePage.Size = New System.Drawing.Size(553, 208)
+        Me.PaletteTablePage.Size = New System.Drawing.Size(578, 512)
         Me.PaletteTablePage.TabIndex = 1
         Me.PaletteTablePage.Text = "Palette Table Browser"
         Me.PaletteTablePage.UseVisualStyleBackColor = True
@@ -68,6 +68,7 @@ Partial Class ViewTables
         Me.Controls.Add(Me.TableTabControl)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "ViewTables"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pokemon Sprite Inserter - View Tables"
         Me.TableTabControl.ResumeLayout(False)
         Me.ResumeLayout(False)

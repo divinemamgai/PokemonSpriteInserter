@@ -7,19 +7,19 @@ Public Class PaletteBox
     Inherits PictureBox
 
     Protected Overrides Sub OnPaint(ByVal pe As PaintEventArgs)
-        ControlPaint.DrawBorder(pe.Graphics, pe.ClipRectangle,
+        ControlPaint.DrawBorder(pe.Graphics, MyBase.DisplayRectangle,
                                 Color.Black, 1, ButtonBorderStyle.Solid,
                                 Color.Black, 1, ButtonBorderStyle.Solid,
                                 Color.Black, 1, ButtonBorderStyle.Solid,
                                 Color.Black, 1, ButtonBorderStyle.Solid)
         If PaletteBoxIndexDisplayFlag = True Then
-            Dim IndexRectangle As Rectangle = pe.ClipRectangle
-            IndexRectangle.Location = New Point(1, 1)
+            Dim IndexRectangle As Rectangle = MyBase.DisplayRectangle
+            IndexRectangle.Location = New Point(MyBase.DisplayRectangle.Width - 20, 3)
             Dim IndexFormat As StringFormat = New StringFormat
             IndexFormat.LineAlignment = StringAlignment.Center
             IndexFormat.Alignment = StringAlignment.Near
             ControlPaint.DrawStringDisabled(pe.Graphics, ToHex(Me.Tag, 2),
-                                            New Font("Arial", 10, FontStyle.Bold),
+                                            New Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold, GraphicsUnit.Pixel),
                                             Color.Black, IndexRectangle,
                                             IndexFormat)
         End If
@@ -28,12 +28,57 @@ Public Class PaletteBox
 
 End Class
 
+Public Class ScopeBox
+    Inherits PictureBox
+
+    Protected Overrides Sub OnPaint(ByVal pe As PaintEventArgs)
+        ControlPaint.DrawBorder(pe.Graphics, MyBase.DisplayRectangle,
+                                Color.Black, 1, ButtonBorderStyle.Solid,
+                                Color.Black, 1, ButtonBorderStyle.Solid,
+                                Color.Black, 1, ButtonBorderStyle.Solid,
+                                Color.Black, 1, ButtonBorderStyle.Solid)
+        MyBase.OnPaint(pe)
+    End Sub
+
+End Class
+
+Public Class TablePanel
+    Inherits Panel
+
+
+End Class
+
+Public Structure Preset
+    Dim PresetName As String
+    Dim StarterByte As String
+    Dim UnknownFunction1 As String
+    Dim Unknown1 As String
+    Dim PalRegisters As String
+    Dim Pointer1 As String
+    Dim Pointer2 As String
+    Dim AnimPointer As String
+    Dim Pointer4 As String
+End Structure
+
 Public Structure PaletteData
     Dim PaletteIndex As Integer
     Dim PaletteOffset As String
     Dim PaletteNumber As Integer
     Dim PaletteDataOffset As String
     Dim PaletteHexData As String
+End Structure
+
+Public Structure SpriteData
+    Dim SpriteIndex As Integer
+    Dim SpriteTableOffset As String
+    Dim SpriteHeaderOffset As String
+    Dim SpritePalette As Integer
+    Dim SpriteSize As Size
+    Dim SpriteFrameSize As Integer
+    Dim SpriteFrameDataOffset As String
+    Dim SpriteArtDataOffset As String
+    Dim SpritePreset As Preset
+    Dim SpriteValid As Boolean
 End Structure
 
 Module FunctionsModule
@@ -44,17 +89,6 @@ Module FunctionsModule
     Public UpdateRequest As String = "https://raw.githubusercontent.com/divinemamgai/PokemonSpriteInserter/master/CURRENT.VER"
     Public UpdateURL As String = "https://github.com/divinemamgai/PokemonSpriteInserter/raw/master/Pokemon%20Sprite%20Inserter-SetupFiles/Pokemon%20Sprite%20Inserter.exe"
     Dim CurrentVersions() As String
-
-    Public PaletteBoxIndexDisplayFlag As Boolean = True
-    Dim RomIdentifierOffset As String = "0000A0"
-    Dim RomIdentifierHexValue As String = "504F4B454D4F4E204649524542505245"
-    Dim RomIdentifierBytes As Integer = 16
-    Dim MaxHexSize As Integer = 65536 ' 0xFFFF + 0x1 in Decimal
-
-    Enum ExtendTo
-        Right = 1
-        Left = 2
-    End Enum
 
     Public Function ProcessUpdateFile() As Boolean
         Dim NewVersionFlag As Boolean = False
@@ -106,6 +140,40 @@ Module FunctionsModule
         End Try
     End Sub
 
+    Public PaletteBoxIndexDisplayFlag As Boolean = True
+    Dim RomIdentifierOffset As String = "0000A0"
+    Dim RomIdentifierHexValue As String = "504F4B454D4F4E204649524542505245"
+    Dim RomIdentifierBytes As Integer = 16
+    Dim MaxHexSize As Integer = 65536 ' 0xFFFF + 0x1 in Decimal
+
+    Enum ExtendTo
+        Right = 1
+        Left = 2
+    End Enum
+
+    Public Function SplitString(ByVal Input As String, ByVal Fraction As Integer) As String()
+        If Input.Length Mod Fraction = 0 Then
+            Dim Result(Input.Length / Fraction - 1) As String
+            Dim Count As Integer = 0
+            For i As Integer = 0 To Input.Length - 1 Step +Fraction
+                Result(Count) += Input.Substring(Count * Fraction, Fraction)
+                Count = Count + 1
+            Next
+            Return Result
+        Else
+            Return Nothing
+        End If
+        Return Nothing
+    End Function
+
+    Public Function RejoinString(ByVal SplittedString As String()) As String
+        Dim Result As String = ""
+        For i As Integer = 0 To SplittedString.Length - 1
+            Result += SplittedString(i)
+        Next
+        Return Result
+    End Function
+
     Public Function ExtendString(ByVal Input As String, ByVal ExtendChar As String, ByVal Length As Integer, Optional ByVal ExtendToType As Integer = ExtendTo.Left) As String
         Dim Result As String = ""
         If Input.Length >= Length Then
@@ -124,8 +192,49 @@ Module FunctionsModule
         End If
     End Function
 
+    Public Sub ProcessRecentRoms(ByVal MenuControl As ToolStripMenuItem, ByVal RecentRoms As String)
+        If IsNothing(RecentRoms) = False Then
+            Dim RecentRomsArray() As String = RecentRoms.Split(New [Char]() {"|"c})
+            For Each RecentRom In RecentRomsArray
+                Dim CurrentItem As New ToolStripMenuItem
+                With CurrentItem
+                    .Text = If(RecentRom.Length > 60, RecentRom.Substring(0, 30) + "..." + RecentRom.Substring(RecentRom.LastIndexOf("\"), RecentRom.Length - RecentRom.LastIndexOf("\")), RecentRom)
+                    .Tag = RecentRom
+                End With
+                AddHandler CurrentItem.Click, Sub(sender As Object, e As EventArgs)
+                                                  Dim MenuItem As ToolStripMenuItem = DirectCast(sender, ToolStripMenuItem)
+                                                  Main.OpenRom(MenuItem.Tag)
+                                              End Sub
+                Console.WriteLine(RecentRom + " << ")
+                MenuControl.DropDownItems.Add(CurrentItem)
+            Next
+        End If
+    End Sub
+
+    Public Sub AddRecentRom(ByVal CurrentRom As String, ByRef RecentRoms As String)
+        If IsNothing(RecentRoms) = False Then
+            Dim RecentRomsArray() As String = RecentRoms.Split(New [Char]() {"|"c})
+            Dim RecentRomAlreadyAddedFlag As Boolean = False
+            For Each RecentRom In RecentRomsArray
+                If String.Compare(RecentRom, CurrentRom) = 0 Then
+                    RecentRomAlreadyAddedFlag = True
+                End If
+            Next
+            If RecentRomAlreadyAddedFlag = False Then
+                RecentRoms += "|" + CurrentRom
+                Settings.UpdateSettingsFile()
+            End If
+        Else
+            RecentRoms = CurrentRom
+            Settings.UpdateSettingsFile()
+        End If
+    End Sub
+
     Public Function ToDecimal(ByVal HexValue As String) As Integer
-        ToDecimal = Convert.ToInt32(HexValue, 16)
+        If System.Text.RegularExpressions.Regex.IsMatch(HexValue, "\A\b[0-9a-fA-F]+\b\Z") = True Then
+            Return Convert.ToInt32(HexValue, 16)
+        End If
+        Return Nothing
     End Function
 
     Public Function ToHex(ByVal DecimalValue As Integer, Optional ByVal DesiredLength As Integer = 0, Optional ByVal DesiredChar As String = "0") As String
@@ -285,7 +394,8 @@ WriteDataTry:
                 Else
                     If PaletteDataCount = MaxPalette Then
                         If Warning = True Then
-                            MessageBox.Show("It seems like you have more palettes in your table than the program let's you process! Program will be ignoring the rest." & vbCrLf & vbCrLf & "To increase this limit just head over to the settings and increase the value of Max Palettes.", "Palette Limit Breach!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            MessageBox.Show("It seems like you have more palettes in your table than the program let's you process! Program will be ignoring the rest." & vbCrLf & vbCrLf & "To increase this limit just head over to the settings and increase the value of Max Palettes.",
+                                            "Palette Limit Breach!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                         End If
                         PaletteDataEndFlag = True
                         Exit While
@@ -313,6 +423,108 @@ WriteDataTry:
         Next
         Return True
     End Function
+
+    Public Function GetSprites(ByVal OWSTableOffset As String, ByVal OWSTableEmptyHex As String, ByVal OWSTableMaxSprites As Integer,
+                               ByVal MaxSpriteFrameCount As Integer, Optional ByVal Warning As Boolean = True) As SpriteData()
+        Dim SpriteDataArray() As SpriteData = Nothing
+        Dim SpriteCount As Integer = 0
+        Dim OWSTableEndFlag As Boolean = False
+        Dim OWSTableDataSize As Integer = 4
+        Dim SpriteHeaderDataSize As Integer = 36
+        Dim SpriteFrameDataSize As Integer = 8
+        Dim CurrentOWSTableData As String = ""
+        Dim CurrentSpriteData As String = ""
+        Dim CurrentFrameDataEndFlag As Boolean = False
+        Dim CurrentSpriteDataCount As Integer = 1
+        While OWSTableEndFlag = False
+            CurrentOWSTableData = ReadData(ToHex(ToDecimal(OWSTableOffset) + OWSTableDataSize * SpriteCount), OWSTableDataSize)
+            If String.Compare(CurrentOWSTableData, OWSTableEmptyHex) <> 0 Then
+                If SpriteCount = OWSTableMaxSprites Then
+                    If Warning = True Then
+                        MessageBox.Show("It seems that the OWS Table At Offset => 0x" + OWSTableOffset + " contains more than maximum number of sprites allowed!" _
+                                        & vbCrLf & vbCrLf & "This limit can be increased in settings => OWS Table Max Sprites [Current Value : " + CStr(OWSTableMaxSprites) + "]",
+                                        "OWS Table Sprite Limit Breached!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
+                    OWSTableEndFlag = True
+                    Exit While
+                Else
+                    ReDim Preserve SpriteDataArray(SpriteCount)
+                    Try
+                        SpriteDataArray(SpriteCount).SpriteTableOffset = ToHex(ToDecimal(OWSTableOffset) + OWSTableDataSize * SpriteCount)
+                        SpriteDataArray(SpriteCount).SpriteHeaderOffset = PointerToOffset(CurrentOWSTableData)
+                        CurrentSpriteData = ReadData(SpriteDataArray(SpriteCount).SpriteHeaderOffset, SpriteHeaderDataSize)
+                        CurrentSpriteDataCount = 1
+                        For Each SpriteHeaderElement In SplitString(CurrentSpriteData, 8)
+                            Select Case CurrentSpriteDataCount
+                                Case 1
+                                    'SpriteDataArray(SpriteCount).SpritePreset.StarterByte = SplitString(SpriteHeaderElement, 4)(0)
+                                    SpriteDataArray(SpriteCount).SpritePreset.StarterByte = "FFFF"
+                                    'Eg. : FF FF 06 11 => 06 [Palette Number]
+                                    SpriteDataArray(SpriteCount).SpritePalette = ToDecimal(SplitString(SpriteHeaderElement, 2)(2))
+                                    'SpriteDataArray(SpriteCount).SpritePreset.StarterByte = SplitString(SpriteHeaderElement, 2)(3)
+                                    SpriteDataArray(SpriteCount).SpritePreset.UnknownFunction1 = "11"
+                                Case 2
+                                    SpriteDataArray(SpriteCount).SpritePreset.Unknown1 = SpriteHeaderElement
+                                Case 3
+                                    'Eg. : 10 00 20 00 => 10 x 20 => 16 x 32 [Sprite Size]
+                                    SpriteDataArray(SpriteCount).SpriteSize.Width = ToDecimal(SplitString(SpriteHeaderElement, 2)(1) + SplitString(SpriteHeaderElement, 2)(0))
+                                    SpriteDataArray(SpriteCount).SpriteSize.Height = ToDecimal(SplitString(SpriteHeaderElement, 2)(3) + SplitString(SpriteHeaderElement, 2)(2))
+                                    SpriteDataArray(SpriteCount).SpriteFrameSize = (SpriteDataArray(SpriteCount).SpriteSize.Width * SpriteDataArray(SpriteCount).SpriteSize.Height / 2)
+                                Case 4
+                                    SpriteDataArray(SpriteCount).SpritePreset.PalRegisters = SpriteHeaderElement
+                                Case 5
+                                    SpriteDataArray(SpriteCount).SpritePreset.Pointer1 = SpriteHeaderElement
+                                Case 6
+                                    SpriteDataArray(SpriteCount).SpritePreset.Pointer2 = SpriteHeaderElement
+                                Case 7
+                                    SpriteDataArray(SpriteCount).SpritePreset.AnimPointer = SpriteHeaderElement
+                                Case 8
+                                    SpriteDataArray(SpriteCount).SpriteFrameDataOffset = PointerToOffset(SpriteHeaderElement)
+                                Case 9
+                                    SpriteDataArray(SpriteCount).SpritePreset.Pointer4 = SpriteHeaderElement
+                            End Select
+                            CurrentSpriteDataCount = CurrentSpriteDataCount + 1
+                        Next
+                        CurrentSpriteData = ReadData(SpriteDataArray(SpriteCount).SpriteFrameDataOffset, SpriteFrameDataSize)
+                        SpriteDataArray(SpriteCount).SpriteArtDataOffset = PointerToOffset(CurrentSpriteData.Substring(0, 8))
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message, "Error Occured!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End Try
+                    SpriteCount = SpriteCount + 1
+                End If
+            Else
+                OWSTableEndFlag = True
+                Exit While
+            End If
+        End While
+        Return SpriteDataArray
+    End Function
+
+    Public Sub ApplySpritePatch()
+        Dim Log As String = ""
+        Dim PatchDataArray() As String = My.Resources.FireRedPatch.Split(New String() {vbCrLf}, StringSplitOptions.None)
+        Dim PatchCount As Integer = 0
+        For Each PatchData In PatchDataArray
+            PatchCount = PatchCount + 1
+            Log += "Patch #" + CStr(PatchCount) + " : "
+            PatchData = PatchData.Replace("[", "")
+            PatchData = PatchData.Replace("]", "")
+            Dim Patch() As String = PatchData.Split("|")
+            If Patch.Length = 2 Then
+                If Patch(0).Length = 6 And Patch(1).Length = 16 Then
+                    If WriteData(Patch(0), 8, Patch(1)) = True Then
+                        Log += "Patch Applied!" & vbCrLf
+                    Else
+                        Log += "Patch Cannot Be Applied; Rom File Not Writable." & vbCrLf
+                    End If
+                Else
+                    Log += "Not Valid Patch Format." & vbCrLf
+                End If
+            Else
+                Log += "Not Valid Patch Format." & vbCrLf
+            End If
+        Next
+    End Sub
 
 #Region "Validators"
 

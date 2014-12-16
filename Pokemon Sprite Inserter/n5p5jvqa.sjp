@@ -141,7 +141,6 @@ Public Class Main
     Public PaletteTableEmptyDataHex As String = ""
     Public CheckForUpdateOnStart As Boolean = False
     Public MaxSpriteFrameCount As Integer = 20 ' For Now.
-    Public RecentRoms As String = ""
 
     Public GlobalSpriteHeaderDataOffset As String = ""
     Public GlobalSpriteFrameDataOffset As String = ""
@@ -256,71 +255,60 @@ Public Class Main
         RomFile.Title = "Load GBA Rom"
         Try
             If RomFile.ShowDialog <> Windows.Forms.DialogResult.Cancel Then
-                OpenRom(RomFile.FileName)
+                RomFilePath = RomFile.FileName
+                FilePathTextBox.Text = RomFilePath
+                If RomLock Then
+                    If ValidateRom() Then
+                        Dim RomFileStream As FileStream
+                        RomFileStream = File.OpenRead(RomFilePath)
+                        RomLength = RomFileStream.Length
+                        RomFileStream.Close()
+                        StartOffsetTextBox.MaxLength = 6    'Can't be more than 6 - Even if it can it can only be of multiples of 2!
+                        RomStateLabel.Text = "Pokemon Fire Red Rom Detected."
+                        RomStateLabel.ForeColor = Color.Green
+                        SpriteTemplateSettingsGroupBox.Enabled = True
+                        RomFileLoaded = True
+                        PaletteInserterButton.Enabled = True
+                        TableBrowserButton.Enabled = True
+                    Else
+                        RomStateLabel.Text = "Pokemon Fire Red Rom Not Detected!"
+                        RomStateLabel.ForeColor = Color.Red
+                        SpriteTemplateSettingsGroupBox.Enabled = False
+                        RomFileLoaded = False
+                        PaletteInserterButton.Enabled = False
+                        MessageBox.Show("This is not Pokemon Fire Red Rom!" & vbCrLf & vbCrLf & "You can disable this check by switching Rom Check to Off state in Settings.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
+                Else
+                    If ValidateRom() Then
+                        Dim RomFileStream As FileStream
+                        RomFileStream = File.OpenRead(RomFilePath)
+                        RomLength = RomFileStream.Length
+                        RomFileStream.Close()
+                        StartOffsetTextBox.MaxLength = 6    'Can't be more than 6 - Even if it can it can only be of multiples of 2!
+                        RomStateLabel.Text = "Pokemon Fire Red Rom Detected."
+                        RomStateLabel.ForeColor = Color.Green
+                        SpriteTemplateSettingsGroupBox.Enabled = True
+                        RomFileLoaded = True
+                        PaletteInserterButton.Enabled = True
+                        TableBrowserButton.Enabled = True
+                    Else
+                        Dim RomFileStream As FileStream
+                        RomFileStream = File.OpenRead(RomFilePath)
+                        RomLength = RomFileStream.Length
+                        RomFileStream.Close()
+                        StartOffsetTextBox.MaxLength = 6    'Can't be more than 6 - Even if it can it can only be of multiples of 2!
+                        RomStateLabel.Text = "Custom Rom Loaded! Use Valid Sprite Preset Data!"
+                        RomStateLabel.ForeColor = Color.OrangeRed
+                        SpriteTemplateSettingsGroupBox.Enabled = True
+                        RomFileLoaded = True
+                        PaletteInserterButton.Enabled = True
+                        TableBrowserButton.Enabled = True
+                    End If
+                End If
             End If
         Catch ex As Exception
             MessageBox.Show("An error occurred while opening the rom!" & vbCrLf & vbCrLf & "Exception.Message : " + ex.Message, "Error In Opening Rom!", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-    End Sub
-
-    Public Sub OpenRom(ByVal FilePath As String)
-        RomFile.FileName = FilePath
-        RomFilePath = FilePath
-        FilePathTextBox.Text = RomFilePath
-        If RomLock Then
-            If ValidateRom() Then
-                Dim RomFileStream As FileStream
-                RomFileStream = File.OpenRead(RomFilePath)
-                RomLength = RomFileStream.Length
-                RomFileStream.Close()
-                StartOffsetTextBox.MaxLength = 6    'Can't be more than 6 - Even if it can it can only be of multiples of 2!
-                RomStateLabel.Text = "Pokemon Fire Red Rom Detected."
-                RomStateLabel.ForeColor = Color.Green
-                SpriteTemplateSettingsGroupBox.Enabled = True
-                RomFileLoaded = True
-                PaletteInserterButton.Enabled = True
-                TableBrowserButton.Enabled = True
-                ApplySpritePatchButton.Enabled = True
-                AddRecentRom(RomFilePath, RecentRoms)
-            Else
-                RomStateLabel.Text = "Pokemon Fire Red Rom Not Detected!"
-                RomStateLabel.ForeColor = Color.Red
-                SpriteTemplateSettingsGroupBox.Enabled = False
-                RomFileLoaded = False
-                PaletteInserterButton.Enabled = False
-                MessageBox.Show("This is not Pokemon Fire Red Rom!" & vbCrLf & vbCrLf & "You can disable this check by switching Rom Check to Off state in Settings.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            End If
-        Else
-            If ValidateRom() Then
-                Dim RomFileStream As FileStream
-                RomFileStream = File.OpenRead(RomFilePath)
-                RomLength = RomFileStream.Length
-                RomFileStream.Close()
-                StartOffsetTextBox.MaxLength = 6    'Can't be more than 6 - Even if it can it can only be of multiples of 2!
-                RomStateLabel.Text = "Pokemon Fire Red Rom Detected."
-                RomStateLabel.ForeColor = Color.Green
-                SpriteTemplateSettingsGroupBox.Enabled = True
-                RomFileLoaded = True
-                PaletteInserterButton.Enabled = True
-                TableBrowserButton.Enabled = True
-                ApplySpritePatchButton.Enabled = True
-                AddRecentRom(RomFilePath, RecentRoms)
-            Else
-                Dim RomFileStream As FileStream
-                RomFileStream = File.OpenRead(RomFilePath)
-                RomLength = RomFileStream.Length
-                RomFileStream.Close()
-                StartOffsetTextBox.MaxLength = 6    'Can't be more than 6 - Even if it can it can only be of multiples of 2!
-                RomStateLabel.Text = "Custom Rom Loaded! Use Valid Data!"
-                RomStateLabel.ForeColor = Color.OrangeRed
-                SpriteTemplateSettingsGroupBox.Enabled = True
-                RomFileLoaded = True
-                PaletteInserterButton.Enabled = True
-                TableBrowserButton.Enabled = True
-                'ApplySpritePatchButton.Enabled = True
-                AddRecentRom(RomFilePath, RecentRoms)
-            End If
-        End If
     End Sub
 
     Public Sub LoadForm()
@@ -333,7 +321,6 @@ Public Class Main
             Pointer4TextBox.Enabled = False
             SpriteTemplateSettingsGroupBox.Enabled = False
             PaletteInserterButton.Enabled = False
-            ApplySpritePatchButton.Enabled = False
         End If
         UnknownData1TextBox.Text = CurrentPreset.Unknown1
         PalRegistersTextBox.Text = CurrentPreset.PalRegisters
@@ -384,8 +371,6 @@ Public Class Main
             UpdateChecker.RunWorkerAsync()
         End If
         TableBrowserButton.Enabled = False
-        SpritePatcher.Hide()
-        ProcessRecentRoms(RecentRomsMenu, RecentRoms)
     End Sub
 
     Private Sub UpdateCheckerDoWork(sender As Object, e As EventArgs) Handles UpdateChecker.DoWork
@@ -569,11 +554,8 @@ Public Class Main
                 Log.Text += vbCrLf & "     Done!"
                 Log.Text += vbCrLf & "Generating Sprite Frame Data [" + CStr(SpriteFrameDataSize) + " Bytes]..."
                 Dim SpriteFrameData As String = ""
-                'Size Is In Reversed Bytes!
-                'Also Adding A Note Of How Many Frames This Sprite Has Doesn't Interfere With The Game, But It's Still An Experimental Feature.
-                'This Will Help In Accurate And Fast Data Processing!
-                'Until An Alternative Is Found.
-                Dim SpriteFrameDataAdditional As String = SplitString(ToHex(FrameSize, 4), 2)(1) + SplitString(ToHex(FrameSize, 4), 2)(0) + ToHex(NumberOfFrames, 2) + "00"
+                Dim SpriteFrameDataAdditional As String = ToHex(FrameSize, 4) + "0000"
+                SpriteFrameDataAdditional += ToHex(FrameSize, 4) + "00"
                 Dim i As Integer = 1
                 While i <= NumberOfFrames
                     Dim CurrentFrameArtPointer As String = OffsetToPointer(ToHex(ToDecimal(SpriteArtDataOffset) + (i - 1) * FrameSize))
@@ -736,7 +718,7 @@ Public Class Main
         End If
     End Sub
 
-    Private Sub LogChange(sender As Object, e As EventArgs) Handles Log.TextChanged
+    Private Sub LogChange(sender As Object, e As EventArgs)
         Log.SelectionStart = Log.Text.Length
         Log.ScrollToCaret()
     End Sub
@@ -767,22 +749,6 @@ Public Class Main
 
     Private Sub CreateOWSTableButtonClick(sender As Object, e As EventArgs) Handles CreateOWSTableButton.Click
         CreateOWSTable.Show()
-    End Sub
-
-    Private Sub ViewTableButtonClick(sender As Object, e As EventArgs) Handles TableBrowserButton.Click
-        ViewTables.Show()
-    End Sub
-
-    Private Sub SpritePatcherClick(sender As Object, e As EventArgs) Handles SpritePatcher.Click
-        Sprite_Table_Debug.Show()
-    End Sub
-
-    Private Sub ApplySpritePatchButtonClick(sender As Object, e As EventArgs) Handles ApplySpritePatchButton.Click
-        Dim Result As Integer = MessageBox.Show("Do you want to apply sprite patch for Fire Red rom?" & vbCrLf & vbCrLf & "This patch is not mandatory but it allows program to work safely and switfly and accurately. It will be used when Sprite Editing and Browsing is enabled in the program which are currently under construction.", "Apply Sprite Patch?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If Result = DialogResult.Yes Then
-            ApplySpritePatch()
-            MessageBox.Show("Sprite Patch has been applied.", "Sprite Patch Applied!", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        End If
     End Sub
 
 #Region "Validation"
@@ -818,5 +784,9 @@ Public Class Main
         Next
     End Sub
 #End Region
+
+    Private Sub ViewTableButtonClick(sender As Object, e As EventArgs) Handles TableBrowserButton.Click
+        ViewTables.Show()
+    End Sub
 
 End Class

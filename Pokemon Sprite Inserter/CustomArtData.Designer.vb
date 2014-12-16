@@ -69,7 +69,7 @@ Partial Class CustomArtData
         Me.DisableButton.Text = "Disable"
         Me.DisableButton.UseVisualStyleBackColor = True
         '
-        'Form7
+        'CustomArtData
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -78,7 +78,8 @@ Partial Class CustomArtData
         Me.Controls.Add(Me.EnableButton)
         Me.Controls.Add(Me.CustomArtDataGroupBox)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "Form7"
+        Me.Name = "CustomArtData"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pokemon Sprite Inserter - Custom Art Data"
         Me.CustomArtDataGroupBox.ResumeLayout(False)
         Me.ResumeLayout(False)

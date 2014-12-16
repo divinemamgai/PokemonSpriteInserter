@@ -7,6 +7,12 @@
     Public PaletteEditing As Boolean = True
     Public PaletteLabelColor As Color = Color.White
 
+    Public Enum ByteOf
+        Red
+        Blue
+        Green
+    End Enum
+
     Public Sub New(Optional ByVal DefaultGroupBox As GroupBox = Nothing,
                    Optional ByVal DefaultNumberTextBox As TextBox = Nothing,
                    Optional ByVal DefaultHexTextBox As TextBox = Nothing,
@@ -19,11 +25,11 @@
         End If
         If IsNothing(DefaultHexTextBox) = False Then
             PaletteHexDataTextBox = DefaultHexTextBox
+            AddHandler PaletteHexDataTextBox.TextChanged, AddressOf PaletteHexDataTextBoxTextChanged
         End If
         If IsNothing(DefaultPaletteLabelColor) = False Then
             PaletteLabelColor = DefaultPaletteLabelColor
         End If
-        AddHandler PaletteHexDataTextBox.TextChanged, AddressOf PaletteHexDataTextBoxTextChanged
     End Sub
 
     Public Function CheckNull() As Boolean
@@ -38,6 +44,8 @@
         End If
         Return False
     End Function
+
+#Region "Main Functions"
 
     Public Function ConvertDecimalToBinary(ByVal Number As Long, ByVal Length As Integer) As String
         Dim Result As String = ""
@@ -77,9 +85,9 @@
 
     Public Function ConvertColor16(ByVal ColorHex As String) As String
         Dim Result As String = ""
-        Dim Red As String = ConvertDecimalToBinary(Math.Round(ToDecimal(Left(ColorHex, 2)) * 31 / 255), 2)
-        Dim Green As String = ConvertDecimalToBinary(Math.Round(ToDecimal(Right(Left(ColorHex, 4), 2)) * 31 / 255), 2)
-        Dim Blue As String = ConvertDecimalToBinary(Math.Round(ToDecimal(Right(ColorHex, 2)) * 31 / 255), 2)
+        Dim Red As String = ConvertDecimalToBinary(Math.Round(ToDecimal(Left(ColorHex, 2)) * 31 / 255), 5)
+        Dim Green As String = ConvertDecimalToBinary(Math.Round(ToDecimal(Right(Left(ColorHex, 4), 2)) * 31 / 255), 5)
+        Dim Blue As String = ConvertDecimalToBinary(Math.Round(ToDecimal(Right(ColorHex, 2)) * 31 / 255), 5)
         Result = ToHex(ConvertBinaryToDecimal(Blue + Green + Red), 4)
         Result = Right(Result, 2) + Left(Result, 2)
         Return Result
@@ -88,6 +96,25 @@
     Public Function ReturnColor(ByVal ColorValue As String, Optional ByVal Is16 As Boolean = True) As Color
         Return ColorTranslator.FromHtml(If(Is16 = True, "#" & ConvertColorHex(ColorValue), "#" & ColorValue))
     End Function
+
+    Public Function ReturnByte(ByVal ColorValue As String, ByVal ReturnByteOf As Integer, Optional ByVal Is16 As Boolean = True) As Byte
+        Dim TempColor As Color = ColorTranslator.FromHtml(If(Is16 = True, "#" & ConvertColorHex(ColorValue), "#" & ColorValue))
+        Select Case ReturnByteOf
+            Case ByteOf.Red
+                Return Convert.ToByte(TempColor.R, 10)
+            Case ByteOf.Blue
+                Return Convert.ToByte(TempColor.B, 10)
+            Case ByteOf.Green
+                Return Convert.ToByte(TempColor.G, 10)
+            Case Else
+                Return Nothing
+        End Select
+        Return Nothing
+    End Function
+
+#End Region
+
+#Region "Palette Editor"
 
     Public Sub UpdateTempPaletteData(sender As Object, ByVal e As EventArgs)
         If Not IsNothing(PaletteEditorGroupBox) = True Then
@@ -206,7 +233,7 @@
                 Dim PictureBoxElement As New PaletteBox
                 With TextBoxElement
                     .Text = PaletteData.Substring(Count * 4, 4)
-                    .Location = New Point(6 + CountCol * 66, 32 + CountRow * 52)
+                    .Location = New Point(6 + CountCol * 66, 31 + CountRow * 52)
                     .Width = 60
                     .BorderStyle = BorderStyle.None
                     .Font = New Font("Calibri", 9, FontStyle.Bold)
@@ -269,7 +296,7 @@
                 .Enabled = PaletteEditing
             End With
             AddHandler ImportButton.Click, Sub()
-                                               Dim PaletteImportDialog As FileDialog = New SaveFileDialog
+                                               Dim PaletteImportDialog As FileDialog = New OpenFileDialog
                                                PaletteImportDialog.FileName = "Palette_" + PaletteNumberTextBox.Text
                                                PaletteImportDialog.Filter = "PAL Files (*.pal*)|*.pal"
                                                PaletteImportDialog.Title = "Import Palette"
@@ -311,7 +338,7 @@
                                                                        For Each IndividualColor In RGBColor
                                                                            HexColor += ToHex(CInt(IndividualColor), 2)
                                                                        Next
-                                                                       GetPaletteBox(LineCount - 4).BackColor = ReturnColor(HexColor, False)
+                                                                       'GetPaletteBox(LineCount - 4).BackColor = ReturnColor(HexColor, False)
                                                                        GetPaletteTextBox(LineCount - 4).Text = ConvertColor16(HexColor)
                                                                        If (LineCount - 4) = 15 Then
                                                                            CompatibleFileFlag = True
@@ -373,5 +400,7 @@
             PaletteEditorGroupBox.Controls.Add(DisplayIndexCheckBox)
         End If
     End Sub
+
+#End Region
 
 End Class

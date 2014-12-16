@@ -234,6 +234,7 @@ Partial Class PaletteAdder
         Me.Controls.Add(Me.BackButton)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "PaletteAdder"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pokemon Sprite Inserter - Palette"
         Me.PaletteAdderGroupBox.ResumeLayout(False)
         Me.PaletteAdderGroupBox.PerformLayout()

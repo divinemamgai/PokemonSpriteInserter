@@ -18,6 +18,7 @@ Public Class Settings
         Dim PaletteTableEndHex As String
         Dim PaletteTableEmptyDataHex As String
         Dim CheckForUpdateOnStart As Boolean
+        Dim RecentRoms As String
     End Structure
 
     Public RomLock As Boolean = Main.RomLock
@@ -161,6 +162,7 @@ Public Class Settings
             Main.PaletteTableEndHex = SettingsDataVar.PaletteTableEndHex
             Main.PaletteTableEmptyDataHex = SettingsDataVar.PaletteTableEmptyDataHex
             Main.CheckForUpdateOnStart = SettingsDataVar.CheckForUpdateOnStart
+            Main.RecentRoms = SettingsDataVar.RecentRoms
         End If
     End Sub
 
@@ -181,7 +183,8 @@ Public Class Settings
             .MaxPalette = CInt(MaxPaletteTextBox.Text),
             .PaletteTableEndHex = PaletteTableEndTextBox.Text,
             .PaletteTableEmptyDataHex = PaletteTableEmptyDataHexTextBox.Text,
-            .CheckForUpdateOnStart = UpdateCheckBox.Checked
+            .CheckForUpdateOnStart = UpdateCheckBox.Checked,
+            .RecentRoms = Main.RecentRoms
         }
         Dim UpdateFormatter As BinaryFormatter = New BinaryFormatter()
         Try

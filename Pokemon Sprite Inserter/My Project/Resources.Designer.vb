@@ -61,11 +61,48 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to [3A00A0|68BB350800011400]
+        '''[3A0140|A81F360800020900]
+        '''[3A0188|68D2350800011400]
+        '''[3A0228|A83D360800020900]
+        '''[3A0270|68C4350800010C00]
+        '''[3A02D0|68DB350800010C00]
+        '''[3A0330|A8E9350800010900]
+        '''[3A0378|A8F2350800010900]
+        '''[3A03C0|A831360800020600]
+        '''[3A03F0|A84F360800020600]
+        '''[3A0420|A85B360800010900]
+        '''[3A0468|A864360800010A00]
+        '''[3A04C0|0877390800010900]
+        '''[3A0508|28D9360880000900]
+        '''[3A0550|A8DD360880000A00]
+        '''[3A05A0|A8E2360800010900]
+        '''[3A05E8|A8E5360800010A00]
+        '''[3A0638|A8EF360800010A00]
+        '''[3A0688|A803370800010A00]        ''' [rest of string was truncated]&quot;;.
+        '''</summary>
+        Friend ReadOnly Property FireRedPatch() As String
+            Get
+                Return ResourceManager.GetString("FireRedPatch", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property main() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("main", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Transparent() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Transparent", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

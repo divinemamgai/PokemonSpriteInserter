@@ -3,7 +3,7 @@
 Public Class PaletteAdder
 
     Public SearchForOffset As Boolean = True
-    Public PaletteDataSize As Integer = 32
+    Public PaletteDataSize As Integer = Main.PaletteDataSize
     Public PaletteDataOffset As String = ""
     Public PaletteConvertObject As PaletteConvert
 
@@ -29,6 +29,7 @@ Public Class PaletteAdder
 
     Private Sub Form5Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FreeSpaceCheckBox.Checked = True
+        Log.BackColor = Color.White
         Log.Hide()
         Log.BringToFront()
         BackButton.Hide()

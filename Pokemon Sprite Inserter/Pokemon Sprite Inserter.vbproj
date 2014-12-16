@@ -86,6 +86,7 @@
     <Compile Include="FreeSpaceOffsetsDialog.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="OWSTableBrowser.vb" />
     <Compile Include="PaletteBrowser.vb" />
     <Compile Include="PaletteBrowserForm.Designer.vb">
       <DependentUpon>PaletteBrowserForm.vb</DependentUpon>
@@ -100,6 +101,13 @@
     <Compile Include="Settings.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sprite Table Debug.Designer.vb">
+      <DependentUpon>Sprite Table Debug.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sprite Table Debug.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpriteClass.vb" />
     <Compile Include="SpritePresets.Designer.vb">
       <DependentUpon>SpritePresets.vb</DependentUpon>
     </Compile>
@@ -168,6 +176,9 @@
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sprite Table Debug.resx">
+      <DependentUpon>Sprite Table Debug.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SpritePresets.resx">
       <DependentUpon>SpritePresets.vb</DependentUpon>
     </EmbeddedResource>
@@ -210,6 +221,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <None Include="Resources\Patch.txt" />
+    <None Include="Resources\Transparent.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

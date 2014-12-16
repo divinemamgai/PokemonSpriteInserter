@@ -92,24 +92,32 @@ Public Class CreateOWSTable
                                 BackButton.Enabled = True
                                 BackButton.Show()
                             Else
+                                Log.Text += vbCrLf & "   Error Writing To Rom!"
+                                Log.Text += vbCrLf & "Trying Free Up The Writed Empty Table Data..."
+                                If WriteData(OWSTableOffset, NumberOfBytes, Main.FreeSpaceByteValue, 1) = True Then
+                                    Log.Text += vbCrLf & "   Done!"
+                                    Log.Text += vbCrLf & "Successfully Aborted!"
+                                Else
+                                    Log.Text += vbCrLf & "   Error Occurred While Freeing Up Space Too..."
+                                    Log.Text += vbCrLf & "Something Went Terribly Wrong!"
+                                End If
                                 BackButton.Enabled = True
                                 BackButton.Show()
-                                Log.Text += vbCrLf & "   Error Writing To Rom! Aborting..."
                             End If
                         Else
+                            Log.Text += vbCrLf & "   OWS Table List Table Is Full! Aborting..."
                             BackButton.Enabled = True
                             BackButton.Show()
-                            Log.Text += vbCrLf & "   OWS Table List Table Is Full! Aborting..."
                         End If
                     Else
+                        Log.Text += vbCrLf & "   Error Writing To Rom! Aborting..."
                         BackButton.Enabled = True
                         BackButton.Show()
-                        Log.Text += vbCrLf & "   Error Writing To Rom! Aborting..."
                     End If
                 Else
+                    Log.Text += vbCrLf & "   Stopped By User! Aborting..."
                     BackButton.Enabled = True
                     BackButton.Show()
-                    Log.Text += vbCrLf & "   Stopped By User! Aborting..."
                 End If
             End If
         End If
@@ -120,6 +128,7 @@ Public Class CreateOWSTable
         OWSTableEmptyByteTextBox.Tag = Main.OWSTableEmptyDataHex.Substring(0, 2)
         NumberOfSpritesTextBox.Text = Main.OWSTableMaxSprites
         NumberOfSpritesTextBox.Tag = Main.OWSTableMaxSprites
+        Log.BackColor = Color.White
         Log.Enabled = False
         Log.Hide()
         BackButton.Enabled = False

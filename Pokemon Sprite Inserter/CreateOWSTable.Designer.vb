@@ -63,6 +63,7 @@ Partial Class CreateOWSTable
         '
         Me.Log.Location = New System.Drawing.Point(7, 22)
         Me.Log.Name = "Log"
+        Me.Log.ReadOnly = True
         Me.Log.Size = New System.Drawing.Size(465, 118)
         Me.Log.TabIndex = 21
         Me.Log.Text = ""
@@ -187,7 +188,7 @@ Partial Class CreateOWSTable
         Me.BackButton.Text = "Back"
         Me.BackButton.UseVisualStyleBackColor = True
         '
-        'Form8
+        'CreateOWSTable
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -196,7 +197,8 @@ Partial Class CreateOWSTable
         Me.Controls.Add(Me.BackButton)
         Me.Controls.Add(Me.InsertTableButton)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "Form8"
+        Me.Name = "CreateOWSTable"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pokemon Sprite Inserter - Table Creator"
         Me.CreateEmptyOWSTableGroupBox.ResumeLayout(False)
         Me.CreateEmptyOWSTableGroupBox.PerformLayout()
