@@ -12,10 +12,10 @@
     <ROW Property="ARPURLUPDATEINFO" Value="https://github.com/divinemamgai/PokemonSpriteInserter"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="Divya Mamgai"/>
-    <ROW Property="ProductCode" Value="1033:{C96247D3-7303-4D35-8DD8-1C5921F7BA50} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{C4EF3CC8-2F5D-4B47-8294-BE5E9D3AC5A4} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Pokemon Sprite Inserter"/>
-    <ROW Property="ProductVersion" Value="1.2.2" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.3.0" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{D66B7116-9E20-4AB6-8E52-F1085C6640D8}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>

@@ -255,7 +255,7 @@ Public Class Sprite_Table_Debug
         End If
     End Sub
 
-    Private Sub Load_Click(sender As Object, e As EventArgs) Handles Load.Click
+    Private Sub Load_Click(sender As Object, e As EventArgs) Handles LoadButton.Click
         LoadData()
     End Sub
 

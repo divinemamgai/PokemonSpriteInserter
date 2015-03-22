@@ -2,6 +2,7 @@
 Imports System.Text
 Imports System.Windows.Forms
 Imports System.Drawing
+Imports System.Text.RegularExpressions
 
 Public Class PaletteBox
     Inherits PictureBox
@@ -28,16 +29,21 @@ Public Class PaletteBox
 
 End Class
 
-Public Class ScopeBox
-    Inherits PictureBox
+Public Class SpritePanel
+    Inherits Panel
 
     Protected Overrides Sub OnPaint(ByVal pe As PaintEventArgs)
-        ControlPaint.DrawBorder(pe.Graphics, MyBase.DisplayRectangle,
-                                Color.Black, 1, ButtonBorderStyle.Solid,
-                                Color.Black, 1, ButtonBorderStyle.Solid,
-                                Color.Black, 1, ButtonBorderStyle.Solid,
-                                Color.Black, 1, ButtonBorderStyle.Solid)
+        ControlPaint.DrawBorder(pe.Graphics, MyBase.ClientRectangle,
+                                Color.Black, 2, ButtonBorderStyle.Solid,
+                                Color.Black, 2, ButtonBorderStyle.Solid,
+                                Color.Black, 2, ButtonBorderStyle.Solid,
+                                Color.Black, 2, ButtonBorderStyle.Solid)
         MyBase.OnPaint(pe)
+    End Sub
+
+    Protected Overrides Sub OnResize(eventargs As EventArgs)
+        Invalidate()
+        MyBase.OnResize(eventargs)
     End Sub
 
 End Class
@@ -76,9 +82,17 @@ Public Structure SpriteData
     Dim SpriteSize As Size
     Dim SpriteFrameSize As Integer
     Dim SpriteFrameDataOffset As String
+    Dim SpriteFrameCount As Integer
     Dim SpriteArtDataOffset As String
     Dim SpritePreset As Preset
     Dim SpriteValid As Boolean
+End Structure
+
+Public Structure SpriteTable
+    Dim SpriteTableNumber As Integer
+    Dim SpriteTableOffset As String
+    Dim SpriteTableSpriteCount As Integer
+    Dim SpriteTableSpriteArray As SpriteData()
 End Structure
 
 Module FunctionsModule
@@ -93,51 +107,54 @@ Module FunctionsModule
     Public Function ProcessUpdateFile() As Boolean
         Dim NewVersionFlag As Boolean = False
         Dim CurrentVersion As String = My.Computer.FileSystem.ReadAllText(UpdateFilePath, System.Text.Encoding.ASCII)
-        If String.Compare(CurrentVersion, Application.ProductVersion) <> 0 Then
-            CurrentVersions = CurrentVersion.Split(New [Char]() {"."c})
-            Dim ExistVersions() As String = Application.ProductVersion.Split(New [Char]() {"."c})
-            If CurrentVersions(0) > ExistVersions(0) Then
-                NewVersionFlag = True
-            Else
-                If CurrentVersions(1) > ExistVersions(1) Then
+        If CurrentVersion <> "" Then
+            If String.Compare(CurrentVersion, Application.ProductVersion) <> 0 Then
+                CurrentVersions = CurrentVersion.Split(New [Char]() {"."c})
+                Dim ExistVersions() As String = Application.ProductVersion.Split(New [Char]() {"."c})
+                If CurrentVersions(0) > ExistVersions(0) Then
                     NewVersionFlag = True
                 Else
-                    If CurrentVersions(2) > ExistVersions(2) Then
+                    If CurrentVersions(1) > ExistVersions(1) Then
                         NewVersionFlag = True
                     Else
-                        NewVersionFlag = False
+                        If CurrentVersions(2) > ExistVersions(2) Then
+                            NewVersionFlag = True
+                        Else
+                            NewVersionFlag = False
+                        End If
                     End If
                 End If
+            Else
+                MessageBox.Show("You have the latest version of Pokemon Sprite Inserter installed." & vbCrLf & "Have fun hacking the Pokemon Roms!", "Latest Version Found!", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         End If
         Return NewVersionFlag
     End Function
 
-    Public Sub CheckForUpdate()
-        If File.Exists(UpdateFilePath) = True Then
-            If ProcessUpdateFile() = True Then
-                Dim Result As Integer = MessageBox.Show("A new update is available for Pokemon Sprite Inserter!" & vbCrLf & vbCrLf & "Current Version - " + Application.ProductVersion & vbCrLf & "New Version - " + CurrentVersions(0) + "." + CurrentVersions(1) + "." + CurrentVersions(2) + "" & vbCrLf & vbCrLf & "Do you want to download the latest build now?", "New Update To " + CurrentVersions(0), MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-                If Result = DialogResult.Yes Then
-                    Process.Start(UpdateURL)
-                End If
-                Return
-            Else
-                File.Delete(UpdateFilePath)
-            End If
+    Public Sub CheckForUpdate(Optional ByRef CheckForUpdateButton As Button = Nothing)
+        If IsNothing(CheckForUpdateButton) = False Then
+            CheckForUpdateButton.Enabled = False
         End If
         Try
+            If File.Exists(UpdateFilePath) = True Then
+                File.Delete(UpdateFilePath)
+            End If
             My.Computer.Network.DownloadFile(UpdateRequest, UpdateFilePath, False, 500)
             If File.Exists(UpdateFilePath) = True Then
                 If ProcessUpdateFile() = True Then
-                    Dim Result As Integer = MessageBox.Show("A new update is available for Pokemon Sprite Inserter!" & vbCrLf & vbCrLf & "Current Version - " + Application.ProductVersion & vbCrLf & "New Version - " + CurrentVersions(0) + "." + CurrentVersions(1) + "." + CurrentVersions(2) + "" & vbCrLf & vbCrLf & "Do you want to download the latest build now?", "New Update To " + CurrentVersions(0), MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                    Dim Result As Integer = MessageBox.Show("A new update is available for Pokemon Sprite Inserter!" & vbCrLf & vbCrLf & "Current Version - " + Application.ProductVersion & vbCrLf & "New Version - " + CurrentVersions(0) + "." + CurrentVersions(1) + "." + CurrentVersions(2) + "" & vbCrLf & vbCrLf & "Do you want to download the latest build now?", "New Update To " + CurrentVersions(0) + "." + CurrentVersions(1) + "." + CurrentVersions(2), MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                     If Result = DialogResult.Yes Then
                         Process.Start(UpdateURL)
                     End If
                 End If
+                File.Delete(UpdateFilePath)
             End If
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Update Check Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+        If IsNothing(CheckForUpdateButton) = False Then
+            CheckForUpdateButton.Enabled = True
+        End If
     End Sub
 
     Public PaletteBoxIndexDisplayFlag As Boolean = True
@@ -151,12 +168,18 @@ Module FunctionsModule
         Left = 2
     End Enum
 
+    Enum ImportType
+        OnlySprite
+        OnlyPalette
+        BothSpriteAndPalette
+    End Enum
+
     Public Function SplitString(ByVal Input As String, ByVal Fraction As Integer) As String()
         If Input.Length Mod Fraction = 0 Then
             Dim Result(Input.Length / Fraction - 1) As String
             Dim Count As Integer = 0
             For i As Integer = 0 To Input.Length - 1 Step +Fraction
-                Result(Count) += Input.Substring(Count * Fraction, Fraction)
+                Result(Count) = Input.Substring(Count * Fraction, Fraction)
                 Count = Count + 1
             Next
             Return Result
@@ -167,64 +190,84 @@ Module FunctionsModule
     End Function
 
     Public Function RejoinString(ByVal SplittedString As String()) As String
-        Dim Result As String = ""
+        Dim Result As New StringBuilder()
         For i As Integer = 0 To SplittedString.Length - 1
-            Result += SplittedString(i)
+            Result.Append(SplittedString(i))
         Next
-        Return Result
+        Return Result.ToString
     End Function
 
     Public Function ExtendString(ByVal Input As String, ByVal ExtendChar As String, ByVal Length As Integer, Optional ByVal ExtendToType As Integer = ExtendTo.Left) As String
-        Dim Result As String = ""
+        Dim Result As New StringBuilder()
         If Input.Length >= Length Then
             Return Input
         Else
             If ExtendToType = ExtendTo.Right Then
-                Result += Input
+                Result.Append(Input)
             End If
             For Count As Integer = 1 To Length - Input.Length
-                Result += ExtendChar
+                Result.Append(ExtendChar)
             Next
             If ExtendToType = ExtendTo.Left Then
-                Result += Input
+                Result.Append(Input)
             End If
-            Return Result
+            Return Result.ToString
         End If
     End Function
 
-    Public Sub ProcessRecentRoms(ByVal MenuControl As ToolStripMenuItem, ByVal RecentRoms As String)
-        If IsNothing(RecentRoms) = False Then
-            Dim RecentRomsArray() As String = RecentRoms.Split(New [Char]() {"|"c})
-            For Each RecentRom In RecentRomsArray
-                Dim CurrentItem As New ToolStripMenuItem
-                With CurrentItem
-                    .Text = If(RecentRom.Length > 60, RecentRom.Substring(0, 30) + "..." + RecentRom.Substring(RecentRom.LastIndexOf("\"), RecentRom.Length - RecentRom.LastIndexOf("\")), RecentRom)
-                    .Tag = RecentRom
+    Public Sub ProcessRecentRoms(ByVal MenuControl As ToolStripMenuItem, ByRef RecentRoms As String)
+        If (IsNothing(RecentRoms) = False) Then
+            If (RecentRoms.Length <> 0) Then
+                Dim RecentRomsArray() As String = RecentRoms.Split(New [Char]() {"|"c})
+                For Each RecentRom In RecentRomsArray
+                    Dim CurrentItem As New ToolStripMenuItem
+                    With CurrentItem
+                        .Text = If(RecentRom.Length > 60, RecentRom.Substring(0, 30) + "..." + RecentRom.Substring(RecentRom.LastIndexOf("\"), RecentRom.Length - RecentRom.LastIndexOf("\")), RecentRom)
+                        .Tag = RecentRom
+                    End With
+                    AddHandler CurrentItem.Click, Sub(sender As Object, e As EventArgs)
+                                                      Dim MenuItem As ToolStripMenuItem = DirectCast(sender, ToolStripMenuItem)
+                                                      Main.OpenRom(MenuItem.Tag)
+                                                  End Sub
+                    MenuControl.DropDownItems.Add(CurrentItem)
+                Next
+                MenuControl.DropDownItems.Add(New ToolStripSeparator)
+                Dim ClearAll As New ToolStripMenuItem
+                With ClearAll
+                    .Text = "Clear All Recent Roms"
                 End With
-                AddHandler CurrentItem.Click, Sub(sender As Object, e As EventArgs)
-                                                  Dim MenuItem As ToolStripMenuItem = DirectCast(sender, ToolStripMenuItem)
-                                                  Main.OpenRom(MenuItem.Tag)
-                                              End Sub
-                Console.WriteLine(RecentRom + " << ")
-                MenuControl.DropDownItems.Add(CurrentItem)
-            Next
+                AddHandler ClearAll.Click, Sub()
+                                               Main.RecentRoms = ""
+                                               Settings.UpdateSettingsFile()
+                                               MenuControl.DropDownItems.Clear()
+                                           End Sub
+                MenuControl.DropDownItems.Add(ClearAll)
+            End If
         End If
     End Sub
 
     Public Sub AddRecentRom(ByVal CurrentRom As String, ByRef RecentRoms As String)
-        If IsNothing(RecentRoms) = False Then
-            Dim RecentRomsArray() As String = RecentRoms.Split(New [Char]() {"|"c})
-            Dim RecentRomAlreadyAddedFlag As Boolean = False
-            For Each RecentRom In RecentRomsArray
-                If String.Compare(RecentRom, CurrentRom) = 0 Then
-                    RecentRomAlreadyAddedFlag = True
+        Dim IsEmpty As Boolean = False
+        If (IsNothing(RecentRoms) = False) Then
+            If RecentRoms.Length <> 0 Then
+                Dim RecentRomsArray() As String = RecentRoms.Split(New [Char]() {"|"c})
+                Dim RecentRomAlreadyAddedFlag As Boolean = False
+                For Each RecentRom In RecentRomsArray
+                    If String.Compare(RecentRom, CurrentRom) = 0 Then
+                        RecentRomAlreadyAddedFlag = True
+                    End If
+                Next
+                If RecentRomAlreadyAddedFlag = False Then
+                    RecentRoms += "|" + CurrentRom
+                    Settings.UpdateSettingsFile()
                 End If
-            Next
-            If RecentRomAlreadyAddedFlag = False Then
-                RecentRoms += "|" + CurrentRom
-                Settings.UpdateSettingsFile()
+            Else
+                IsEmpty = True
             End If
         Else
+            IsEmpty = True
+        End If
+        If IsEmpty Then
             RecentRoms = CurrentRom
             Settings.UpdateSettingsFile()
         End If
@@ -246,7 +289,7 @@ Module FunctionsModule
     End Function
 
     Public Function OffsetToPointer(ByVal Offset As String, Optional ByVal SafeMode As Boolean = True) As String
-        Dim Pointer As String = ""
+        Dim Pointer As New StringBuilder()
         Dim ExtendedOffset As String = ""
         If SafeMode = True Then
             If Offset.Length <= 6 Then
@@ -258,23 +301,42 @@ Module FunctionsModule
             ExtendedOffset = ExtendString(Offset, "0", 8)
         End If
         For Count As Integer = ExtendedOffset.Length - 1 To 0 Step -2
-            Pointer += ExtendedOffset(Count - 1) & ExtendedOffset(Count)
+            Pointer.Append(ExtendedOffset(Count - 1) & ExtendedOffset(Count))
         Next
-        Pointer += "08"
-        Return Pointer
+        Pointer.Append("08")
+        Return Pointer.ToString
     End Function
 
     Public Function PointerToOffset(ByVal Pointer As String) As String
-        Dim Offset As String = Nothing
+        Dim Offset As New StringBuilder()
         If IsNothing(Pointer) = False Then
             Pointer = Pointer.Substring(0, Pointer.Length - 2)
             For Count As Integer = Pointer.Length - 1 To 0 Step -2
-                Offset += Pointer(Count - 1) & Pointer(Count)
+                Offset.Append(Pointer(Count - 1) & Pointer(Count))
             Next
         Else
             Return Nothing
         End If
-        Return Offset
+        Return Offset.ToString
+    End Function
+
+    Public Function IsPointer(ByVal PossiblePointer As String, Optional ByVal SafeMode As Boolean = True) As Boolean
+        If IsNothing(PossiblePointer) = False Then
+            If (PossiblePointer.Length = 8) And (SafeMode = True) Then
+                If String.Compare(PossiblePointer.Substring(6, 2), "08") = 0 Then
+                    Return True
+                Else
+                    Return False
+                End If
+            Else
+                If String.Compare(PossiblePointer.Substring(PossiblePointer.Length - 2), 2) = 0 Then
+                    Return True
+                Else
+                    Return False
+                End If
+            End If
+        End If
+        Return Nothing
     End Function
 
     Public Function ValidateRom() As Boolean
@@ -285,18 +347,28 @@ Module FunctionsModule
         End If
     End Function
 
-    Public Function ReadData(ByVal FromOffset As String, ByVal NumberOfBytes As Integer) As String
-        Dim Data As String = ""
+    Public Function ReadData(ByVal FromOffset As String, ByVal NumberOfBytes As Integer, Optional ByVal FileLocation As String = "") As String
+        Dim Data As New StringBuilder()
         Dim Buffer(NumberOfBytes - 1) As Byte
         Dim RomFileReadStream As FileStream
-        RomFileReadStream = File.OpenRead(Main.RomFilePath)
-        RomFileReadStream.Seek(ToDecimal(FromOffset), SeekOrigin.Begin)
-        RomFileReadStream.Read(Buffer, 0, NumberOfBytes)
-        For x As Integer = 0 To Buffer.Length - 1
-            Data += Buffer(x).ToString("X2")
-        Next
-        RomFileReadStream.Close()
-        ReadData = Data
+        Try
+            If FileLocation <> "" Then
+                RomFileReadStream = File.OpenRead(FileLocation)
+            Else
+                RomFileReadStream = File.OpenRead(Main.RomFilePath)
+            End If
+            RomFileReadStream.Seek(ToDecimal(FromOffset), SeekOrigin.Begin)
+            RomFileReadStream.Read(Buffer, 0, NumberOfBytes)
+            For x As Integer = 0 To Buffer.Length - 1
+                Data.Append(Buffer(x).ToString("X2"))
+            Next
+            RomFileReadStream.Close()
+            Return Data.ToString
+        Catch ex As Exception
+            MessageBox.Show("Error occurred while reading from the file. More detailed information is provided below." & vbCrLf & vbCrLf & ex.Message, "Error While Reading!",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        Return Nothing
     End Function
 
     Public Function WriteData(ByVal AtOffset As String,
@@ -326,7 +398,7 @@ WriteDataTry:
             Return True
         Catch ex As Exception
             Main.Log.Text += vbCrLf & "Rom File Is In Use! Prompting User To Try Again..."
-            Dim DialogBoxResult As Integer = MessageBox.Show("The Rom File Is In Use. Please Close Any Program Using The File And Click Retry To Try Again." & vbCrLf & "[Exception.Message : " + ex.Message + "]", "Error!", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation)
+            Dim DialogBoxResult As Integer = MessageBox.Show("The rom file is in use. Please close any program using the file and click retry to try again." & vbCrLf & "[Exception.Message : " + ex.Message + "]", "Error!", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation)
             If DialogBoxResult = DialogResult.Retry Then
                 Main.Log.Text += vbCrLf & "Trying Again To Write Data..."
                 GoTo WriteDataTry
@@ -415,6 +487,17 @@ WriteDataTry:
         Return PaletteDataArray
     End Function
 
+    Public Function GetPaletteOfNumber(ByVal PaletteDataArray() As PaletteData, ByVal Number As Integer) As PaletteData
+        If (IsNothing(PaletteDataArray) = False) And (IsNothing(Number) = False) Then
+            For Each PaletteDataElement In PaletteDataArray
+                If PaletteDataElement.PaletteNumber = Number Then
+                    Return PaletteDataElement
+                End If
+            Next
+        End If
+        Return Nothing
+    End Function
+
     Public Function CheckPaletteNumberAvailability(ByVal PaletteNumber As Integer, ByVal PaletteTableOffset As String, ByVal PaletteTableEndHex As String, ByVal MaxPalette As Integer)
         For Each PaletteData In GetPalettes(PaletteTableOffset, PaletteTableEndHex, MaxPalette, False)
             If PaletteData.PaletteNumber = PaletteNumber Then
@@ -425,13 +508,14 @@ WriteDataTry:
     End Function
 
     Public Function GetSprites(ByVal OWSTableOffset As String, ByVal OWSTableEmptyHex As String, ByVal OWSTableMaxSprites As Integer,
-                               ByVal MaxSpriteFrameCount As Integer, Optional ByVal Warning As Boolean = True) As SpriteData()
+                               Optional ByVal Warning As Boolean = True, Optional ByVal NeedCountOnly As Boolean = False) As SpriteData()
         Dim SpriteDataArray() As SpriteData = Nothing
         Dim SpriteCount As Integer = 0
         Dim OWSTableEndFlag As Boolean = False
         Dim OWSTableDataSize As Integer = 4
         Dim SpriteHeaderDataSize As Integer = 36
         Dim SpriteFrameDataSize As Integer = 8
+        Dim SpriteHeaderCheckRegex As String = "FFFF([0-9a-fA-F]{2})11([0-9a-fA-F]+)$"
         Dim CurrentOWSTableData As String = ""
         Dim CurrentSpriteData As String = ""
         Dim CurrentFrameDataEndFlag As Boolean = False
@@ -448,49 +532,68 @@ WriteDataTry:
                     OWSTableEndFlag = True
                     Exit While
                 Else
-                    ReDim Preserve SpriteDataArray(SpriteCount)
-                    Try
-                        SpriteDataArray(SpriteCount).SpriteTableOffset = ToHex(ToDecimal(OWSTableOffset) + OWSTableDataSize * SpriteCount)
-                        SpriteDataArray(SpriteCount).SpriteHeaderOffset = PointerToOffset(CurrentOWSTableData)
-                        CurrentSpriteData = ReadData(SpriteDataArray(SpriteCount).SpriteHeaderOffset, SpriteHeaderDataSize)
-                        CurrentSpriteDataCount = 1
-                        For Each SpriteHeaderElement In SplitString(CurrentSpriteData, 8)
-                            Select Case CurrentSpriteDataCount
-                                Case 1
-                                    'SpriteDataArray(SpriteCount).SpritePreset.StarterByte = SplitString(SpriteHeaderElement, 4)(0)
-                                    SpriteDataArray(SpriteCount).SpritePreset.StarterByte = "FFFF"
-                                    'Eg. : FF FF 06 11 => 06 [Palette Number]
-                                    SpriteDataArray(SpriteCount).SpritePalette = ToDecimal(SplitString(SpriteHeaderElement, 2)(2))
-                                    'SpriteDataArray(SpriteCount).SpritePreset.StarterByte = SplitString(SpriteHeaderElement, 2)(3)
-                                    SpriteDataArray(SpriteCount).SpritePreset.UnknownFunction1 = "11"
-                                Case 2
-                                    SpriteDataArray(SpriteCount).SpritePreset.Unknown1 = SpriteHeaderElement
-                                Case 3
-                                    'Eg. : 10 00 20 00 => 10 x 20 => 16 x 32 [Sprite Size]
-                                    SpriteDataArray(SpriteCount).SpriteSize.Width = ToDecimal(SplitString(SpriteHeaderElement, 2)(1) + SplitString(SpriteHeaderElement, 2)(0))
-                                    SpriteDataArray(SpriteCount).SpriteSize.Height = ToDecimal(SplitString(SpriteHeaderElement, 2)(3) + SplitString(SpriteHeaderElement, 2)(2))
-                                    SpriteDataArray(SpriteCount).SpriteFrameSize = (SpriteDataArray(SpriteCount).SpriteSize.Width * SpriteDataArray(SpriteCount).SpriteSize.Height / 2)
-                                Case 4
-                                    SpriteDataArray(SpriteCount).SpritePreset.PalRegisters = SpriteHeaderElement
-                                Case 5
-                                    SpriteDataArray(SpriteCount).SpritePreset.Pointer1 = SpriteHeaderElement
-                                Case 6
-                                    SpriteDataArray(SpriteCount).SpritePreset.Pointer2 = SpriteHeaderElement
-                                Case 7
-                                    SpriteDataArray(SpriteCount).SpritePreset.AnimPointer = SpriteHeaderElement
-                                Case 8
-                                    SpriteDataArray(SpriteCount).SpriteFrameDataOffset = PointerToOffset(SpriteHeaderElement)
-                                Case 9
-                                    SpriteDataArray(SpriteCount).SpritePreset.Pointer4 = SpriteHeaderElement
-                            End Select
-                            CurrentSpriteDataCount = CurrentSpriteDataCount + 1
-                        Next
-                        CurrentSpriteData = ReadData(SpriteDataArray(SpriteCount).SpriteFrameDataOffset, SpriteFrameDataSize)
-                        SpriteDataArray(SpriteCount).SpriteArtDataOffset = PointerToOffset(CurrentSpriteData.Substring(0, 8))
-                    Catch ex As Exception
-                        MessageBox.Show(ex.Message, "Error Occured!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    End Try
-                    SpriteCount = SpriteCount + 1
+                    If IsPointer(CurrentOWSTableData) Then
+                        Try
+                            CurrentSpriteData = ReadData(PointerToOffset(CurrentOWSTableData), SpriteHeaderDataSize)
+                            If Regex.IsMatch(CurrentSpriteData, SpriteHeaderCheckRegex) = True Then
+                                ReDim Preserve SpriteDataArray(SpriteCount)
+                                If NeedCountOnly = True Then
+                                    SpriteDataArray(SpriteCount).SpriteIndex = SpriteCount
+                                Else
+                                    SpriteDataArray(SpriteCount).SpriteIndex = SpriteCount
+                                    SpriteDataArray(SpriteCount).SpriteTableOffset = ToHex(ToDecimal(OWSTableOffset) + OWSTableDataSize * SpriteCount)
+                                    SpriteDataArray(SpriteCount).SpriteHeaderOffset = PointerToOffset(CurrentOWSTableData)
+                                    CurrentSpriteDataCount = 1
+                                    For Each SpriteHeaderElement In SplitString(CurrentSpriteData, 8)
+                                        Select Case CurrentSpriteDataCount
+                                            Case 1
+                                                'SpriteDataArray(SpriteCount).SpritePreset.StarterByte = SplitString(SpriteHeaderElement, 4)(0)
+                                                SpriteDataArray(SpriteCount).SpritePreset.StarterByte = "FFFF"
+                                                'Eg. : FF FF 06 11 => 06 [Palette Number]
+                                                SpriteDataArray(SpriteCount).SpritePalette = ToDecimal(SplitString(SpriteHeaderElement, 2)(2))
+                                                'SpriteDataArray(SpriteCount).SpritePreset.StarterByte = SplitString(SpriteHeaderElement, 2)(3)
+                                                SpriteDataArray(SpriteCount).SpritePreset.UnknownFunction1 = "11"
+                                            Case 2
+                                                SpriteDataArray(SpriteCount).SpritePreset.Unknown1 = SpriteHeaderElement
+                                            Case 3
+                                                'Eg. : 10 00 20 00 => 10 x 20 => 16 x 32 [Sprite Size]
+                                                SpriteDataArray(SpriteCount).SpriteSize.Width = ToDecimal(SplitString(SpriteHeaderElement, 2)(1) + SplitString(SpriteHeaderElement, 2)(0))
+                                                SpriteDataArray(SpriteCount).SpriteSize.Height = ToDecimal(SplitString(SpriteHeaderElement, 2)(3) + SplitString(SpriteHeaderElement, 2)(2))
+                                                SpriteDataArray(SpriteCount).SpriteFrameSize = (SpriteDataArray(SpriteCount).SpriteSize.Width * SpriteDataArray(SpriteCount).SpriteSize.Height / 2)
+                                            Case 4
+                                                SpriteDataArray(SpriteCount).SpritePreset.PalRegisters = SpriteHeaderElement
+                                            Case 5
+                                                SpriteDataArray(SpriteCount).SpritePreset.Pointer1 = SpriteHeaderElement
+                                            Case 6
+                                                SpriteDataArray(SpriteCount).SpritePreset.Pointer2 = SpriteHeaderElement
+                                            Case 7
+                                                SpriteDataArray(SpriteCount).SpritePreset.AnimPointer = SpriteHeaderElement
+                                            Case 8
+                                                SpriteDataArray(SpriteCount).SpriteFrameDataOffset = PointerToOffset(SpriteHeaderElement)
+                                            Case 9
+                                                SpriteDataArray(SpriteCount).SpritePreset.Pointer4 = SpriteHeaderElement
+                                        End Select
+                                        CurrentSpriteDataCount = CurrentSpriteDataCount + 1
+                                    Next
+                                    CurrentSpriteData = ReadData(SpriteDataArray(SpriteCount).SpriteFrameDataOffset, SpriteFrameDataSize)
+                                    SpriteDataArray(SpriteCount).SpriteArtDataOffset = PointerToOffset(CurrentSpriteData.Substring(0, 8))
+                                    SpriteDataArray(SpriteCount).SpriteFrameCount = If(String.Compare(CurrentSpriteData.Substring(12, 2), "00") = 0, -1,
+                                                                                       ToDecimal(CurrentSpriteData.Substring(12, 2)))
+                                    If SpriteDataArray(SpriteCount).SpriteFrameCount = -1 Then
+                                        SpriteDataArray(SpriteCount).SpriteValid = False
+                                    Else
+                                        SpriteDataArray(SpriteCount).SpriteValid = True
+                                    End If
+                                End If
+                            End If
+                        Catch ex As Exception
+                            MessageBox.Show(ex.Message, "Error Occured!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End Try
+                        SpriteCount = SpriteCount + 1
+                    Else
+                        OWSTableEndFlag = True
+                        Exit While
+                    End If
                 End If
             Else
                 OWSTableEndFlag = True
@@ -500,31 +603,172 @@ WriteDataTry:
         Return SpriteDataArray
     End Function
 
+    Public Function GetSpriteTableOffset(ByVal OWSTableListOffset As String, ByVal OWSTableListEmptyHex As String, ByVal OWSTableNumber As Integer) As String
+        If (IsNothing(OWSTableListOffset) = False) And (IsNothing(OWSTableNumber) = False) Then
+            If OWSTableNumber <> 0 Then
+                Dim OWSTableListTableEndFlag As Boolean = False
+                Dim OWSTableFoundFlag As Boolean = False
+                Dim CurrentData As String = ""
+                Dim OWSTableListTableCount As Integer = 0
+                While OWSTableListTableEndFlag = False
+                    CurrentData = ReadData(ToHex(ToDecimal(OWSTableListOffset) + OWSTableListTableCount * 4), 4)
+                    If String.Compare(CurrentData, OWSTableListEmptyHex) = 0 Then
+                        OWSTableListTableEndFlag = True
+                        OWSTableFoundFlag = False
+                        Exit While
+                    Else
+                        If OWSTableListTableCount = OWSTableNumber - 1 Then
+                            OWSTableListTableEndFlag = True
+                            OWSTableFoundFlag = True
+                            Exit While
+                        Else
+                            OWSTableListTableEndFlag = False
+                            OWSTableFoundFlag = False
+                            OWSTableListTableCount = OWSTableListTableCount + 1
+                        End If
+                    End If
+                End While
+                If OWSTableFoundFlag = True Then
+                    Return PointerToOffset(CurrentData)
+                Else
+                    Return Nothing
+                End If
+            Else
+                Return Nothing
+            End If
+        End If
+        Return Nothing
+    End Function
+
+    Public Function GetSpriteTables(ByVal OWSTableListOffset As String, ByVal OWSTableListEmptyHex As String,
+                                    ByVal OWSTableEmptyHex As String, ByVal OWSTableMaxSprites As Integer) As SpriteTable()
+        Dim SpriteTableArray As SpriteTable() = Nothing
+        Dim SpriteTableCount As Integer = 1
+        Dim SpriteTableOffset As String = GetSpriteTableOffset(OWSTableListOffset, OWSTableListEmptyHex, SpriteTableCount)
+        While IsNothing(SpriteTableOffset) = False
+            ReDim Preserve SpriteTableArray(SpriteTableCount - 1)
+            SpriteTableArray(SpriteTableCount - 1).SpriteTableNumber = SpriteTableCount
+            SpriteTableArray(SpriteTableCount - 1).SpriteTableOffset = SpriteTableOffset
+            SpriteTableArray(SpriteTableCount - 1).SpriteTableSpriteArray = GetSprites(SpriteTableOffset, OWSTableEmptyHex, OWSTableMaxSprites, False)
+            SpriteTableArray(SpriteTableCount - 1).SpriteTableSpriteCount = If(IsNothing(SpriteTableArray(SpriteTableCount - 1).SpriteTableSpriteArray) = False,
+                                                                               SpriteTableArray(SpriteTableCount - 1).SpriteTableSpriteArray.Length, 0)
+            SpriteTableCount = SpriteTableCount + 1
+            SpriteTableOffset = GetSpriteTableOffset(OWSTableListOffset, OWSTableListEmptyHex, SpriteTableCount)
+        End While
+        Return SpriteTableArray
+    End Function
+
     Public Sub ApplySpritePatch()
-        Dim Log As String = ""
+        'Dim Log As New StringBuilder()
         Dim PatchDataArray() As String = My.Resources.FireRedPatch.Split(New String() {vbCrLf}, StringSplitOptions.None)
         Dim PatchCount As Integer = 0
         For Each PatchData In PatchDataArray
             PatchCount = PatchCount + 1
-            Log += "Patch #" + CStr(PatchCount) + " : "
+            'Log.Append("Patch #" + CStr(PatchCount) + " : ")
             PatchData = PatchData.Replace("[", "")
             PatchData = PatchData.Replace("]", "")
             Dim Patch() As String = PatchData.Split("|")
             If Patch.Length = 2 Then
                 If Patch(0).Length = 6 And Patch(1).Length = 16 Then
                     If WriteData(Patch(0), 8, Patch(1)) = True Then
-                        Log += "Patch Applied!" & vbCrLf
+                        'Log.Append("Patch Applied!" & vbCrLf)
                     Else
-                        Log += "Patch Cannot Be Applied; Rom File Not Writable." & vbCrLf
+                        'Log.Append("Patch Cannot Be Applied; Rom File Not Writable." & vbCrLf)
                     End If
                 Else
-                    Log += "Not Valid Patch Format." & vbCrLf
+                    'Log.Append("Not Valid Patch Format." & vbCrLf)
                 End If
             Else
-                Log += "Not Valid Patch Format." & vbCrLf
+                'Log.Append("Not Valid Patch Format." & vbCrLf)
             End If
         Next
     End Sub
+
+    Public Function ProcessSpriteData(ByVal SpriteData As String) As String
+        Dim SpriteDataArray() As String = SplitString(SpriteData, 2)
+        For i As Integer = 0 To SpriteDataArray.Length - 1
+            SpriteDataArray(i) = SpriteDataArray(i)(1) + SpriteDataArray(i)(0)
+        Next
+        Return RejoinString(SpriteDataArray)
+    End Function
+
+    Public Function ProcessBitmapData(ByVal BitmapRawData As String) As String
+        Dim BitmapProcessedData As New StringBuilder()
+        If BitmapRawData.Length Mod 2 <> 0 Then
+            BitmapRawData = ExtendString(BitmapRawData, "0", BitmapRawData.Length + 1)
+        End If
+        Dim BitmapRawDataArray() As String = SplitString(BitmapRawData, 2)
+        For Count As Integer = BitmapRawDataArray.Length - 1 To 0 Step -1
+            BitmapProcessedData.Append(BitmapRawDataArray(Count))
+        Next
+        Return BitmapProcessedData.ToString
+    End Function
+
+    Public Function ExportBitmap(ByVal SpriteImageData As String, ByVal SpritePaletteData As String, ByVal SpriteSize As Size, ByVal FileLocation As String) As Boolean
+        Dim BitmapData As New StringBuilder()
+        BitmapData.Append("424D76070000000000007600000028000000")
+        BitmapData.Append(ProcessBitmapData(ToHex(SpriteSize.Width, 8)))
+        BitmapData.Append(ProcessBitmapData(ToHex(SpriteSize.Height, 8)))
+        BitmapData.Append("01000400000000008007000000000000000000001000000000000000")
+        Dim SpritePaletteDataArray() As String = SplitString(SpritePaletteData, 4)
+        If SpritePaletteDataArray.Length <> 16 Then
+            Return False
+        End If
+        Dim PaletteConvertObject As New PaletteConvert
+        For SpritePaletteDataCount As Integer = 0 To 15
+            BitmapData.Append(ProcessBitmapData("00" & PaletteConvertObject.ConvertColorHex(SpritePaletteDataArray(SpritePaletteDataCount))))
+        Next
+        Erase SpritePaletteDataArray
+        Dim SpriteDataArray(SpriteSize.Height)() As String
+        Dim BlockSize As New Size(8, 8)
+        Dim BlockColCount As Integer = SpriteSize.Width / BlockSize.Width
+        Dim BlockRowCount As Integer = SpriteSize.Height / BlockSize.Height
+        Dim SpriteDataCount As Integer = 0
+        For BlockRow As Integer = 1 To BlockRowCount
+            For BlockCol As Integer = 1 To BlockColCount
+                For Y As Integer = 0 To BlockSize.Height - 1
+                    For X As Integer = 0 To BlockSize.Width - 1
+                        Dim CurrentPixelLocation As Point = New Point((BlockCol - 1) * BlockSize.Width + X, (BlockRow - 1) * BlockSize.Height + Y)
+                        ReDim Preserve SpriteDataArray(CurrentPixelLocation.Y)(CurrentPixelLocation.X)
+                        SpriteDataArray(CurrentPixelLocation.Y)(CurrentPixelLocation.X) = SpriteImageData(SpriteDataCount)
+                        SpriteDataCount = SpriteDataCount + 1
+                    Next
+                Next
+            Next
+        Next
+        For SpriteImageDataLineCount As Integer = SpriteSize.Height - 1 To 0 Step -1
+            For SpriteImageDataPointCount As Integer = 0 To SpriteSize.Width - 1
+                BitmapData.Append(SpriteDataArray(SpriteImageDataLineCount)(SpriteImageDataPointCount))
+            Next
+        Next
+        Erase SpriteDataArray
+        BitmapData.Append("0000")
+        Dim BitmapFileWriteStream As FileStream
+WriteDataTry:
+        Try
+            BitmapFileWriteStream = File.OpenWrite(FileLocation)
+            Dim WriteBuffer As Byte()
+            Dim NumberOfBytes As Integer = BitmapData.Length / 2
+            WriteBuffer = New Byte(NumberOfBytes - 1) {}
+            Dim i As Integer = 0
+            Dim k As Integer = 0
+            While i < NumberOfBytes
+                WriteBuffer(i) = Convert.ToByte((BitmapData(k) & BitmapData(k + 1)), 16)
+                k = k + 2
+                i = i + 1
+            End While
+            BitmapFileWriteStream.Seek(0, SeekOrigin.Begin)
+            BitmapFileWriteStream.Write(WriteBuffer, 0, NumberOfBytes)
+            BitmapFileWriteStream.Close()
+            Return True
+        Catch ex As Exception
+            Dim DialogBoxResult As Integer = MessageBox.Show("The bitmap file is in use. Please close any program using the file and click retry to try again. Or see the message below for more details." & vbCrLf & "[Exception.Message : " + ex.Message + "]", "Error!", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation)
+            If DialogBoxResult = DialogResult.Retry Then
+                GoTo WriteDataTry
+            End If
+        End Try
+        Return False
+    End Function
 
 #Region "Validators"
 

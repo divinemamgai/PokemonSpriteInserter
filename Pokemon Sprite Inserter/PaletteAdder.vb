@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Text
 
 Public Class PaletteAdder
 
@@ -27,7 +28,7 @@ Public Class PaletteAdder
         End If
     End Sub
 
-    Private Sub Form5Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub PaletteAdderLoad(sender As Object, e As EventArgs) Handles MyBase.Load
         FreeSpaceCheckBox.Checked = True
         Log.BackColor = Color.White
         Log.Hide()
@@ -38,7 +39,8 @@ Public Class PaletteAdder
         FreeSpaceStartTextBox.MaxLength = 6
         PaletteHexDataTextBox.AutoSize = False
         PaletteHexDataTextBox.Height = 20
-        PaletteConvertObject = New PaletteConvert(PaletteEditorGroupBox,
+        PaletteConvertObject = New PaletteConvert(PaletteConvert.PaletteConvertType.Full,
+                                                  PaletteEditorGroupBox,
                                                   PaletteNumberTextBox,
                                                   PaletteHexDataTextBox,
                                                   Control.DefaultBackColor)
@@ -150,13 +152,14 @@ Public Class PaletteAdder
                                 Dim PaletteOffset As String = ToHex(ToDecimal(Main.PaletteTableOffset) + NumberOfPalettes * 8)
                                 Log.Text += vbCrLf & "     Found At Offset => 0x" + PaletteOffset
                                 Log.Text += vbCrLf & "Generating Palette Header Data..."
-                                Dim PaletteData As String = OffsetToPointer(PaletteDataOffset)
-                                PaletteData += ToHex(CInt(PaletteNumberTextBox.Text), 2)
-                                PaletteData += "110000"
-                                PaletteData += Main.PaletteTableEndHex
+                                Dim PaletteData As New StringBuilder()
+                                PaletteData.Append(OffsetToPointer(PaletteDataOffset))
+                                PaletteData.Append(ToHex(CInt(PaletteNumberTextBox.Text), 2))
+                                PaletteData.Append("110000")
+                                PaletteData.Append(Main.PaletteTableEndHex)
                                 Log.Text += vbCrLf & "     Done..."
                                 Log.Text += vbCrLf & "Writing Data [" + CStr(PaletteData.Length / 2) + " Bytes]..."
-                                If WriteData(PaletteOffset, PaletteData.Length / 2, PaletteData) = True Then
+                                If WriteData(PaletteOffset, PaletteData.Length / 2, PaletteData.ToString) = True Then
                                     Log.Text += vbCrLf & "     Done!"
                                     Log.Text += vbCrLf & "Everything Completed Successfully!"
                                     BackButton.Enabled = True

@@ -682,7 +682,8 @@
                 LogBackButton.Hide()
                 UpdatePaletteTable()
                 PaletteViewGroupBox.Enabled = True
-                PaletteConvertObject = New PaletteConvert(PaletteEditorGroupBox,
+                PaletteConvertObject = New PaletteConvert(PaletteConvert.PaletteConvertType.Full,
+                                                          PaletteEditorGroupBox,
                                                           PaletteNumberTextBox,
                                                           PaletteHexDataTextBox,
                                                           PaletteLabelColor)

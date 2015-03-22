@@ -294,7 +294,7 @@ Public Class Settings
     End Sub
 
     Private Sub CheckForUpdateButtonClick(sender As Object, e As EventArgs) Handles CheckForUpdateButton.Click
-        CheckForUpdate()
+        CheckForUpdate(DirectCast(sender, Button))
     End Sub
 
 #Region "Validation"

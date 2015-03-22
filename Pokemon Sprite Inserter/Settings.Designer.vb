@@ -108,6 +108,7 @@ Partial Class Settings
         Me.UpdateCheckBox.Size = New System.Drawing.Size(171, 19)
         Me.UpdateCheckBox.TabIndex = 30
         Me.UpdateCheckBox.Text = "Check For Update On Start"
+        Me.UpdateCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.UpdateCheckBox.UseVisualStyleBackColor = True
         '
         'PaletteTableEmptyDataHexTextBox

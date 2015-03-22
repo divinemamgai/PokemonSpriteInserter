@@ -37,7 +37,7 @@ Partial Class ViewTables
         Me.TableTabControl.Location = New System.Drawing.Point(13, 13)
         Me.TableTabControl.Name = "TableTabControl"
         Me.TableTabControl.SelectedIndex = 0
-        Me.TableTabControl.Size = New System.Drawing.Size(586, 540)
+        Me.TableTabControl.Size = New System.Drawing.Size(586, 570)
         Me.TableTabControl.TabIndex = 0
         '
         'OWSTablePage
@@ -45,7 +45,7 @@ Partial Class ViewTables
         Me.OWSTablePage.Location = New System.Drawing.Point(4, 24)
         Me.OWSTablePage.Name = "OWSTablePage"
         Me.OWSTablePage.Padding = New System.Windows.Forms.Padding(3)
-        Me.OWSTablePage.Size = New System.Drawing.Size(578, 512)
+        Me.OWSTablePage.Size = New System.Drawing.Size(578, 542)
         Me.OWSTablePage.TabIndex = 0
         Me.OWSTablePage.Text = "OWS Table Browser"
         Me.OWSTablePage.UseVisualStyleBackColor = True
@@ -55,7 +55,7 @@ Partial Class ViewTables
         Me.PaletteTablePage.Location = New System.Drawing.Point(4, 24)
         Me.PaletteTablePage.Name = "PaletteTablePage"
         Me.PaletteTablePage.Padding = New System.Windows.Forms.Padding(3)
-        Me.PaletteTablePage.Size = New System.Drawing.Size(578, 512)
+        Me.PaletteTablePage.Size = New System.Drawing.Size(578, 542)
         Me.PaletteTablePage.TabIndex = 1
         Me.PaletteTablePage.Text = "Palette Table Browser"
         Me.PaletteTablePage.UseVisualStyleBackColor = True
@@ -64,9 +64,10 @@ Partial Class ViewTables
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(611, 565)
+        Me.ClientSize = New System.Drawing.Size(611, 595)
         Me.Controls.Add(Me.TableTabControl)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.KeyPreview = True
         Me.Name = "ViewTables"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pokemon Sprite Inserter - View Tables"

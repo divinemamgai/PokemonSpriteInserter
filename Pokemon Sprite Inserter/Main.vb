@@ -264,7 +264,6 @@ Public Class Main
     End Sub
 
     Public Sub OpenRom(ByVal FilePath As String)
-        RomFile.FileName = FilePath
         RomFilePath = FilePath
         FilePathTextBox.Text = RomFilePath
         If RomLock Then

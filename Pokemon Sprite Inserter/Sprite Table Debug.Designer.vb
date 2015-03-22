@@ -24,7 +24,7 @@ Partial Class Sprite_Table_Debug
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Sprite_Table_Debug))
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.Load = New System.Windows.Forms.Button()
+        Me.LoadButton = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
@@ -51,15 +51,15 @@ Partial Class Sprite_Table_Debug
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1198, 452)
         Me.FlowLayoutPanel1.TabIndex = 0
         '
-        'Load
+        'LoadButton
         '
-        Me.Load.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Load.Location = New System.Drawing.Point(1126, 21)
-        Me.Load.Name = "Load"
-        Me.Load.Size = New System.Drawing.Size(87, 27)
-        Me.Load.TabIndex = 1
-        Me.Load.Text = "Load"
-        Me.Load.UseVisualStyleBackColor = True
+        Me.LoadButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LoadButton.Location = New System.Drawing.Point(1126, 21)
+        Me.LoadButton.Name = "LoadButton"
+        Me.LoadButton.Size = New System.Drawing.Size(87, 27)
+        Me.LoadButton.TabIndex = 1
+        Me.LoadButton.Text = "Load"
+        Me.LoadButton.UseVisualStyleBackColor = True
         '
         'TextBox1
         '
@@ -174,7 +174,7 @@ Partial Class Sprite_Table_Debug
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Load)
+        Me.Controls.Add(Me.LoadButton)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -187,7 +187,7 @@ Partial Class Sprite_Table_Debug
 
     End Sub
     Friend WithEvents FlowLayoutPanel1 As System.Windows.Forms.FlowLayoutPanel
-    Friend WithEvents Load As System.Windows.Forms.Button
+    Friend WithEvents LoadButton As System.Windows.Forms.Button
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
