@@ -50,4 +50,10 @@
 				c. Implementing Fail-Safe Sprite Frame Count Patcher For - Pokemon Fire Red Rom
 				d. Added Recent Roms Functionality
 				e. Some Minor UI Changes
+16/12/2014 : 1. Build 1.3.0
+				a. Major Update!
+				b. Fixed some bugs.
+				c. Added complete sprite browser!
+				d. Added ability to edit sprites!
+				NOTE: Don't use Sprite Browser without applying the sprite patch!
 +-------------------------------------------------------------------------------------------------------------+
