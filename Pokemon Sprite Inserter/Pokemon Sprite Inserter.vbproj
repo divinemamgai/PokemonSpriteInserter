@@ -81,6 +81,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Export.Designer.vb">
+      <DependentUpon>Export.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Export.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HowToUseSpritePatcher.Designer.vb">
+      <DependentUpon>HowToUseSpritePatcher.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HowToUseSpritePatcher.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ImportSprite.Designer.vb">
       <DependentUpon>ImportSprite.vb</DependentUpon>
     </Compile>
@@ -115,10 +127,10 @@
     <Compile Include="Settings.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sprite Table Debug.Designer.vb">
-      <DependentUpon>Sprite Table Debug.vb</DependentUpon>
+    <Compile Include="SpriteTableDebug.Designer.vb">
+      <DependentUpon>SpriteTableDebug.vb</DependentUpon>
     </Compile>
-    <Compile Include="Sprite Table Debug.vb">
+    <Compile Include="SpriteTableDebug.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SpriteClass.vb" />
@@ -178,6 +190,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Export.resx">
+      <DependentUpon>Export.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HowToUseSpritePatcher.resx">
+      <DependentUpon>HowToUseSpritePatcher.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImportSprite.resx">
       <DependentUpon>ImportSprite.vb</DependentUpon>
     </EmbeddedResource>
@@ -193,8 +211,8 @@
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sprite Table Debug.resx">
-      <DependentUpon>Sprite Table Debug.vb</DependentUpon>
+    <EmbeddedResource Include="SpriteTableDebug.resx">
+      <DependentUpon>SpriteTableDebug.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SpritePresets.resx">
       <DependentUpon>SpritePresets.vb</DependentUpon>

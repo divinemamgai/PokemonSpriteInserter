@@ -279,6 +279,7 @@ Public Class Main
                 RomFileLoaded = True
                 PaletteInserterButton.Enabled = True
                 TableBrowserButton.Enabled = True
+                SpritePatchCreator.Enabled = True
                 ApplySpritePatchButton.Enabled = True
                 AddRecentRom(RomFilePath, RecentRoms)
             Else
@@ -287,6 +288,9 @@ Public Class Main
                 SpriteTemplateSettingsGroupBox.Enabled = False
                 RomFileLoaded = False
                 PaletteInserterButton.Enabled = False
+                TableBrowserButton.Enabled = False
+                SpritePatchCreator.Enabled = False
+                ApplySpritePatchButton.Enabled = False
                 MessageBox.Show("This is not Pokemon Fire Red Rom!" & vbCrLf & vbCrLf & "You can disable this check by switching Rom Check to Off state in Settings.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
         Else
@@ -302,6 +306,7 @@ Public Class Main
                 RomFileLoaded = True
                 PaletteInserterButton.Enabled = True
                 TableBrowserButton.Enabled = True
+                SpritePatchCreator.Enabled = True
                 ApplySpritePatchButton.Enabled = True
                 AddRecentRom(RomFilePath, RecentRoms)
             Else
@@ -333,6 +338,8 @@ Public Class Main
             SpriteTemplateSettingsGroupBox.Enabled = False
             PaletteInserterButton.Enabled = False
             ApplySpritePatchButton.Enabled = False
+            TableBrowserButton.Enabled = False
+            SpritePatchCreator.Enabled = False
         End If
         UnknownData1TextBox.Text = CurrentPreset.Unknown1
         PalRegistersTextBox.Text = CurrentPreset.PalRegisters
@@ -363,13 +370,13 @@ Public Class Main
             FilePathLabel.Text = "Enter or Browse the path to your Pokemon Rom :"
             PokemonRomGroupBox.Text = "Pokemon Rom"
         Else
-            RomStateLabel.Text = "Load a Pokemon Fire Red Rom."
-            FilePathLabel.Text = "Enter or Browse the path to your Pokemon Fire Red Rom :"
-            PokemonRomGroupBox.Text = "Pokemon Fire Red Rom"
+            RomStateLabel.Text = "Load a Pokemon Fire Red Or Emerald Rom."
+            FilePathLabel.Text = "Enter or Browse the path to your Pokemon Fire Red Or Emerald Rom :"
+            PokemonRomGroupBox.Text = "Pokemon Fire Red Or Emerald Rom"
         End If
     End Sub
 
-    Private Sub Form1Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub MainLoad(sender As Object, e As EventArgs) Handles MyBase.Load
         CurrentPreset = SecondaryHero
         Settings.LoadSettings()
         LoadForm()
@@ -378,12 +385,9 @@ Public Class Main
         SelectOWSTablePanel.BringToFront()
         SelectOWSTableGroupBox.BringToFront()
         HistoryButton.Enabled = False
-        TableBrowserButton.Enabled = True
         If CheckForUpdateOnStart = True Then
             UpdateChecker.RunWorkerAsync()
         End If
-        TableBrowserButton.Enabled = False
-        SpritePatcher.Hide()
         ProcessRecentRoms(RecentRomsMenu, RecentRoms)
     End Sub
 
@@ -772,7 +776,7 @@ Public Class Main
         ViewTables.Show()
     End Sub
 
-    Private Sub SpritePatcherClick(sender As Object, e As EventArgs) Handles SpritePatcher.Click
+    Private Sub SpritePatcherClick(sender As Object, e As EventArgs) Handles SpritePatchCreator.Click
         Sprite_Table_Debug.Show()
     End Sub
 

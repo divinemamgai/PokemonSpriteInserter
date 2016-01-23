@@ -100,8 +100,8 @@ Module FunctionsModule
     Public ProgramDataPath As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\Pokemon Sprite Inserter"
     Public SettingsFilePath As String = ProgramDataPath + "\settings.bin"
     Public UpdateFilePath As String = ProgramDataPath + "\CURRENT.VER"
-    Public UpdateRequest As String = "https://raw.githubusercontent.com/divinemamgai/PokemonSpriteInserter/master/CURRENT.VER"
-    Public UpdateURL As String = "https://github.com/divinemamgai/PokemonSpriteInserter/raw/master/Pokemon%20Sprite%20Inserter-SetupFiles/Pokemon%20Sprite%20Inserter.exe"
+    Public UpdateRequest As String = "https://raw.githubusercontent.com/divyamamgai/PokemonSpriteInserter/master/CURRENT.VER"
+    Public UpdateURL As String = "https://github.com/divyamamgai/PokemonSpriteInserter/raw/master/Pokemon%20Sprite%20Inserter-SetupFiles/Pokemon%20Sprite%20Inserter.exe"
     Dim CurrentVersions() As String
 
     Public Function ProcessUpdateFile() As Boolean
@@ -274,7 +274,7 @@ Module FunctionsModule
     End Sub
 
     Public Function ToDecimal(ByVal HexValue As String) As Integer
-        If System.Text.RegularExpressions.Regex.IsMatch(HexValue, "\A\b[0-9a-fA-F]+\b\Z") = True Then
+        If Regex.IsMatch(HexValue, "\A\b[0-9a-fA-F]+\b\Z") = True Then
             Return Convert.ToInt32(HexValue, 16)
         End If
         Return Nothing

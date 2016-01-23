@@ -566,7 +566,7 @@ Public Class PaletteConvert
                 .Height = 26
                 .AutoSize = False
                 .Location = New Point(3, PaletteContainerFlowPanel.Height + 24)
-                .BackColor = Control.DefaultBackColor
+                .BackColor = Color.Transparent
             End With
             AddHandler PaletteImportButton.Click, Sub()
                                                       Dim PaletteImportDialog As FileDialog = New OpenFileDialog
@@ -638,7 +638,7 @@ Public Class PaletteConvert
                 .Height = 26
                 .AutoSize = False
                 .Location = New Point(69, PaletteContainerFlowPanel.Height + 24)
-                .BackColor = Control.DefaultBackColor
+                .BackColor = Color.Transparent
             End With
             AddHandler PaletteExportButton.Click, Sub()
                                                       Dim PaletteFileData As New StringBuilder()
@@ -665,7 +665,7 @@ Public Class PaletteConvert
                 .Height = 26
                 .AutoSize = False
                 .Location = New Point(PaletteEditorGroupBox.Width - 136, PaletteContainerFlowPanel.Height + 24)
-                .BackColor = Control.DefaultBackColor
+                .BackColor = Color.Transparent
             End With
             AddHandler PaletteResetButton.Click, Sub()
                                                      If ResetPaletteData <> "" Then
@@ -690,7 +690,7 @@ Public Class PaletteConvert
                 .Height = 26
                 .AutoSize = False
                 .Location = New Point(PaletteEditorGroupBox.Width - 69, PaletteContainerFlowPanel.Height + 24)
-                .BackColor = Control.DefaultBackColor
+                .BackColor = Color.Transparent
             End With
             AddHandler PaletteApplyButton.Click, AddressOf ApplyPalette
             PaletteEditorGroupBox.Controls.Add(PaletteApplyButton)

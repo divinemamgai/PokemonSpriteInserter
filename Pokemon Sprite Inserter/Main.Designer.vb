@@ -24,6 +24,7 @@ Partial Class Main
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.PokemonRomGroupBox = New System.Windows.Forms.GroupBox()
+        Me.SpritePatchCreator = New System.Windows.Forms.Button()
         Me.ApplySpritePatchButton = New System.Windows.Forms.Button()
         Me.FilePathLabel = New System.Windows.Forms.Label()
         Me.FilePathTextBox = New System.Windows.Forms.TextBox()
@@ -32,8 +33,6 @@ Partial Class Main
         Me.RecentRomsMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.SpriteTemplateSettingsGroupBox = New System.Windows.Forms.GroupBox()
         Me.CancelSpriteInsertionButton = New System.Windows.Forms.Button()
-        Me.SelectOWSTablePanel = New Pokemon_Sprite_Inserter.TablePanel()
-        Me.SelectOWSTableGroupBox = New System.Windows.Forms.GroupBox()
         Me.Log = New System.Windows.Forms.RichTextBox()
         Me.CreateOWSTableButton = New System.Windows.Forms.Button()
         Me.PaletteFixButton = New System.Windows.Forms.Button()
@@ -77,16 +76,18 @@ Partial Class Main
         Me.SettingsButton = New System.Windows.Forms.Button()
         Me.HistoryButton = New System.Windows.Forms.Button()
         Me.UpdateChecker = New System.ComponentModel.BackgroundWorker()
-        Me.SpritePatcher = New System.Windows.Forms.Button()
+        Me.SelectOWSTablePanel = New Pokemon_Sprite_Inserter.TablePanel()
+        Me.SelectOWSTableGroupBox = New System.Windows.Forms.GroupBox()
         Me.PokemonRomGroupBox.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SpriteTemplateSettingsGroupBox.SuspendLayout()
-        Me.SelectOWSTablePanel.SuspendLayout()
         Me.SpriteDataPresetGroupBox.SuspendLayout()
+        Me.SelectOWSTablePanel.SuspendLayout()
         Me.SuspendLayout()
         '
         'PokemonRomGroupBox
         '
+        Me.PokemonRomGroupBox.Controls.Add(Me.SpritePatchCreator)
         Me.PokemonRomGroupBox.Controls.Add(Me.ApplySpritePatchButton)
         Me.PokemonRomGroupBox.Controls.Add(Me.FilePathLabel)
         Me.PokemonRomGroupBox.Controls.Add(Me.FilePathTextBox)
@@ -98,7 +99,18 @@ Partial Class Main
         Me.PokemonRomGroupBox.Size = New System.Drawing.Size(600, 100)
         Me.PokemonRomGroupBox.TabIndex = 0
         Me.PokemonRomGroupBox.TabStop = False
-        Me.PokemonRomGroupBox.Text = "Pokemon Fire Red Rom"
+        Me.PokemonRomGroupBox.Text = "Pokemon Emerald Or Fire Red Rom"
+        '
+        'SpritePatchCreator
+        '
+        Me.SpritePatchCreator.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.SpritePatchCreator.Location = New System.Drawing.Point(308, 69)
+        Me.SpritePatchCreator.Name = "SpritePatchCreator"
+        Me.SpritePatchCreator.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.SpritePatchCreator.Size = New System.Drawing.Size(149, 25)
+        Me.SpritePatchCreator.TabIndex = 38
+        Me.SpritePatchCreator.Text = "Sprite Patch Creator"
+        Me.SpritePatchCreator.UseVisualStyleBackColor = True
         '
         'ApplySpritePatchButton
         '
@@ -115,9 +127,9 @@ Partial Class Main
         Me.FilePathLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FilePathLabel.Location = New System.Drawing.Point(7, 17)
         Me.FilePathLabel.Name = "FilePathLabel"
-        Me.FilePathLabel.Size = New System.Drawing.Size(316, 15)
+        Me.FilePathLabel.Size = New System.Drawing.Size(381, 15)
         Me.FilePathLabel.TabIndex = 2
-        Me.FilePathLabel.Text = "Enter or Browse the path to your Pokemon Fire Red Rom :"
+        Me.FilePathLabel.Text = "Enter or Browse the path to your Pokemon Fire Red Or Emerald Rom :"
         '
         'FilePathTextBox
         '
@@ -198,28 +210,6 @@ Partial Class Main
         Me.CancelSpriteInsertionButton.TabIndex = 33
         Me.CancelSpriteInsertionButton.Text = "Cancel Sprite Insertion"
         Me.CancelSpriteInsertionButton.UseVisualStyleBackColor = True
-        '
-        'SelectOWSTablePanel
-        '
-        Me.SelectOWSTablePanel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SelectOWSTablePanel.AutoScroll = True
-        Me.SelectOWSTablePanel.Controls.Add(Me.SelectOWSTableGroupBox)
-        Me.SelectOWSTablePanel.Location = New System.Drawing.Point(6, 16)
-        Me.SelectOWSTablePanel.Name = "SelectOWSTablePanel"
-        Me.SelectOWSTablePanel.Size = New System.Drawing.Size(588, 224)
-        Me.SelectOWSTablePanel.TabIndex = 38
-        '
-        'SelectOWSTableGroupBox
-        '
-        Me.SelectOWSTableGroupBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SelectOWSTableGroupBox.Location = New System.Drawing.Point(0, 0)
-        Me.SelectOWSTableGroupBox.Name = "SelectOWSTableGroupBox"
-        Me.SelectOWSTableGroupBox.Size = New System.Drawing.Size(588, 224)
-        Me.SelectOWSTableGroupBox.TabIndex = 0
-        Me.SelectOWSTableGroupBox.TabStop = False
-        Me.SelectOWSTableGroupBox.Text = "Select The OWS Table To Insert The Created Sprite In"
         '
         'Log
         '
@@ -605,9 +595,9 @@ Partial Class Main
         Me.RomStateLabel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RomStateLabel.Location = New System.Drawing.Point(16, 409)
         Me.RomStateLabel.Name = "RomStateLabel"
-        Me.RomStateLabel.Size = New System.Drawing.Size(173, 15)
+        Me.RomStateLabel.Size = New System.Drawing.Size(238, 15)
         Me.RomStateLabel.TabIndex = 6
-        Me.RomStateLabel.Text = "Load a Pokemon Fire Red Rom."
+        Me.RomStateLabel.Text = "Load a Pokemon Fire Red Or Emerald Rom."
         '
         'AboutButton
         '
@@ -642,16 +632,27 @@ Partial Class Main
         'UpdateChecker
         '
         '
-        'SpritePatcher
+        'SelectOWSTablePanel
         '
-        Me.SpritePatcher.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.SpritePatcher.Location = New System.Drawing.Point(190, 403)
-        Me.SpritePatcher.Name = "SpritePatcher"
-        Me.SpritePatcher.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.SpritePatcher.Size = New System.Drawing.Size(97, 26)
-        Me.SpritePatcher.TabIndex = 38
-        Me.SpritePatcher.Text = "Sprite Patcher"
-        Me.SpritePatcher.UseVisualStyleBackColor = True
+        Me.SelectOWSTablePanel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SelectOWSTablePanel.AutoScroll = True
+        Me.SelectOWSTablePanel.Controls.Add(Me.SelectOWSTableGroupBox)
+        Me.SelectOWSTablePanel.Location = New System.Drawing.Point(6, 16)
+        Me.SelectOWSTablePanel.Name = "SelectOWSTablePanel"
+        Me.SelectOWSTablePanel.Size = New System.Drawing.Size(588, 224)
+        Me.SelectOWSTablePanel.TabIndex = 38
+        '
+        'SelectOWSTableGroupBox
+        '
+        Me.SelectOWSTableGroupBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SelectOWSTableGroupBox.Location = New System.Drawing.Point(0, 0)
+        Me.SelectOWSTableGroupBox.Name = "SelectOWSTableGroupBox"
+        Me.SelectOWSTableGroupBox.Size = New System.Drawing.Size(588, 224)
+        Me.SelectOWSTableGroupBox.TabIndex = 0
+        Me.SelectOWSTableGroupBox.TabStop = False
+        Me.SelectOWSTableGroupBox.Text = "Select The OWS Table To Insert The Created Sprite In"
         '
         'Main
         '
@@ -659,7 +660,6 @@ Partial Class Main
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(625, 439)
-        Me.Controls.Add(Me.SpritePatcher)
         Me.Controls.Add(Me.TableBrowserButton)
         Me.Controls.Add(Me.HistoryButton)
         Me.Controls.Add(Me.SpriteTemplateSettingsGroupBox)
@@ -677,9 +677,9 @@ Partial Class Main
         Me.MenuStrip1.PerformLayout()
         Me.SpriteTemplateSettingsGroupBox.ResumeLayout(False)
         Me.SpriteTemplateSettingsGroupBox.PerformLayout()
-        Me.SelectOWSTablePanel.ResumeLayout(False)
         Me.SpriteDataPresetGroupBox.ResumeLayout(False)
         Me.SpriteDataPresetGroupBox.PerformLayout()
+        Me.SelectOWSTablePanel.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -735,7 +735,7 @@ Partial Class Main
     Friend WithEvents Log As System.Windows.Forms.RichTextBox
     Friend WithEvents SelectOWSTablePanel As Pokemon_Sprite_Inserter.TablePanel
     Friend WithEvents SelectOWSTableGroupBox As System.Windows.Forms.GroupBox
-    Friend WithEvents SpritePatcher As System.Windows.Forms.Button
+    Friend WithEvents SpritePatchCreator As System.Windows.Forms.Button
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents RecentRomsMenu As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ApplySpritePatchButton As System.Windows.Forms.Button

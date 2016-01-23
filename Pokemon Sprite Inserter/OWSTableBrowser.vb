@@ -5,6 +5,7 @@ Public Class OWSTableBrowser
     Public MainFrom As Form
     Public MainTabPage As TabPage
 
+    Public OWSTableBrowserIsLoaded As Boolean = False
     Public CurrentSpriteTable As Integer = 1
     Public SpriteTables As SpriteTable() = GetSpriteTables(Main.OWSTableListOffset, Main.OWSTableListEmptyDataHex, Main.OWSTableEmptyDataHex, Main.OWSTableMaxSprites)
     Public MaxSprites As Integer = 2
@@ -50,46 +51,52 @@ Public Class OWSTableBrowser
             If Count > SpriteTables(CurrentSpriteTable - 1).SpriteTableSpriteCount Then
                 Exit For
             Else
-                DummySpriteEditorObject = New SpriteEditor(SpriteTables(CurrentSpriteTable - 1).SpriteTableSpriteArray(Count - 1), Nothing, Nothing)
-                Dim SpriteFramePanel As New SpritePanel
-                With SpriteFramePanel
-                    .BorderStyle = BorderStyle.None
-                    .Size = New Size(DummySpriteEditorObject.Sprite.SpriteSize.Width * SpriteDrawMultiplier + 4,
-                                     DummySpriteEditorObject.Sprite.SpriteSize.Height * SpriteDrawMultiplier + 4)
-                    .Cursor = Cursors.Hand
-                    .Tag = Count
-                End With
-                SpriteBrowserFlowLayoutPanel.Controls.Add(SpriteFramePanel)
-                DummySpriteEditorObject.DrawSprite(1, DummySpriteEditorObject.SpritePalette.PaletteHexData, DummySpriteEditorObject.Sprite.SpriteSize,
-                                                   SpriteFramePanel, SpriteDrawMultiplier, Color.Black, False)
-                Dim SpriteFramePanelPictureBox As PictureBox = DummySpriteEditorObject.GetSpritePictureBox(SpriteFramePanel)
-                SpriteFramePanelPictureBox.Location = New Point(2, 2)
-                AddHandler SpriteFramePanelPictureBox.Click, Sub(sender As Object, e As EventArgs)
-                                                                 Dim SpriteFramePanelPictureBoxTemp As PictureBox = DirectCast(sender, PictureBox)
-                                                                 CurrentSprite = CInt(SpriteFramePanelPictureBoxTemp.Parent().Tag)
-                                                                 Dim SpriteUpdated As Boolean = False
-                                                                 If String.Compare(SpriteEditorObject.SpriteImageData, SpriteEditorObject.SpriteOriginalImageData) <> 0 Then
-                                                                     Dim Result As Integer = MessageBox.Show("Sprite change has been detected! Do want to save the changes you have made to the sprite and proceed?", "Sprite Change Detected!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
-                                                                     If Result = DialogResult.Yes Then
-                                                                         SpriteEditorObject.SaveSprite(False, False)
-                                                                         SpriteUpdated = True
+                If SpriteTables(CurrentSpriteTable - 1).SpriteTableSpriteArray(Count - 1).SpriteValid = True Then
+                    DummySpriteEditorObject = New SpriteEditor(SpriteTables(CurrentSpriteTable - 1).SpriteTableSpriteArray(Count - 1), Nothing, Nothing)
+                    Dim SpriteFramePanel As New SpritePanel
+                    With SpriteFramePanel
+                        .BorderStyle = BorderStyle.None
+                        .Size = New Size(DummySpriteEditorObject.Sprite.SpriteSize.Width * SpriteDrawMultiplier + 4,
+                                         DummySpriteEditorObject.Sprite.SpriteSize.Height * SpriteDrawMultiplier + 4)
+                        .Cursor = Cursors.Hand
+                        .Tag = Count
+                    End With
+                    SpriteBrowserFlowLayoutPanel.Controls.Add(SpriteFramePanel)
+                    DummySpriteEditorObject.DrawSprite(1, DummySpriteEditorObject.SpritePalette.PaletteHexData, DummySpriteEditorObject.Sprite.SpriteSize,
+                                                       SpriteFramePanel, SpriteDrawMultiplier, Color.Black, False)
+                    Dim SpriteFramePanelPictureBox As PictureBox = DummySpriteEditorObject.GetSpritePictureBox(SpriteFramePanel)
+                    SpriteFramePanelPictureBox.Location = New Point(2, 2)
+                    AddHandler SpriteFramePanelPictureBox.Click, Sub(sender As Object, e As EventArgs)
+                                                                     Dim SpriteFramePanelPictureBoxTemp As PictureBox = DirectCast(sender, PictureBox)
+                                                                     CurrentSprite = CInt(SpriteFramePanelPictureBoxTemp.Parent().Tag)
+                                                                     Dim SpriteUpdated As Boolean = False
+                                                                     If String.Compare(SpriteEditorObject.SpriteImageData, SpriteEditorObject.SpriteOriginalImageData) <> 0 Then
+                                                                         Dim Result As Integer = MessageBox.Show("Sprite change has been detected! Do want to save the changes you have made to the sprite and proceed?", "Sprite Change Detected!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+                                                                         If Result = DialogResult.Yes Then
+                                                                             SpriteEditorObject.SaveSprite(False, False)
+                                                                             SpriteUpdated = True
+                                                                         End If
                                                                      End If
-                                                                 End If
-                                                                 If SpriteEditorObject.CheckSpritePaletteChange() <> SpriteEditor.PaletteChange.No Then
-                                                                     Dim Result As Integer = MessageBox.Show("Palette change has been detected! Do want to save the changes you have made to the palette and proceed?", "Palette Change Detected!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
-                                                                     If Result = DialogResult.Yes Then
-                                                                         SpriteEditorObject.SavePalette(False)
-                                                                         SpriteUpdated = True
+                                                                     If SpriteEditorObject.CheckSpritePaletteChange() <> SpriteEditor.PaletteChange.No Then
+                                                                         Dim Result As Integer = MessageBox.Show("Palette change has been detected! Do want to save the changes you have made to the palette and proceed?", "Palette Change Detected!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+                                                                         If Result = DialogResult.Yes Then
+                                                                             SpriteEditorObject.SavePalette(False)
+                                                                             SpriteUpdated = True
+                                                                         End If
                                                                      End If
-                                                                 End If
-                                                                 SpriteEditorObject.Delete()
-                                                                 SpriteEditorObject = New SpriteEditor(SpriteTables(CurrentSpriteTable - 1).SpriteTableSpriteArray(CurrentSprite - 1),
-                                                                                                       MainFrom, MainTabPage)
-                                                                 SpriteEditorObject.GenerateSpriteEditor()
-                                                                 If SpriteUpdated = True Then
-                                                                     LoadSprites()
-                                                                 End If
-                                                             End Sub
+                                                                     SpriteEditorObject.Delete()
+                                                                     SpriteEditorObject = New SpriteEditor(SpriteTables(CurrentSpriteTable - 1).SpriteTableSpriteArray(CurrentSprite - 1),
+                                                                                                           MainFrom, MainTabPage)
+                                                                     SpriteEditorObject.GenerateSpriteEditor()
+                                                                     If SpriteUpdated = True Then
+                                                                         LoadSprites()
+                                                                     End If
+                                                                 End Sub
+                    OWSTableBrowserIsLoaded = True
+                Else
+                    OWSTableBrowserIsLoaded = False
+                    Exit For
+                End If
             End If
         Next
     End Sub
@@ -241,7 +248,28 @@ Public Class OWSTableBrowser
             MainTabPage.Controls.Add(SpriteBrowserGroupBox)
             SpriteBrowserGroupBox.Controls.AddRange({SpriteBrowserFlowLayoutPanel, SpriteTableLabel, SpriteTableComboBox, SpriteBrowserNextButton, SpriteBrowserCurrentPageComboBox,
                                                      SpriteBrowserPreviousButton, SpriteBrowserMaxSpritesComboBox, SpriteBrowserMaxSpritesLabel})
+            AddHandler MainFrom.FormClosed, Sub()
+                                                SpriteEditorObject.Delete()
+                                                Delete()
+                                            End Sub
         End If
+    End Sub
+
+    Public Sub Delete()
+        RemoveHandler SpriteBrowserMaxSpritesComboBox.MouseWheel, AddressOf DisableMouseWheel
+        SpriteEditorObject = Nothing
+        DummySpriteEditorObject = Nothing
+        SpriteBrowserGroupBox.Dispose()
+        SpriteBrowserGroupBox = Nothing
+        SpriteBrowserFlowLayoutPanel = Nothing
+        SpriteTableLabel = Nothing
+        SpriteTableComboBox = Nothing
+        SpriteBrowserMaxSpritesLabel = Nothing
+        SpriteBrowserMaxSpritesComboBox = Nothing
+        SpriteBrowserPreviousButton = Nothing
+        SpriteBrowserCurrentPageComboBox = Nothing
+        SpriteBrowserNextButton = Nothing
+        SpriteTables = Nothing
     End Sub
 
 End Class

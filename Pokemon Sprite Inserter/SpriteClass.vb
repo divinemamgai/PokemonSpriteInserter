@@ -729,7 +729,7 @@ Public Class SpriteEditor
             With SpriteDetailsPresetButton
                 .Location = New Point(1, 209)
                 .Text = "Sprite Preset Details"
-                .BackColor = Control.DefaultBackColor
+                .BackColor = Color.Transparent
                 .AutoSize = False
                 .Height = 26
                 .Width = 244
@@ -745,7 +745,7 @@ Public Class SpriteEditor
             With SpriteFrameBrowserNextButton
                 .Location = New Point(SpriteBrowser.Width - 111, SpriteBrowser.Height - 56)
                 .Text = "Next Sprite"
-                .BackColor = Control.DefaultBackColor
+                .BackColor = Color.Transparent
                 .AutoSize = False
                 .Height = 26
                 .Width = 100
@@ -754,7 +754,7 @@ Public Class SpriteEditor
             With SpriteFrameBrowserPreviousButton
                 .Location = New Point(1, SpriteBrowser.Height - 56)
                 .Text = "Previous Sprite"
-                .BackColor = Control.DefaultBackColor
+                .BackColor = Color.Transparent
                 .AutoSize = False
                 .Height = 26
                 .Width = 100
@@ -779,7 +779,7 @@ Public Class SpriteEditor
             With SpriteExportButton
                 .Location = New Point(SpriteEditorGroupBox.Width - 94, SpritePaletteGroupBox.Height + 15)
                 .Text = "Export Sprite"
-                .BackColor = Control.DefaultBackColor
+                .BackColor = Color.Transparent
                 .AutoSize = False
                 .Height = 26
                 .Width = 90
@@ -788,7 +788,7 @@ Public Class SpriteEditor
             With SpriteImportButton
                 .Location = New Point(SpriteEditorGroupBox.Width - 186, SpritePaletteGroupBox.Height + 15)
                 .Text = "Import Sprite"
-                .BackColor = Control.DefaultBackColor
+                .BackColor = Color.Transparent
                 .AutoSize = False
                 .Height = 26
                 .Width = 90
@@ -796,7 +796,7 @@ Public Class SpriteEditor
             AddHandler SpriteImportButton.Click, AddressOf SpriteImport
             With SaveAllButton
                 .Text = "Save All"
-                .BackColor = Control.DefaultBackColor
+                .BackColor = Color.Transparent
                 .AutoSize = False
                 .Height = 26
                 .Width = 90
@@ -808,7 +808,7 @@ Public Class SpriteEditor
                                             End Sub
             With SavePaletteButton
                 .Text = "Save Palette"
-                .BackColor = Control.DefaultBackColor
+                .BackColor = Color.Transparent
                 .AutoSize = False
                 .Height = 26
                 .Width = 92
@@ -820,7 +820,7 @@ Public Class SpriteEditor
                                                 End Sub
             With SaveSpriteButton
                 .Text = "Save Sprite"
-                .BackColor = Control.DefaultBackColor
+                .BackColor = Color.Transparent
                 .AutoSize = False
                 .Height = 26
                 .Width = 90
@@ -875,7 +875,8 @@ Public Class SpriteEditor
             EnableDisableButtons()
         Else
             If Sprite.SpriteValid = False Then
-                MessageBox.Show("It seems like the sprite header doesn't have a defined value of number of sprite frames. Please apply sprite patch if not applied yet.", "Invalid Sprite Detected!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("It seems like the sprite header doesn't have a defined value of number of sprite frames. Please apply sprite patch if not applied yet." + vbCrLf & vbCrLf + "OWS Table Browser is now exiting...", "Invalid Sprite Detected!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                SpriteEditorControl.Dispose()
             End If
         End If
     End Sub
@@ -1235,33 +1236,37 @@ Public Class SpriteEditor
     End Sub
 
     Public Sub GenerateSpriteDetails()
-        With SpriteDetailsIndexTextBox
-            .Text = CStr(Sprite.SpriteIndex + 1) + " [" + CStr(CurrentSpriteFrame) + "/" + If(Sprite.SpriteFrameCount > 0, CStr(Sprite.SpriteFrameCount), "N/A") + "]"
-        End With
-        With SpriteDetailsTableOffsetTextBox
-            .Text = CStr(Sprite.SpriteTableOffset)
-        End With
-        With SpriteDetailsHeaderOffsetTextBox
-            .Text = CStr(Sprite.SpriteHeaderOffset)
-        End With
-        With SpriteDetailsPaletteTextBox
-            .Text = CStr(Sprite.SpritePalette)
-        End With
-        With SpriteDetailsPaletteHexDataTextBox
-            .Text = SpritePalette.PaletteHexData
-        End With
-        With SpriteDetailsFrameSizeTextBox
-            .Text = CStr(Sprite.SpriteFrameSize) + " Bytes"
-        End With
-        With SpriteDetailsFrameDataOffsetTextBox
-            .Text = CStr(ToHex(ToDecimal(Sprite.SpriteFrameDataOffset) + (CurrentSpriteFrame - 1) * 8))
-        End With
-        With SpriteDetailsFrameCountTextBox
-            .Text = CStr(If(Sprite.SpriteFrameCount > 0, CStr(Sprite.SpriteFrameCount), "N/A"))
-        End With
-        With SpriteDetailsArtDataOffsetTextBox
-            .Text = CStr(ToHex(ToDecimal(Sprite.SpriteArtDataOffset) + (CurrentSpriteFrame - 1) * Sprite.SpriteFrameSize))
-        End With
+        Try
+            With SpriteDetailsIndexTextBox
+                .Text = CStr(Sprite.SpriteIndex + 1) + " [" + CStr(CurrentSpriteFrame) + "/" + If(Sprite.SpriteFrameCount > 0, CStr(Sprite.SpriteFrameCount), "N/A") + "]"
+            End With
+            With SpriteDetailsTableOffsetTextBox
+                .Text = CStr(Sprite.SpriteTableOffset)
+            End With
+            With SpriteDetailsHeaderOffsetTextBox
+                .Text = CStr(Sprite.SpriteHeaderOffset)
+            End With
+            With SpriteDetailsPaletteTextBox
+                .Text = CStr(Sprite.SpritePalette)
+            End With
+            With SpriteDetailsPaletteHexDataTextBox
+                .Text = SpritePalette.PaletteHexData
+            End With
+            With SpriteDetailsFrameSizeTextBox
+                .Text = CStr(Sprite.SpriteFrameSize) + " Bytes"
+            End With
+            With SpriteDetailsFrameDataOffsetTextBox
+                .Text = CStr(ToHex(ToDecimal(Sprite.SpriteFrameDataOffset) + (CurrentSpriteFrame - 1) * 8))
+            End With
+            With SpriteDetailsFrameCountTextBox
+                .Text = CStr(If(Sprite.SpriteFrameCount > 0, CStr(Sprite.SpriteFrameCount), "N/A"))
+            End With
+            With SpriteDetailsArtDataOffsetTextBox
+                .Text = CStr(ToHex(ToDecimal(Sprite.SpriteArtDataOffset) + (CurrentSpriteFrame - 1) * Sprite.SpriteFrameSize))
+            End With
+        Catch ex As Exception
+            MessageBox.Show("An unexpected error has occurred!" + vbCrLf + vbCrLf + "Exception : " + ex.Message, "Error In GenerateSpriteDetails()", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     ' Bugged...
@@ -1463,10 +1468,10 @@ Public Class SpriteEditor
     Public Sub Update(ByVal UpdateType As UpdateSpriteEditor)
         Select Case UpdateType
             Case UpdateSpriteEditor.All
-                Update(UpdateSpriteEditor.Canvas)
-                Update(UpdateSpriteEditor.Palette)
-                Update(UpdateSpriteEditor.Browser)
-                Update(UpdateSpriteEditor.Details)
+                ReDrawSprite()
+                PaletteConvertObject.GeneratePaletteBoxCompact()
+                GenerateSpriteFrameBrowser()
+                GenerateSpriteDetails()
             Case UpdateSpriteEditor.Canvas
                 ReDrawSprite()
             Case UpdateSpriteEditor.Palette
@@ -1479,12 +1484,34 @@ Public Class SpriteEditor
     End Sub
 
     Public Sub SpriteExport()
-        Dim SpriteExportFileDialog As FileDialog = New SaveFileDialog
-        SpriteExportFileDialog.FileName = "Sprite - [" + CStr(Sprite.SpriteIndex) + "-" + CStr(CurrentSpriteFrame) + "].bmp"
-        SpriteExportFileDialog.Filter = "BMP Files (*.bmp*)|*.bmp"
-        SpriteExportFileDialog.Title = "Export Sprite Bitmap"
-        If SpriteExportFileDialog.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            ExportBitmap(SpriteImageData, SpritePalette.PaletteHexData, Sprite.SpriteSize, SpriteExportFileDialog.FileName)
+        If Export.ShowDialog() = DialogResult.Yes Then
+            Dim SpriteExportFileDialog As FileDialog = New SaveFileDialog
+            SpriteExportFileDialog.FileName = "Sprite - [" + CStr(Sprite.SpriteIndex) + "-" + CStr(CurrentSpriteFrame) + "].bmp"
+            SpriteExportFileDialog.Filter = "BMP Files (*.bmp*)|*.bmp"
+            SpriteExportFileDialog.Title = "Export Sprite Bitmap"
+            If SpriteExportFileDialog.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                ExportBitmap(SpriteImageData, SpritePalette.PaletteHexData, Sprite.SpriteSize, SpriteExportFileDialog.FileName)
+            End If
+        Else
+            Dim SpriteExportAllFolderDialog As FolderBrowserDialog = New FolderBrowserDialog
+            SpriteExportAllFolderDialog.SelectedPath = "E:\My Website\htdocs\Pokemon World\resources\drawable\Sprites\People"
+            If SpriteExportAllFolderDialog.ShowDialog() = DialogResult.OK Then
+                For i As Integer = 0 To Sprite.SpriteFrameCount - 1
+                    ExportBitmap(GetSpriteData(i + 1), SpritePalette.PaletteHexData, Sprite.SpriteSize, SpriteExportAllFolderDialog.SelectedPath + "/" + CStr(i) + ".bmp")
+                    Dim ExportedBitmap As Bitmap = New Bitmap(SpriteExportAllFolderDialog.SelectedPath + "/" + CStr(i) + ".bmp")
+                    Dim ExportingBitmap As Bitmap = New Bitmap(ExportedBitmap.Width, ExportedBitmap.Height)
+                    Dim ExportedBitmapGraphics As Graphics = Graphics.FromImage(ExportingBitmap)
+                    ExportedBitmapGraphics.DrawImage(ExportedBitmap, 0, 0)
+                    Dim ExportedBitmapTransparentColor As Color = ExportedBitmap.GetPixel(0, 0)
+                    ExportedBitmap.MakeTransparent(ExportedBitmapTransparentColor)
+                    ExportedBitmap.Save(SpriteExportAllFolderDialog.SelectedPath + "/" + CStr(i) + ".png", Drawing.Imaging.ImageFormat.Png)
+                    My.Computer.FileSystem.DeleteFile(SpriteExportAllFolderDialog.SelectedPath + "/" + CStr(i) + ".bmp")
+                    ExportedBitmap.Dispose()
+                    ExportedBitmapGraphics.Dispose()
+                    ExportingBitmap.Dispose()
+                Next
+                Process.Start(SpriteExportAllFolderDialog.SelectedPath)
+            End If
         End If
     End Sub
 
