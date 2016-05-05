@@ -734,6 +734,9 @@ Public Class SpriteEditor
                 .Height = 26
                 .Width = 244
             End With
+            AddHandler SpriteDetailsPresetButton.Click, Sub()
+                                                            MessageBox.Show("Magikarp Used Splash!", "...")
+                                                        End Sub
             With SpriteFrameBrowserFlowLayoutPanel
                 .Location = New Point(1, 3)
                 .Width = SpriteBrowser.Width - 12

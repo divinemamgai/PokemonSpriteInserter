@@ -142,7 +142,7 @@
         End If
     End Sub
 
-    Private Sub AppendPaletteLabelHanders()
+    Private Sub AppendPaletteLabelHandlers()
         Dim PaletteLabelItems = PaletteTablePanel.Controls.OfType(Of Label)()
         For Each PaletteLabelItem In PaletteLabelItems
             If IsNothing(PaletteLabelItem) = False Then
@@ -288,7 +288,7 @@
             End With
             PaletteTablePanel.Controls.AddRange({PaletteIndexLabel, PaletteOffsetLabel, PaletteNumberLabel, PaletteDataOffsetLabel, PaletteHexDataLabel})
         Next
-        AppendPaletteLabelHanders()
+        AppendPaletteLabelHandlers()
     End Sub
 
     Public Sub PerformProcess()

@@ -545,6 +545,7 @@ Public Class PaletteConvert
                                                          With PaletteColorDialog
                                                              .FullOpen = True
                                                              .AnyColor = True
+                                                             .SolidColorOnly = True
                                                          End With
                                                          PaletteColorDialog.Color = TempPaletteElement.BackColor
                                                          If PaletteColorDialog.ShowDialog() <> Windows.Forms.DialogResult.Cancel Then

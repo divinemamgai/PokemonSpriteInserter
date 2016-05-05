@@ -24,7 +24,7 @@ Partial Class Main
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.PokemonRomGroupBox = New System.Windows.Forms.GroupBox()
-        Me.SpritePatchCreator = New System.Windows.Forms.Button()
+        Me.SpritePatchCreatorButton = New System.Windows.Forms.Button()
         Me.ApplySpritePatchButton = New System.Windows.Forms.Button()
         Me.FilePathLabel = New System.Windows.Forms.Label()
         Me.FilePathTextBox = New System.Windows.Forms.TextBox()
@@ -87,7 +87,7 @@ Partial Class Main
         '
         'PokemonRomGroupBox
         '
-        Me.PokemonRomGroupBox.Controls.Add(Me.SpritePatchCreator)
+        Me.PokemonRomGroupBox.Controls.Add(Me.SpritePatchCreatorButton)
         Me.PokemonRomGroupBox.Controls.Add(Me.ApplySpritePatchButton)
         Me.PokemonRomGroupBox.Controls.Add(Me.FilePathLabel)
         Me.PokemonRomGroupBox.Controls.Add(Me.FilePathTextBox)
@@ -101,16 +101,16 @@ Partial Class Main
         Me.PokemonRomGroupBox.TabStop = False
         Me.PokemonRomGroupBox.Text = "Pokemon Emerald Or Fire Red Rom"
         '
-        'SpritePatchCreator
+        'SpritePatchCreatorButton
         '
-        Me.SpritePatchCreator.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.SpritePatchCreator.Location = New System.Drawing.Point(308, 69)
-        Me.SpritePatchCreator.Name = "SpritePatchCreator"
-        Me.SpritePatchCreator.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.SpritePatchCreator.Size = New System.Drawing.Size(149, 25)
-        Me.SpritePatchCreator.TabIndex = 38
-        Me.SpritePatchCreator.Text = "Sprite Patch Creator"
-        Me.SpritePatchCreator.UseVisualStyleBackColor = True
+        Me.SpritePatchCreatorButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.SpritePatchCreatorButton.Location = New System.Drawing.Point(308, 69)
+        Me.SpritePatchCreatorButton.Name = "SpritePatchCreatorButton"
+        Me.SpritePatchCreatorButton.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.SpritePatchCreatorButton.Size = New System.Drawing.Size(149, 25)
+        Me.SpritePatchCreatorButton.TabIndex = 38
+        Me.SpritePatchCreatorButton.Text = "Sprite Patch Creator"
+        Me.SpritePatchCreatorButton.UseVisualStyleBackColor = True
         '
         'ApplySpritePatchButton
         '
@@ -735,7 +735,7 @@ Partial Class Main
     Friend WithEvents Log As System.Windows.Forms.RichTextBox
     Friend WithEvents SelectOWSTablePanel As Pokemon_Sprite_Inserter.TablePanel
     Friend WithEvents SelectOWSTableGroupBox As System.Windows.Forms.GroupBox
-    Friend WithEvents SpritePatchCreator As System.Windows.Forms.Button
+    Friend WithEvents SpritePatchCreatorButton As System.Windows.Forms.Button
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents RecentRomsMenu As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ApplySpritePatchButton As System.Windows.Forms.Button

@@ -3,7 +3,7 @@ Imports System.Runtime.InteropServices
 Imports System.IO
 Imports System.Text
 
-Public Class Sprite_Table_Debug
+Public Class SpritePatchCreator
 
     Public PaletteConvertObject As New PaletteConvert
     Public PaletteDataArray() As PaletteData = GetPalettes(Main.PaletteTableOffset, Main.PaletteTableEndHex, Main.MaxPalette)
@@ -303,43 +303,4 @@ Public Class Sprite_Table_Debug
         HowToUseSpritePatcher.Show()
     End Sub
 
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
-
-    End Sub
-
-    Private Sub StartFromTextBox_TextChanged(sender As Object, e As EventArgs) Handles StartFromTextBox.TextChanged
-
-    End Sub
-
-    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
-
-    End Sub
-
-    Private Sub CountTextBox_TextChanged(sender As Object, e As EventArgs) Handles CountTextBox.TextChanged
-
-    End Sub
-
-    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
-
-    End Sub
-
-    Private Sub SpritePatchFilePathTextBox_TextChanged(sender As Object, e As EventArgs) Handles SpritePatchFilePathTextBox.TextChanged
-
-    End Sub
-
-    Private Sub GlobalPaletteNumberTextBox_TextChanged(sender As Object, e As EventArgs) Handles GlobalPaletteNumberTextBox.TextChanged
-
-    End Sub
-
-    Private Sub Label4_Click(sender As Object, e As EventArgs) Handles Label4.Click
-
-    End Sub
-
-    Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
-
-    End Sub
-
-    Private Sub SelectionCountTextBox_TextChanged(sender As Object, e As EventArgs) Handles SelectionCountTextBox.TextChanged
-
-    End Sub
 End Class

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Sprite_Table_Debug
+Partial Class SpritePatchCreator
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class Sprite_Table_Debug
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Sprite_Table_Debug))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SpritePatchCreator))
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.StartFromTextBox = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -222,7 +222,7 @@ Partial Class Sprite_Table_Debug
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Sprite_Table_Debug"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Sprite Table Debug"
+        Me.Text = "Sprite Patch Creator"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.ResumeLayout(False)
         Me.PerformLayout()

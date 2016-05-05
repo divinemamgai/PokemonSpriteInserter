@@ -31,6 +31,8 @@ Partial Class HowToUseSpritePatcher
         Me.HowToUseRichTextBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.HowToUseRichTextBox.BackColor = System.Drawing.Color.White
+        Me.HowToUseRichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.HowToUseRichTextBox.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.HowToUseRichTextBox.Location = New System.Drawing.Point(13, 13)
         Me.HowToUseRichTextBox.Name = "HowToUseRichTextBox"
@@ -43,6 +45,7 @@ Partial Class HowToUseSpritePatcher
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(565, 574)
         Me.Controls.Add(Me.HowToUseRichTextBox)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)

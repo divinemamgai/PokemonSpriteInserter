@@ -127,10 +127,10 @@
     <Compile Include="Settings.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SpriteTableDebug.Designer.vb">
-      <DependentUpon>SpriteTableDebug.vb</DependentUpon>
+    <Compile Include="SpritePatchCreator.Designer.vb">
+      <DependentUpon>SpritePatchCreator.vb</DependentUpon>
     </Compile>
-    <Compile Include="SpriteTableDebug.vb">
+    <Compile Include="SpritePatchCreator.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SpriteClass.vb" />
@@ -211,8 +211,8 @@
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SpriteTableDebug.resx">
-      <DependentUpon>SpriteTableDebug.vb</DependentUpon>
+    <EmbeddedResource Include="SpritePatchCreator.resx">
+      <DependentUpon>SpritePatchCreator.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SpritePresets.resx">
       <DependentUpon>SpritePresets.vb</DependentUpon>

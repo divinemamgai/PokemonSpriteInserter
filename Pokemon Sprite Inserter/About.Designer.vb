@@ -72,7 +72,9 @@ Partial Class About
         Me.AboutRichTextBox.ReadOnly = True
         Me.AboutRichTextBox.Size = New System.Drawing.Size(388, 106)
         Me.AboutRichTextBox.TabIndex = 0
-        Me.AboutRichTextBox.Text = resources.GetString("AboutRichTextBox.Text")
+        Me.AboutRichTextBox.Text = "Pokemon Sprite Inserter is a Free-Software devolped by" & Global.Microsoft.VisualBasic.ChrW(10) & "Divya Mamgai, 2014, licens" &
+    "ed under GPL V3 License." & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(10) & "Source Code - https://github.com/divyamamgai/PokemonSp" &
+    "riteInserter" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(10) & "Have fun Rom Hacking!"
         '
         'About
         '

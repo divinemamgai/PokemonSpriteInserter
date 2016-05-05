@@ -279,7 +279,7 @@ Public Class Main
                 RomFileLoaded = True
                 PaletteInserterButton.Enabled = True
                 TableBrowserButton.Enabled = True
-                SpritePatchCreator.Enabled = True
+                SpritePatchCreatorButton.Enabled = True
                 ApplySpritePatchButton.Enabled = True
                 AddRecentRom(RomFilePath, RecentRoms)
             Else
@@ -289,7 +289,7 @@ Public Class Main
                 RomFileLoaded = False
                 PaletteInserterButton.Enabled = False
                 TableBrowserButton.Enabled = False
-                SpritePatchCreator.Enabled = False
+                SpritePatchCreatorButton.Enabled = False
                 ApplySpritePatchButton.Enabled = False
                 MessageBox.Show("This is not Pokemon Fire Red Rom!" & vbCrLf & vbCrLf & "You can disable this check by switching Rom Check to Off state in Settings.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
@@ -306,7 +306,7 @@ Public Class Main
                 RomFileLoaded = True
                 PaletteInserterButton.Enabled = True
                 TableBrowserButton.Enabled = True
-                SpritePatchCreator.Enabled = True
+                SpritePatchCreatorButton.Enabled = True
                 ApplySpritePatchButton.Enabled = True
                 AddRecentRom(RomFilePath, RecentRoms)
             Else
@@ -339,7 +339,7 @@ Public Class Main
             PaletteInserterButton.Enabled = False
             ApplySpritePatchButton.Enabled = False
             TableBrowserButton.Enabled = False
-            SpritePatchCreator.Enabled = False
+            SpritePatchCreatorButton.Enabled = False
         End If
         UnknownData1TextBox.Text = CurrentPreset.Unknown1
         PalRegistersTextBox.Text = CurrentPreset.PalRegisters
@@ -776,12 +776,12 @@ Public Class Main
         ViewTables.Show()
     End Sub
 
-    Private Sub SpritePatcherClick(sender As Object, e As EventArgs) Handles SpritePatchCreator.Click
-        Sprite_Table_Debug.Show()
+    Private Sub SpritePatchCreatorButtonClick(sender As Object, e As EventArgs) Handles SpritePatchCreatorButton.Click
+        SpritePatchCreator.Show()
     End Sub
 
     Private Sub ApplySpritePatchButtonClick(sender As Object, e As EventArgs) Handles ApplySpritePatchButton.Click
-        Dim Result As Integer = MessageBox.Show("Do you want to apply sprite patch for Fire Red rom?" & vbCrLf & vbCrLf & "This patch is not mandatory but it allows program to work safely and switfly and accurately. It will be used when Sprite Editing and Browsing is enabled in the program which are currently under construction.", "Apply Sprite Patch?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Dim Result As Integer = MessageBox.Show("Do you want to apply sprite patch for Fire Red rom?" & vbCrLf & vbCrLf & "This patch allows program to work safely and switfly and accurately with Table Browser. This is because it caches the number of frames in a Sprite in the Sprite Header.", "Apply Sprite Patch?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If Result = DialogResult.Yes Then
             ApplySpritePatch()
             MessageBox.Show("Sprite Patch has been applied.", "Sprite Patch Applied!", MessageBoxButtons.OK, MessageBoxIcon.Information)
